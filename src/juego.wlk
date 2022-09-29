@@ -21,6 +21,12 @@ object juego {
 
 	method agregarPersonajes() {
 		game.addVisualCharacter(personaje)
+		game.addVisual(corazon1)
+		game.addVisual(corazon2)
+		game.addVisual(corazon3)
+		game.addVisual(corazon4)
+		game.addVisual(corazon5)
+		game.addVisual(zombieFalopa)
 	}
 
 	method configurarTeclas() {
@@ -31,5 +37,7 @@ object juego {
 	}
 	
 	method configurarAcciones() {
+		
+		game.onCollideDo(zombieFalopa, {chocado => chocado.perderVida()})
 	}
 }
