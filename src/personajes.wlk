@@ -7,7 +7,7 @@ object personaje {
 
     method position() = position
 
-    method image() = "guy.png"
+    method image() = "personaje.png"
 
    method moverA(direccion) {
 		position = direccion.siguientePosicion(position) 
