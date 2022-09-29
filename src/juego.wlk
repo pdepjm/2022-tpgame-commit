@@ -14,8 +14,8 @@ object juego {
 
 	method configurarJuego() {
 		game.title("Juego")
-		game.width(10)
-		game.height(10)
+		game.width(25)
+		game.height(25)
 		game.boardGround("grass00.png")
 	}
 
