@@ -4,6 +4,7 @@ import personajes.*
 import juego.*
 
 program juego {
+		
 	juego.iniciar()
 }
 

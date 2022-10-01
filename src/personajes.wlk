@@ -1,7 +1,7 @@
  import wollok.game.*
 import direcciones.* 
 import juego.*
-import fondo.*
+import elementosJuego.*
 
 
 object personaje {
@@ -27,13 +27,13 @@ object personaje {
 		}
 	}
 
-	method disparar() {
+	/* method disparar() {
 		game.addVisual(proyectil)
 		
 		proyectil.trayectoria()
 		
 
-	}
+	} */
 }
 
 

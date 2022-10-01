@@ -51,7 +51,8 @@ object corazon5 inherits Corazon {
 	
 }
 
-object proyectil {
+
+/* object proyectil {
 
     var property position = personaje.position()
 
@@ -64,4 +65,4 @@ object proyectil {
     }
 
         game.onTick(1000, "Movimiento proyectil", )
-}
+} */

@@ -1,6 +1,7 @@
 import wollok.game.*
 import personajes.*
 import direcciones.*
+import elementosJuego.*
 
 object juego {
 	
@@ -17,6 +18,7 @@ object juego {
 		game.width(25)
 		game.height(25)
 		game.boardGround("grass00.png")
+		
 	}
 
 	method agregarPersonajes() {
@@ -34,11 +36,11 @@ object juego {
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
-		keyborard.space().onPressDo({personaje.disparar())
+		//keyborard.space().onPressDo({personaje.disparar())
 	}
 	
 	method configurarAcciones() {
-		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()}
+		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
 		game.onCollideDo(zombie1, {chocado => chocado.perderVida()})
 	}
 
@@ -51,8 +53,16 @@ object fin {
 	method image() = "gameover.png"
 }
 
-object audio {
-
-
+object music1 {
+	
+	method reproducir {
+		const music = game.sound("music1.mp3")
+		music.shouldLoop(true)
+		game.schedule(100, {music.play()})
+		
+	}
 }
+
+
+
 
