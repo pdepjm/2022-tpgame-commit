@@ -1,5 +1,7 @@
  import wollok.game.*
 import direcciones.* 
+import juego.*
+import fondo.*
 
 
 object personaje {
@@ -24,75 +26,33 @@ object personaje {
 			game.addVisual(fin)
 		}
 	}
+
+	method disparar() {
+		game.addVisual(proyectil)
+		
+		proyectil.trayectoria()
+		
+
+	}
 }
 
 
-object fin {
+object zombie1 {
 	
-	method position() = game.center()
+	var property position = game.at(23, 12)
 	
-	method image() = "gameover.png"
-}
+	var x = 23
+	const y = 12
 
-
-class Corazon {
-    
-    //method image() = "corazon.jpg"
-	method image() = "corazon4.png"
-    
-
-    method cambiarEstado() {
-    
-    }
-
-
-}
-
-object corazon1 inherits Corazon {
-	
-	const property position = game.at(0,23)
-	
-}
-
-
-object corazon2 inherits Corazon {
-	
-	const property position = game.at(1,23)
-	
-}
-
-
-
-
-object corazon3 inherits Corazon {
-	
-	const property position = game.at(2,23)
-	
-}
-
-
-object corazon4 inherits Corazon {
-	
-	const property position = game.at(3,23)
-	
-}
-
-
-
-object corazon5 inherits Corazon {
-	
-	const property position = game.at(4,23)
-	
-}
-
-
-object zombieFalopa {
-	
-	method position() = game.at(1,12)
-	
 	method image() = "zombie.png"
+
+	method moverse() {
+		x -= 1
+		position = game.at(x, y)
+	}
 	
 }
+
 
 
 

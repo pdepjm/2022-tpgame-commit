@@ -26,18 +26,33 @@ object juego {
 		game.addVisual(corazon3)
 		game.addVisual(corazon4)
 		game.addVisual(corazon5)
-		game.addVisual(zombieFalopa)
+		game.addVisual(zombie1)
 	}
 
 	method configurarTeclas() {
-		keyboard.w().onPressDo({personaje.moverA(arriba)})
-		keyboard.d().onPressDo({personaje.moverA(derecha)})
-		keyboard.a().onPressDo({personaje.moverA(izquierda)})  
-		keyboard.s().onPressDo({personaje.moverA(abajo)}) 
+		keyboard.up().onPressDo({personaje.moverA(arriba)})
+		keyboard.right().onPressDo({personaje.moverA(derecha)})
+		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
+		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
+		keyborard.space().onPressDo({personaje.disparar())
 	}
 	
 	method configurarAcciones() {
-		
-		game.onCollideDo(zombieFalopa, {chocado => chocado.perderVida()})
+		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()}
+		game.onCollideDo(zombie1, {chocado => chocado.perderVida()})
 	}
+
 }
+
+object fin {
+	
+	method position() = game.center()
+	
+	method image() = "gameover.png"
+}
+
+object audio {
+
+
+}
+
