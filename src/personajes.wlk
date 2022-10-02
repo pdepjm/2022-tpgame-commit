@@ -18,7 +18,9 @@ object personaje {
 		position = direccion.siguientePosicion(position)
 	}
 	
-	method perderVida() { 
+	method perderVida() {
+		//game.onTick(10, "Sonido de steve", {hitSound.play()})
+		hitSound.play()
 		game.removeVisual(vida.last())
 		vida.remove(vida.last())
 		if(vida.size() == 0)

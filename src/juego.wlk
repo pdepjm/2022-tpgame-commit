@@ -18,7 +18,7 @@ object juego {
 		game.width(25)
 		game.height(25)
 		game.boardGround("grass00.png")
-		
+		music1.play()
 	}
 
 	method agregarPersonajes() {
@@ -36,6 +36,7 @@ object juego {
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
+		
 		//keyborard.space().onPressDo({personaje.disparar())
 	}
 	
@@ -55,11 +56,19 @@ object fin {
 
 object music1 {
 	
-	method reproducir {
-		const music = game.sound("music1.mp3")
-		music.shouldLoop(true)
-		game.schedule(100, {music.play()})
+	const theme = game.sound("music2.mp3")
+	
+	method play() {
+		theme.volume(0.3)
+		theme.shouldLoop(true)
+		game.schedule(10, {theme.play()})
+	}
+}
+
+object hitSound {
 		
+	method play() {
+		game.sound("hit.mp3").play()
 	}
 }
 
