@@ -52,17 +52,22 @@ object corazon5 inherits Corazon {
 }
 
 
-/* object proyectil {
+class Proyectil {
 
     var property position = personaje.position()
 
     method image() = "bolaFuego.png"
 
+    method mover() {
+		position = game.at(position.x()+1, position.y())
+    }
+    
     method trayectoria() {
-
-
-		position = game.at(position.x()+1, y)
+    	game.onTick(500, "Movimiento proyectil",{self.mover()})
+    }
+    
+    method hacerDanio(enemigo) {
+    	enemigo.morir()
     }
 
-        game.onTick(1000, "Movimiento proyectil", )
-} */
+} 
