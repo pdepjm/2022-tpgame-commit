@@ -1,4 +1,4 @@
-import wollok.game.*
+ import wollok.game.*
 import direcciones.* 
 import juego.*
 import elementosJuego.*
@@ -10,6 +10,8 @@ object personaje {
 
     var property position = game.center()
 
+    method position() = position
+
     method image() = "personaje.png"
 
     method moverA(direccion) {
@@ -17,11 +19,9 @@ object personaje {
 	}
 	
 	method perderVida() {
-
 		hitSound.play()
 		game.removeVisual(vida.last())
 		vida.remove(vida.last())
-
 		if(vida.size() == 0)
 		{
 			game.addVisual(fin)
@@ -29,14 +29,15 @@ object personaje {
 	}
 
 	method disparar() {
-		const proyectil = new Proyectil()
 		
-		game.addVisual(proyectil)
+		const hola = new Proyectil()
 		
-		proyectil.trayectoria()
+		game.addVisual(hola)
 		
-
-	} 
+		hola.trayectoria()
+	}
+	
+	method morir() { }
 }
 
 
@@ -52,6 +53,14 @@ object zombie1 {
 	method moverse() {
 		x -= 1
 		position = game.at(x, y)
+	}
+	
+	method hacerDanio(personaje) {
+		personaje.perderVida()
+	}
+	
+	method morir() {
+		game.removeVisual(self)
 	}
 	
 }
