@@ -1,4 +1,4 @@
- import wollok.game.*
+import wollok.game.*
 import direcciones.* 
 import juego.*
 import elementosJuego.*
@@ -8,9 +8,7 @@ object personaje {
 
     var property vida = [corazon1, corazon2, corazon3, corazon4, corazon5]
 
-    var position = game.center()
-
-    method position() = position
+    var property position = game.center()
 
     method image() = "personaje.png"
 
@@ -23,19 +21,20 @@ object personaje {
 		hitSound.play()
 		game.removeVisual(vida.last())
 		vida.remove(vida.last())
+
 		if(vida.size() == 0)
 		{
 			game.addVisual(fin)
 		}
 	}
 
-	/* method disparar() {
+	method disparar() {
 		game.addVisual(proyectil)
 		
 		proyectil.trayectoria()
 		
 
-	} */
+	} 
 }
 
 
@@ -54,22 +53,6 @@ object zombie1 {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Enemigo {
     var vida 

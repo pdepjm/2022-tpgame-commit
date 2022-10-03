@@ -36,8 +36,7 @@ object juego {
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
-		
-		//keyborard.space().onPressDo({personaje.disparar())
+		 keyborard.space().onPressDo({personaje.disparar())
 	}
 	
 	method configurarAcciones() {

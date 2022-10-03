@@ -59,7 +59,8 @@ class Proyectil {
     method image() = "bolaFuego.png"
 
     method mover() {
-		position = game.at(position.x()+1, position.y())
+		  
+      position = game.at(position.x()+1, position.y())
     }
     
     method trayectoria() {
