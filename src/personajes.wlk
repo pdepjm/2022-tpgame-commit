@@ -5,8 +5,12 @@ import elementosJuego.*
 
 
 object personaje {
+	
+	const cargador = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
 
     var property vida = [corazon1, corazon2, corazon3, corazon4, corazon5]
+    
+    var property bolasDeFuego = cargador 
 
     var property position = game.center()
 
@@ -22,6 +26,7 @@ object personaje {
 		hitSound.play()
 		game.removeVisual(vida.last())
 		vida.remove(vida.last())
+		
 		if(vida.size() == 0)
 		{
 			game.addVisual(fin)
@@ -30,14 +35,37 @@ object personaje {
 
 	method disparar() {
 		
-		const hola = new Proyectil()
+		if (bolasDeFuego.size() > 0) {
+			const otroProyectil = new Proyectil() 
 		
-		game.addVisual(hola)
+			game.addVisual(otroProyectil)
 		
-		hola.trayectoria()
+			otroProyectil.trayectoria()
+		
+			bolasDeFuego.remove(bolasDeFuego.last())
+		}
+		else {
+			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
+		}
 	}
 	
 	method morir() { }
+	
+	method recargarBalas() {
+		
+		if (bolasDeFuego.size() == 0) {
+			
+			game.schedule(1000, {self.bolasDeFuego(cargador)})
+			
+		}
+		
+		else {
+			
+			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
+		}
+	
+			
+			}
 }
 
 

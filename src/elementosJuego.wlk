@@ -61,7 +61,7 @@ class Proyectil {
     method mover() {
 		position = game.at(position.x()+1, position.y())
     }
-    
+   
     method trayectoria() {
     	game.onTick(500, "Movimiento proyectil",{self.mover()})
     }
@@ -71,5 +71,7 @@ class Proyectil {
     }
 
 }
+
+const unProyectil = new Proyectil() 
 
 object proyectil1 inherits Proyectil { } 
