@@ -68,6 +68,35 @@ object personaje {
 			}
 }
 
+class Zombie {
+	
+	var property position 
+	
+	var x  = position.x()
+	method image() = "zombie.png"
+
+	method moverse() {
+		x -= 1
+		position = game.at(x, position.y())
+	}
+	
+	method hacerDanio(personaje) {
+		personaje.perderVida()
+	}
+	
+	method morir() {
+		game.removeVisual(self)
+	}
+	
+	method agregarse() {
+		 game.addVisual(self)
+		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
+	}
+	
+}
+
+
+
 
 object zombie1 {
 	

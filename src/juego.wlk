@@ -2,6 +2,7 @@ import wollok.game.*
 import personajes.*
 import direcciones.*
 import elementosJuego.*
+import niveles.*
 
 object juego {
 	
@@ -10,7 +11,9 @@ object juego {
 		self.agregarPersonajes()
 		self.configurarTeclas()
 		self.configurarAcciones()
+		primerNivel.configuracionInicial()
 		game.start()
+		
 	}
 
 	method configurarJuego() {
@@ -44,7 +47,7 @@ object juego {
 	method configurarAcciones() {
 		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
 		game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
-		game.onCollideDo(zombie1, {bola => zombie1.morir()})
+		game.onCollideDo(zombie1, {elemento => elemento.efecto(zombie1)})
 	}
 
 }
