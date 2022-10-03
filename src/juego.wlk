@@ -38,9 +38,11 @@ object juego {
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
 	}
+	
 	method configurarAcciones() {
 		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
-		game.onCollideDo(zombie1, {chocado => chocado.perderVida()})
+		game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
+		game.onCollideDo(zombie1, {bola => zombie1.morir()})
 	}
 
 }
@@ -69,6 +71,7 @@ object hitSound {
 		game.sound("hit.mp3").play()
 	}
 }
+
 
 
 
