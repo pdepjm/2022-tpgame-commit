@@ -2,9 +2,10 @@
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Aylén Sandoval
+- Iván Erazun
+- Franco Centurión
+- Florencia Larocca
 
 ## Capturas
 
@@ -19,4 +20,4 @@
 
 - Curso/Facultad
 - Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- Una vez terminado, no tenemos problemas en que el repositorio sea público
