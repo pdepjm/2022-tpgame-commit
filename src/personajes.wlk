@@ -8,7 +8,7 @@ object personaje {
 
     var property vida = [new Corazon(position = game.at(0,23)), new Corazon(position = game.at(1,23)), new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23))]
 
-    var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
+    var property bolasDeFuego = [new Proyectil(position = game.at(19,23)), new Proyectil(position = game.at(20,23)), new Proyectil(position = game.at(21,23)),new Proyectil(position = game.at(22,23)), new Proyectil(position = game.at(23,23))]
 
     var property position = game.center()
 
@@ -43,8 +43,10 @@ object personaje {
 			game.addVisual(otroProyectil)
 		
 			otroProyectil.trayectoria()
-		
-			bolasDeFuego.remove(bolasDeFuego.last())
+			
+			game.removeVisual(bolasDeFuego.head())
+			bolasDeFuego.remove(bolasDeFuego.head())
+			
 		}
 		else {
 			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
@@ -56,8 +58,10 @@ object personaje {
 	method recargarBalas() {
 		
 		if (bolasDeFuego.size() == 0) {
-			game.schedule(1500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			game.schedule(1500, {self.bolasDeFuego([new Proyectil(position = game.at(19,23)), new Proyectil(position = game.at(20,23)), new Proyectil(position = game.at(21,23)),new Proyectil(position = game.at(22,23)), new Proyectil(position = game.at(23,23))])})
+			game.schedule(1500, {self.bolasDeFuego().forEach{bola => bola.agregarse()}})
 			game.say(self, "Recargando balas, espere 15 segundos")
+			
 		}
 		else 
 			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())

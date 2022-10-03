@@ -12,6 +12,7 @@ object primerNivel {
 		music1.play()
 		zombies.forEach{zombie=> zombie.agregarse()}
 		personaje.vida().forEach{corazon => corazon.agregarse()}
+		personaje.bolasDeFuego().forEach{bola => bola.agregarse()}
 	}
 					
 }

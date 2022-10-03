@@ -18,6 +18,10 @@ class Proyectil {
     var property position = personaje.position()
 
     method image() = "bolaFuego.png"
+    
+    method agregarse(){
+		game.addVisual(self)
+	}
 
     method mover() {
 		position = game.at(position.x()+1, position.y())
