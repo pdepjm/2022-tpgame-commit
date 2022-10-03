@@ -20,8 +20,6 @@ object juego {
 		game.title("Juego")
 		game.width(25)
 		game.height(25)
-		game.boardGround("grass00.png")
-		music1.play()
 	}
 
 	method agregarPersonajes() {

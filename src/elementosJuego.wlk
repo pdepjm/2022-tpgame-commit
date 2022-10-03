@@ -11,12 +11,6 @@ class Corazon {
 	method agregarse(){
 		game.addVisual(self)
 	}
-
-    method cambiarEstado() {
-    
-    }
-
-
 }
 
 class Proyectil {
