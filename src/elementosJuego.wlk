@@ -70,4 +70,6 @@ class Proyectil {
     	enemigo.morir()
     }
 
-} 
+}
+
+object proyectil1 inherits Proyectil { } 

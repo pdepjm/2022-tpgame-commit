@@ -8,7 +8,7 @@ object personaje {
 
     var property vida = [corazon1, corazon2, corazon3, corazon4, corazon5]
 
-    var position = game.center()
+    var property position = game.center()
 
     method position() = position
 
@@ -19,7 +19,6 @@ object personaje {
 	}
 	
 	method perderVida() {
-		//game.onTick(10, "Sonido de steve", {hitSound.play()})
 		hitSound.play()
 		game.removeVisual(vida.last())
 		vida.remove(vida.last())
@@ -29,13 +28,16 @@ object personaje {
 		}
 	}
 
-	/* method disparar() {
-		game.addVisual(proyectil)
+	method disparar() {
 		
-		proyectil.trayectoria()
+		const hola = new Proyectil()
 		
-
-	} */
+		game.addVisual(hola)
+		
+		hola.trayectoria()
+	}
+	
+	method morir() { }
 }
 
 
@@ -53,6 +55,14 @@ object zombie1 {
 		position = game.at(x, y)
 	}
 	
+	method hacerDanio(personaje) {
+		personaje.perderVida()
+	}
+	
+	method morir() {
+		game.removeVisual(self)
+	}
+	
 }
 
 
@@ -68,32 +78,6 @@ object zombie1 {
 
 
 
-
-
-
-class Enemigo {
-    var vida 
-    const danio
-    
-       
-}
-
-
-
-
-class Zombie inherits Enemigo {
-    
-
-   
-
-
-}
-
-
-class Esqueleto inherits Enemigo {
-
-
-}
 
 
 
