@@ -6,6 +6,7 @@
 - Iván Erazun
 - Franco Centurión
 - Florencia Larocca
+- Martina Soteras
 
 ## Capturas
 
