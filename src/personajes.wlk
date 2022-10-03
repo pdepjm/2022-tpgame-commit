@@ -65,20 +65,6 @@ object zombie1 {
 	
 }
 
-<<<<<<< HEAD
-=======
-class Enemigo {
-    var vida 
-    const danio
-    
-       
-}
->>>>>>> 2f50b6d8d378595a956deae7a406562a135d3aba
-
-
-
-
-<<<<<<< HEAD
 
 
 
@@ -88,21 +74,10 @@ class Enemigo {
 
 
 
-=======
-class Zombie inherits Enemigo {
-    
-
-   
 
 
-}
 
 
-class Esqueleto inherits Enemigo {
-
-
-}
->>>>>>> 2f50b6d8d378595a956deae7a406562a135d3aba
 
 
 
