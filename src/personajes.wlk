@@ -29,6 +29,8 @@ object personaje {
 	}
 
 	method disparar() {
+		const proyectil = new Proyectil()
+		
 		game.addVisual(proyectil)
 		
 		proyectil.trayectoria()

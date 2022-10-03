@@ -36,9 +36,8 @@ object juego {
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
-		 keyborard.space().onPressDo({personaje.disparar())
+		keyboard.space().onPressDo({personaje.disparar()})
 	}
-	
 	method configurarAcciones() {
 		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
 		game.onCollideDo(zombie1, {chocado => chocado.perderVida()})
