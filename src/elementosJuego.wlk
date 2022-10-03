@@ -63,11 +63,15 @@ class Proyectil {
     }
    
     method trayectoria() {
-    	game.onTick(500, "Movimiento proyectil",{self.mover()})
+    	game.onTick(100, "Movimiento proyectil",{self.mover()})
     }
     
     method hacerDanio(enemigo) {
     	enemigo.morir()
+    }
+
+    method efecto(zombie) {
+      self.hacerDanio(zombie)
     }
 
 }

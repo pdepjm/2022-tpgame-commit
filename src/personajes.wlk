@@ -21,6 +21,10 @@ object personaje {
     method moverA(direccion) {
 		position = direccion.siguientePosicion(position)
 	}
+
+	method efecto(zombie) {
+		self.perderVida() 
+	}
 	
 	method perderVida() {
 		hitSound.play()
@@ -73,6 +77,7 @@ class Zombie {
 	var property position 
 	
 	var x  = position.x()
+	
 	method image() = "zombie.png"
 
 	method moverse() {
@@ -90,6 +95,7 @@ class Zombie {
 	
 	method agregarse() {
 		 game.addVisual(self)
+	     game.onTick(2500, "Movimiento Zombie", {self.moverse()})
 		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
 	}
 	
@@ -98,7 +104,7 @@ class Zombie {
 
 
 
-object zombie1 {
+/*object zombie1 {
 	
 	var property position = game.at(23, 12)
 	
@@ -120,7 +126,7 @@ object zombie1 {
 		game.removeVisual(self)
 	}
 	
-}
+}*/ 
 
 
 

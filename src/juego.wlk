@@ -31,7 +31,7 @@ object juego {
 		game.addVisual(corazon3)
 		game.addVisual(corazon4)
 		game.addVisual(corazon5)
-		game.addVisual(zombie1)
+		//game.addVisual(zombie1)
 	}
 
 	method configurarTeclas() {
@@ -45,9 +45,9 @@ object juego {
 	}
 	
 	method configurarAcciones() {
-		game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
-		game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
-		game.onCollideDo(zombie1, {elemento => elemento.efecto(zombie1)})
+		//game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
+		//game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
+		
 	}
 
 }
