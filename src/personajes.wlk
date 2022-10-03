@@ -1,16 +1,14 @@
- import wollok.game.*
+import wollok.game.*
 import direcciones.* 
 import juego.*
 import elementosJuego.*
-
+import niveles.*
 
 object personaje {
-	
-	const cargador = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
 
-    var property vida = [corazon1, corazon2, corazon3, corazon4, corazon5]
-    
-    var property bolasDeFuego = cargador 
+    var property vida = [new Corazon(position = game.at(0,23)), new Corazon(position = game.at(1,23)), new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23))]
+
+    var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
 
     var property position = game.center()
 
@@ -33,7 +31,7 @@ object personaje {
 		
 		if(vida.size() == 0)
 		{
-			game.addVisual(fin)
+			game.addVisual(gameOver)
 		}
 	}
 
@@ -58,18 +56,12 @@ object personaje {
 	method recargarBalas() {
 		
 		if (bolasDeFuego.size() == 0) {
-			
-			game.schedule(1000, {self.bolasDeFuego(cargador)})
-			
+			game.schedule(1500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			game.say(self, "Recargando balas, espere 15 segundos")
 		}
-		
-		else {
-			
+		else 
 			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
-		}
-	
-			
-			}
+	}
 }
 
 class Zombie {

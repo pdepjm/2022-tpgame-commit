@@ -26,12 +26,6 @@ object juego {
 
 	method agregarPersonajes() {
 		game.addVisualCharacter(personaje)
-		game.addVisual(corazon1)
-		game.addVisual(corazon2)
-		game.addVisual(corazon3)
-		game.addVisual(corazon4)
-		game.addVisual(corazon5)
-		//game.addVisual(zombie1)
 	}
 
 	method configurarTeclas() {
@@ -52,7 +46,7 @@ object juego {
 
 }
 
-object fin {
+object gameOver {
 	
 	method position() = game.center()
 	

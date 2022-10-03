@@ -4,10 +4,13 @@
  
  
 class Corazon {
-    
+    const property position
     
 	method image() = "corazon4.png"
-    
+	
+	method agregarse(){
+		game.addVisual(self)
+	}
 
     method cambiarEstado() {
     
@@ -15,42 +18,6 @@ class Corazon {
 
 
 }
-
-object corazon1 inherits Corazon {
-	
-	const property position = game.at(0,23)
-	
-}
-
-
-object corazon2 inherits Corazon {
-	
-	const property position = game.at(1,23)
-	
-}
-
-
-object corazon3 inherits Corazon {
-	
-	const property position = game.at(2,23)
-	
-}
-
-
-object corazon4 inherits Corazon {
-	
-	const property position = game.at(3,23)
-	
-}
-
-
-
-object corazon5 inherits Corazon {
-	
-	const property position = game.at(4,23)
-	
-}
-
 
 class Proyectil {
 
