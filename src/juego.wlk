@@ -48,7 +48,7 @@ object gameOver {
 	
 	method position() = game.center()
 	
-	method image() = "gameover.png"
+	method image() = "game over.png"
 	
 	method finalizarJuego(){
 		game.schedule(400, {game.clear()})
