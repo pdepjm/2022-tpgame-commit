@@ -7,8 +7,8 @@ import elementosJuego.*
 object inicio {
 
 	method configuracionInicial(){
-	game.boardGround("inicio.jpeg")
-	keyboard.e().onPressDo({nivel1.configuracionInicial()} )
+		game.boardGround("inicio.jpeg")
+		keyboard.e().onPressDo({primerNivel.configuracionInicial()} )
 	}
 }
 
@@ -22,7 +22,8 @@ object primerNivel {
 		music1.play()
 		zombies.forEach{zombie=> zombie.agregarse()}
 		personaje.vida().forEach{corazon => corazon.agregarse()}
-		personaje.bolasDeFuego().forEach{bola => bola.agregarse()}
+		imagenDelContador.agregarse()
+		contadorDeBalas.agregarse()
 	}
 					
 }

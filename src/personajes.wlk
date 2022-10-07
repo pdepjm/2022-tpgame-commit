@@ -8,7 +8,7 @@ object personaje {
 
     var property vida = [new Corazon(position = game.at(0,23)), new Corazon(position = game.at(1,23)), new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23))]
 
-    var property bolasDeFuego = [new Proyectil(position = game.at(19,23)), new Proyectil(position = game.at(20,23)), new Proyectil(position = game.at(21,23)),new Proyectil(position = game.at(22,23)), new Proyectil(position = game.at(23,23))]
+    var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
 
     var property position = game.at(5,13)
 
@@ -58,8 +58,7 @@ object personaje {
 	method recargarBalas() {
 		
 		if (bolasDeFuego.size() == 0) {
-			game.schedule(1500, {self.bolasDeFuego([new Proyectil(position = game.at(19,23)), new Proyectil(position = game.at(20,23)), new Proyectil(position = game.at(21,23)),new Proyectil(position = game.at(22,23)), new Proyectil(position = game.at(23,23))])})
-			game.schedule(1500, {self.bolasDeFuego().forEach{bola => bola.agregarse()}})
+			game.schedule(1500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
 			game.say(self, "Recargando bolas, espere 15 segundos")
 			
 		}
@@ -116,9 +115,7 @@ class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750) {
 }
 
 
-
-
-class extraVida {
+class ExtraVida {
 	
 
 }

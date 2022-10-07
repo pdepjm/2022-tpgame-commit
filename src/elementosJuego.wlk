@@ -42,6 +42,28 @@ class Proyectil {
 
 }
 
+object imagenDelContador {
+	const property position = game.at(23, 23)
+	
+	method image() = "bolaFuego.png"
+	
+	method agregarse(){
+		game.addVisual(self)
+	}
+	
+}
+
+object contadorDeBalas {
+	const property position = game.at(22, 23)
+	
+	method text() = "Bolas:" + (personaje.bolasDeFuego().size()).toString()
+	
+	method agregarse(){
+		game.addVisual(self)
+	}
+}
+
+
 const unProyectil = new Proyectil() 
 
 object proyectil1 inherits Proyectil { } 
