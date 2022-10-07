@@ -33,6 +33,7 @@ class Proyectil {
     
     method hacerDanio(enemigo) {
     	enemigo.morir()
+    	game.removeVisual(self)
     }
 
     method efecto(zombie) {
