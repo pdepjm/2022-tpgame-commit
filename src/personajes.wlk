@@ -10,7 +10,7 @@ object personaje {
 
     var property bolasDeFuego = [new Proyectil(position = game.at(19,23)), new Proyectil(position = game.at(20,23)), new Proyectil(position = game.at(21,23)),new Proyectil(position = game.at(22,23)), new Proyectil(position = game.at(23,23))]
 
-    var property position = game.center()
+    var property position = game.at(5,13)
 
     method position() = position
 
@@ -71,6 +71,7 @@ object personaje {
 class Zombie {
 	
 	var property position 
+	var property vida = 1
 	
 	var x  = position.x()
 	
@@ -79,19 +80,27 @@ class Zombie {
 	method moverse() {
 		x -= 1
 		position = game.at(x, position.y())
+
+		if(position.x() < 0) {     
+			game.addVisual(gameOver)
+		}
 	}
 	
 	method hacerDanio(personaje) {
 		personaje.perderVida()
 	}
 	
-	method morir() {
-		game.removeVisual(self)
+	method disminuirVida() {
+		vida -= 1
+		if(vida == 0)
+		{
+			game.removeVisual(self)
+		}
 	}
 	
 	method agregarse() {
 		 game.addVisual(self)
-	     game.onTick(2500, "Movimiento Zombie", {self.moverse()})
+	     game.onTick(1000, "Movimiento Zombie", {self.moverse()})
 		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
 	}
 	
