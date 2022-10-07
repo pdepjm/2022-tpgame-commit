@@ -115,6 +115,12 @@ class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
 	
 }
 
+class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750) {
+	
+	method image() = "zombieAlfa.png"
+	
+}
+
 
 
 
