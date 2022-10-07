@@ -60,25 +60,25 @@ object personaje {
 		if (bolasDeFuego.size() == 0) {
 			game.schedule(1500, {self.bolasDeFuego([new Proyectil(position = game.at(19,23)), new Proyectil(position = game.at(20,23)), new Proyectil(position = game.at(21,23)),new Proyectil(position = game.at(22,23)), new Proyectil(position = game.at(23,23))])})
 			game.schedule(1500, {self.bolasDeFuego().forEach{bola => bola.agregarse()}})
-			game.say(self, "Recargando balas, espere 15 segundos")
+			game.say(self, "Recargando bolas, espere 15 segundos")
 			
 		}
 		else 
-			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
+			game.say(self, "Todavía no es momento de recargar bolas porque tenés " + bolasDeFuego.size().toString())
 	}
 }
 
-class Zombie {
+class Enemigo {
 	
-	var property position 
-	var property vida = 1
+	var property position
+	var property vida
+	var property image
+	var property velocidad 
 	
 	var x  = position.x()
-	
-	method image() = "zombie.png"
 
 	method moverse() {
-		x -= 1
+		x -= 1 
 		position = game.at(x, position.y())
 
 		if(position.x() < 0) {     
@@ -100,38 +100,30 @@ class Zombie {
 	
 	method agregarse() {
 		 game.addVisual(self)
-	     game.onTick(1000, "Movimiento Zombie", {self.moverse()})
+	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
 		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
 	}
+	
+}
+
+class ZombieBeta inherits Enemigo (vida = 1, image = "zombie.png", velocidad = 1000){	
+	
+}
+
+class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750) {
+
 	
 }
 
 
 
 
-/*object zombie1 {
+class extraVida {
 	
-	var property position = game.at(23, 12)
-	
-	var x = 23
-	const y = 12
 
-	method image() = "zombie.png"
+}
 
-	method moverse() {
-		x -= 1
-		position = game.at(x, y)
-	}
-	
-	method hacerDanio(personaje) {
-		personaje.perderVida()
-	}
-	
-	method morir() {
-		game.removeVisual(self)
-	}
-	
-}*/ 
+
 
 
 

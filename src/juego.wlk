@@ -7,12 +7,9 @@ import niveles.*
 object juego {
 	
 	method iniciar() {
-		self.configurarJuego()
-		self.agregarPersonajes()
-		self.configurarTeclas()
-		self.configurarAcciones()
-		primerNivel.configuracionInicial()
-		game.start()
+	self.configurarJuego()
+	inicio.configuracionInicial()
+	game.start()
 		
 	}
 
@@ -26,21 +23,16 @@ object juego {
 		game.addVisualCharacter(personaje)
 	}
 
-	method configurarTeclas() {
+	method configurarTeclasNiveles() {
 		keyboard.up().onPressDo({personaje.moverA(arriba)})
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
 		keyboard.r().onPressDo({personaje.recargarBalas()})
-		
 	}
 	
-	method configurarAcciones() {
-		//game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
-		//game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
-		
-	}
+
 
 }
 
