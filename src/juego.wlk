@@ -7,9 +7,9 @@ import niveles.*
 object juego {
 	
 	method iniciar() {
-	self.configurarJuego()
-	inicio.configuracionInicial()
-	game.start()
+		self.configurarJuego()
+		inicio.configuracionInicial()
+		game.start()
 		
 	}
 
@@ -40,7 +40,7 @@ object gameOver {
 	
 	method position() = game.center()
 	
-	method image() = "gameover.png"
+	method image() = "gameOver.png"
 }
 
 object music1 {

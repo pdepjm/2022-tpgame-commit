@@ -44,7 +44,6 @@ object personaje {
 		
 			otroProyectil.trayectoria()
 			
-			game.removeVisual(bolasDeFuego.head())
 			bolasDeFuego.remove(bolasDeFuego.head())
 			
 		}

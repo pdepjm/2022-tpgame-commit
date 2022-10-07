@@ -7,15 +7,16 @@ import elementosJuego.*
 object inicio {
 
 	method configuracionInicial(){
-		game.boardGround("inicio.jpeg")
-		keyboard.e().onPressDo({primerNivel.configuracionInicial()} )
+		game.addVisual("inicio.jpeg")
+		keyboard.e().onPressDo({primerNivel.configuracionInicial()})
 	}
 }
 
 object primerNivel {
-	const zombies = [new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 12)), new ZombieBeta(position = game.at(22, 14)), new ZombieBeta(position = game.at(22, 16)), new ZombieBeta(position = game.at(22, 18))] 
-	
+	const zombies = [new ZombieAlfa(position = game.at(22, 10)), new ZombieAlfa(position = game.at(22, 10)), new ZombieAlfa(position = game.at(22, 10)), new ZombieAlfa(position = game.at(22, 10)), new ZombieAlfa(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 10)), new ZombieBeta(position = game.at(22, 12)), new ZombieBeta(position = game.at(22, 14)), new ZombieBeta(position = game.at(22, 16)), new ZombieBeta(position = game.at(22, 18))] 
+	// 5 alfas y 10 betas
 	method configuracionInicial(){
+		game.removeVisual("inicio.jpeg")
 		juego.agregarPersonajes()
 		juego.configurarTeclasNiveles()
 		game.boardGround("grass00.png")
