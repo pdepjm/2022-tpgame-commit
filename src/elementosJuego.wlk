@@ -51,7 +51,7 @@ object imagenDelContador {
 object contadorDeBalas {
 	const property position = game.at(22, 23)
 	
-	method text() = "Balas:" + (personaje.bolasDeFuego().size()).toString()
+	method text() = "Bolas:" + (personaje.bolasDeFuego().size()).toString()
 	
 	method agregarse(){
 		game.addVisual(self)
@@ -61,5 +61,3 @@ object contadorDeBalas {
 
 
 const unProyectil = new Proyectil() 
-
-object proyectil1 inherits Proyectil { } 

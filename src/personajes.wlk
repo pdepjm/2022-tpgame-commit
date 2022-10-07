@@ -58,8 +58,8 @@ object personaje {
 	method recargarBalas() {
 		
 		if (bolasDeFuego.size() == 0) {
-			game.schedule(1500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
-			game.say(self, "Recargando balas, espere 15 segundos")
+			game.schedule(500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			game.say(self, "Recargando balas, espere unos segundos")
 			
 		}
 		else 
@@ -99,8 +99,9 @@ class Enemigo {
 	
 	method agregarse() {
 		 game.addVisual(self)
-	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
 		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
+	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
+		
 	}
 	
 	
@@ -118,6 +119,7 @@ class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
 class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750) {
 	
 	method image() = "zombieAlfa.png"
+
 	
 }
 
