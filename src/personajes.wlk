@@ -67,7 +67,46 @@ object personaje {
 	}
 }
 
-class Zombie {
+class Enemigo {
+	
+	var property position
+	var property vida
+	var property image
+	var property velocidad 
+	
+	var x  = position.x()
+
+	method moverse() {
+		x -= 1 
+		position = game.at(x, position.y())
+
+		if(position.x() < 0) {     
+			game.addVisual(gameOver)
+		}
+	}
+	
+	method hacerDanio(personaje) {
+		personaje.perderVida()
+	}
+	
+	method disminuirVida() {
+		vida -= 1
+		
+		if(vida == 0)
+		{
+			game.removeVisual(self)
+		}
+	}
+	
+	method agregarse() {
+		 game.addVisual(self)
+	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
+		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
+	}
+	
+}
+
+class Zombie inherits Enemigo (vida = 1, image = "zombie.png", velocidad = 1000) {
 	var property vida = 1
 	
 	var property position 
@@ -105,35 +144,6 @@ class Zombie {
 	}
 	
 }
-
-
-
-
-/*object zombie1 {
-	
-	var property position = game.at(23, 12)
-	
-	var x = 23
-	const y = 12
-
-	method image() = "zombie.png"
-
-	method moverse() {
-		x -= 1
-		position = game.at(x, y)
-	}
-	
-	method hacerDanio(personaje) {
-		personaje.perderVida()
-	}
-	
-	method morir() {
-		game.removeVisual(self)
-	}
-	
-}*/ 
-
-
 
 
 
