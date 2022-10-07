@@ -10,13 +10,14 @@ object personaje {
 
     var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
 
-    var property position = game.at(5,13)
+    var property position = game.center()
 
     method position() = position
 
     method image() = "personaje.png"
 
     method moverA(direccion) {
+    	
 		position = direccion.siguientePosicion(position)
 	}
 
@@ -31,7 +32,7 @@ object personaje {
 		
 		if(vida.size() == 0)
 		{
-			game.addVisual(gameOver)
+			gameOver.finalizarJuego()
 		}
 	}
 
@@ -58,29 +59,29 @@ object personaje {
 		
 		if (bolasDeFuego.size() == 0) {
 			game.schedule(1500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
-			game.say(self, "Recargando bolas, espere 15 segundos")
+			game.say(self, "Recargando balas, espere 15 segundos")
 			
 		}
 		else 
-			game.say(self, "Todavía no es momento de recargar bolas porque tenés " + bolasDeFuego.size().toString())
+			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
 	}
 }
 
-class Enemigo {
+class Zombie {
+	var property vida = 1
 	
-	var property position
-	var property vida
-	var property image
-	var property velocidad 
+	var property position 
 	
 	var x  = position.x()
+	
+	method image() = "zombie.png"
 
 	method moverse() {
 		x -= 1 
 		position = game.at(x, position.y())
 
 		if(position.x() < 0) {     
-			game.addVisual(gameOver)
+			gameOver.finalizarJuego()
 		}
 	}
 	
@@ -99,25 +100,39 @@ class Enemigo {
 	
 	method agregarse() {
 		 game.addVisual(self)
-	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
+	     game.onTick(500, "Movimiento Zombie", {self.moverse()})
 		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
 	}
 	
 }
 
-class ZombieBeta inherits Enemigo (vida = 1, image = "zombie.png", velocidad = 1000){	
+
+
+
+/*object zombie1 {
 	
-}
-
-class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750, image = "zombie.png") {
+	var property position = game.at(23, 12)
 	
-}
+	var x = 23
+	const y = 12
 
+	method image() = "zombie.png"
 
-class ExtraVida {
+	method moverse() {
+		x -= 1
+		position = game.at(x, y)
+	}
 	
+	method hacerDanio(personaje) {
+		personaje.perderVida()
+	}
+	
+	method morir() {
+		game.removeVisual(self)
+	}
+	
+}*/ 
 
-}
 
 
 

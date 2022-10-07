@@ -1,4 +1,4 @@
- import wollok.game.*
+  import wollok.game.*
  import juego.*
  import personajes.*
  
@@ -18,10 +18,6 @@ class Proyectil {
     var property position = personaje.position()
 
     method image() = "bolaFuego.png"
-    
-    method agregarse(){
-		game.addVisual(self)
-	}
 
     method mover() {
 		position = game.at(position.x()+1, position.y())
@@ -33,13 +29,12 @@ class Proyectil {
     
     method hacerDanio(enemigo) {
     	enemigo.disminuirVida()
-      game.removeVisual(self)
+    	game.removeVisual(self)
     }
 
     method efecto(zombie) {
       self.hacerDanio(zombie)
     }
-
 }
 
 object imagenDelContador {
@@ -56,12 +51,13 @@ object imagenDelContador {
 object contadorDeBalas {
 	const property position = game.at(22, 23)
 	
-	method text() = "Bolas:" + (personaje.bolasDeFuego().size()).toString()
+	method text() = "Balas:" + (personaje.bolasDeFuego().size()).toString()
 	
 	method agregarse(){
 		game.addVisual(self)
 	}
 }
+
 
 
 const unProyectil = new Proyectil() 

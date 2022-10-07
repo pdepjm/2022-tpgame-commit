@@ -8,8 +8,10 @@ object juego {
 	
 	method iniciar() {
 		self.configurarJuego()
-		inicio.configuracionInicial()
-		game.boardGround("grass00.png")
+		self.agregarPersonajes()
+		self.configurarTeclas()
+		self.configurarAcciones()
+		primerNivel.configuracionInicial()
 		game.start()
 		
 	}
@@ -24,16 +26,21 @@ object juego {
 		game.addVisualCharacter(personaje)
 	}
 
-	method configurarTeclasNiveles() {
+	method configurarTeclas() {
 		keyboard.up().onPressDo({personaje.moverA(arriba)})
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
 		keyboard.r().onPressDo({personaje.recargarBalas()})
+		
 	}
 	
-
+	method configurarAcciones() {
+		//game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
+		//game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
+		
+	}
 
 }
 
@@ -41,7 +48,13 @@ object gameOver {
 	
 	method position() = game.center()
 	
-	method image() = "gameOver.png"
+	method image() = "gameover.png"
+	
+	method finalizarJuego(){
+		game.schedule(400, {game.clear()})
+		game.schedule(500, {juego.iniciar()})
+		game.addVisual(self)
+	}
 }
 
 object music1 {
@@ -49,7 +62,7 @@ object music1 {
 	const theme = game.sound("music2.mp3")
 	
 	method play() {
-		theme.volume(0.3)
+		theme.volume(0.1)
 		theme.shouldLoop(true)
 		game.schedule(10, {theme.play()})
 	}
@@ -61,8 +74,5 @@ object hitSound {
 		game.sound("hit.mp3").play()
 	}
 }
-
-
-
 
 
