@@ -9,6 +9,7 @@ object juego {
 	method iniciar() {
 		self.configurarJuego()
 		inicio.configuracionInicial()
+		game.boardGround("grass00.png")
 		game.start()
 		
 	}

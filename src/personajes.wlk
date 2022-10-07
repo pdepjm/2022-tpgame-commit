@@ -90,6 +90,7 @@ class Enemigo {
 	
 	method disminuirVida() {
 		vida -= 1
+		
 		if(vida == 0)
 		{
 			game.removeVisual(self)
@@ -108,8 +109,7 @@ class ZombieBeta inherits Enemigo (vida = 1, image = "zombie.png", velocidad = 1
 	
 }
 
-class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750) {
-
+class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750, image = "zombie.png") {
 	
 }
 
