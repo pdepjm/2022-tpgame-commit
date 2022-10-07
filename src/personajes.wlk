@@ -22,10 +22,10 @@ object personaje {
 	}
 
 	method efecto(zombie) {
-		self.perderVida() 
+		self.disminuirVida() 
 	}
 	
-	method perderVida() {
+	method disminuirVida() {
 		hitSound.play()
 		game.removeVisual(vida.last())
 		vida.remove(vida.last())
@@ -84,9 +84,6 @@ class Enemigo {
 		}
 	}
 	
-	method hacerDanio(personaje) {
-		personaje.perderVida()
-	}
 	
 	method disminuirVida() {
 		vida -= 1
