@@ -11,7 +11,7 @@ object primerNivel {
 		game.boardGround("grass00.png")
 		music1.play()
 		zombies.forEach{zombie=> zombie.agregarse()}
-		personaje.vida().forEach{corazon => corazon.agregarse()}
+		personaje.configurarAcciones() 
 		imagenDelContador.agregarse()
 		contadorDeBalas.agregarse()
 	}

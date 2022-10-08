@@ -21,9 +21,6 @@ object personaje {
 		position = direccion.siguientePosicion(position)
 	}
 
-	method efecto(zombie) {
-		self.disminuirVida() 
-	}
 	
 	method disminuirVida() {
 		hitSound.play()
@@ -51,9 +48,14 @@ object personaje {
 		else {
 			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
 		}
+
+		method configurarAcciones() {
+
+			vida.forEach{corazon => corazon.agregarse()}
+			bolasDeFuego.forEach{proyectil=>bola.agregarse()}
+		}
 	}
 	
-	method morir() { }
 	
 	method recargarBalas() {
 		
@@ -64,6 +66,14 @@ object personaje {
 		}
 		else 
 			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
+	}
+
+	method chocasteConProyectil() {
+
+	}
+
+	method chocasteConEnemigo() {
+		self.disminuirVida() 
 	}
 }
 
@@ -96,11 +106,15 @@ class Enemigo {
 	
 	method agregarse() {
 		 game.addVisual(self)
-		 game.onCollideDo(self, {elemento => elemento.efecto(self)})
+		 game.onCollideDo(self,unElemento=>unElemento.chocasteConEnemigo())
 	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
 		
 	}
-	
+
+	method chocasteConProyectil() {
+		self.disminuirVida() 
+	}
+
 	
 }
 

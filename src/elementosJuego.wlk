@@ -28,13 +28,13 @@ class Proyectil {
     }
     
     method hacerDanio(enemigo) {
-    	enemigo.disminuirVida()
-    	game.removeVisual(self)
+    	
     }
 
-    method efecto(zombie) {
-      self.hacerDanio(zombie)
-    }
+
+	method agregarse() {
+		game.onCollideDo(self,unPersonaje=>unPersonaje.chocasteConProyectil())
+	}
 }
 
 object imagenDelContador {
