@@ -47,7 +47,6 @@ object gameOver {
 	
 	method finalizarJuego(){
 		game.schedule(400, {game.clear()})
-		game.schedule(500, {juego.iniciar()})
 		game.addVisual(self)
 	}
 }

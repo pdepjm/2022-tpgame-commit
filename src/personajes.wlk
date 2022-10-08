@@ -61,8 +61,9 @@ object personaje {
 	method recargarBalas() {
 		
 		if (bolasDeFuego.size() == 0) {
-			game.schedule(500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
 			game.say(self, "Recargando balas, espere unos segundos")
+			game.schedule(500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			
 			
 		}
 		else 
@@ -121,9 +122,10 @@ class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
 	
 }
 
-class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750) {
+class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
 	
 	method image() = "zombieAlfa.png"
+	
 
 	
 }
