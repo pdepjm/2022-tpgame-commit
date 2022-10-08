@@ -35,6 +35,8 @@ object personaje {
 
 	method disparar() {
 		
+		//game.onCollideDo(self,{unPersonaje=>unPersonaje.chocasteConProyectil()})
+	
 		if (bolasDeFuego.size() > 0) {
 			const otroProyectil = new Proyectil() 
 		
@@ -48,12 +50,11 @@ object personaje {
 		else {
 			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
 		}
-
+}
 		method configurarAcciones() {
 
 			vida.forEach{corazon => corazon.agregarse()}
-			bolasDeFuego.forEach{proyectil=>bola.agregarse()}
-		}
+		
 	}
 	
 	
@@ -68,11 +69,8 @@ object personaje {
 			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
 	}
 
-	method chocasteConProyectil() {
 
-	}
-
-	method chocasteConEnemigo() {
+	method chocasteConEnemigo(unEnemigo) {
 		self.disminuirVida() 
 	}
 }
@@ -106,13 +104,9 @@ class Enemigo {
 	
 	method agregarse() {
 		 game.addVisual(self)
-		 game.onCollideDo(self,unElemento=>unElemento.chocasteConEnemigo())
+		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
 	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
 		
-	}
-
-	method chocasteConProyectil() {
-		self.disminuirVida() 
 	}
 
 	

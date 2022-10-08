@@ -27,14 +27,16 @@ class Proyectil {
     	game.onTick(100, "Movimiento proyectil",{self.mover()})
     }
     
-    method hacerDanio(enemigo) {
+    method chocasteConEnemigo(elEnemigo) {
+    	
+    	elEnemigo.disminuirVida()
+    	game.removeVisual(self)
     	
     }
+    
 
 
-	method agregarse() {
-		game.onCollideDo(self,unPersonaje=>unPersonaje.chocasteConProyectil())
-	}
+	
 }
 
 object imagenDelContador {

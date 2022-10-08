@@ -10,7 +10,6 @@ object juego {
 		self.configurarJuego()
 		self.agregarPersonajes()
 		self.configurarTeclas()
-		self.configurarAcciones()
 		primerNivel.configuracionInicial()
 		game.start()
 		
@@ -36,11 +35,7 @@ object juego {
 		
 	}
 	
-	method configurarAcciones() {
-		//game.onTick(5000, "Movimiento Zombie", {zombie1.moverse()})
-		//game.onCollideDo(personaje, {enemigo => enemigo.hacerDanio(personaje)})
-		
-	}
+
 
 }
 
