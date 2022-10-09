@@ -90,6 +90,7 @@ object relojDeArena {
 		
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
 		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas()})})
+		game.removeVisual(self)
 		textoRelojDeArena.agregarse()
 		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})
 		

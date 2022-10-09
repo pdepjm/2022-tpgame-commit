@@ -115,10 +115,10 @@ class Enemigo {
 	method moverse() {
 		x -= 1 
 		position = game.at(x, position.y())
-
-		if(position.x() < 0) {     
+		
+		/*if(position.x() < 0) {     
 			gameOver.finalizarJuego()
-		}
+		}*/ 
 	}
 	
 	
@@ -157,8 +157,6 @@ class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
 
 
 	
-
-	
 }
 
 class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
@@ -173,25 +171,6 @@ class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
 		
 	}*/ 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
