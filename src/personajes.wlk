@@ -12,7 +12,7 @@ object personaje {
 
     var property position = game.center()
 
-    method position() = position
+    //method position() = position
 
     method image() = "personaje.png"
 
@@ -140,6 +140,9 @@ class Enemigo {
 	
 	method chocasteConJugador() {}
 
+	method chocasteConBorde() {
+		
+	}
 	
 }
 

@@ -1,4 +1,4 @@
-  import wollok.game.*
+ import wollok.game.*
  import juego.*
  import personajes.*
  
@@ -51,16 +51,6 @@ object imagenDelContador {
 	
 }
 
-object contadorDeBalas {
-	const property position = game.at(22, 23)
-	
-	method text() = "Bolas:" + (personaje.bolasDeFuego().size()).toString()
-	
-	method agregarse(){
-		game.addVisual(self)
-	}
-}
-
 object curita {
 	
 	var property position = game.center() 
@@ -81,6 +71,8 @@ object curita {
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
+		textoCurita.agregarse()
+		game.schedule(10000, {})
 		game.removeVisual(self)
 	}
 
@@ -89,14 +81,14 @@ object curita {
 
 object relojDeArena {
 	
-	var property position = game.at(5,5)
+	var property position = game.at(15,15)
 	
 	method image() = "relojArena.png"
 	
 	method chocasteConJugador() {
 		
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
-		game.schedule(12500,{keyboard.r().onPressDo({personaje.recargarBalas()})})
+		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas()})})
 		
 	}
 	
@@ -105,6 +97,20 @@ object relojDeArena {
 		
 		game.schedule(5000,{=> game.addVisual(self)})
 		
+		
+	}
+}
+
+object borde {
+
+	const position = game.at(0,0)
+
+	method position() = position
+
+	method image() = "bordes.png"
+
+	method configuracionInicial(){
+		game.onCollideDo(self,{unElemento=>unElemento.chocasteConBorde()})
 		
 	}
 }

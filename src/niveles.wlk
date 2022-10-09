@@ -3,6 +3,7 @@ import direcciones.*
 import juego.*
 import personajes.*
 import elementosJuego.*
+import texto.*
 
 object primerNivel {
 	//const zombies = [new Zombie(position = game.at(22, 10)), new Zombie(position = game.at(22, 12)), new Zombie(position = game.at(22, 14)), new Zombie(position = game.at(22, 16)), new Zombie(position = game.at(22, 18))] 
@@ -22,7 +23,8 @@ object primerNivel {
 		curita.agregarse() 
 		relojDeArena.agregarse() 
 		imagenDelContador.agregarse()
-		contadorDeBalas.agregarse()
+		textoDelContador.agregarse()
+		game.addVisual(borde)
 	}			
 }
 
