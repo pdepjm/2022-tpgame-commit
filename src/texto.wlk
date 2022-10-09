@@ -4,7 +4,9 @@ import personajes.*
 object textoDelContador {
 	const property position = game.at(22, 23)
 	
-	method text() = "Bolas:" + (personaje.bolasDeFuego().size()).toString()
+	method text() = (personaje.bolasDeFuego().size()).toString() + "x" 
+
+	method textColor() = "000000"
 	
 	method agregarse(){
 		game.addVisual(self)

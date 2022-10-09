@@ -24,7 +24,7 @@ object primerNivel {
 		relojDeArena.agregarse() 
 		imagenDelContador.agregarse()
 		textoDelContador.agregarse()
-		game.addVisual(borde)
+		borde.configuracionInicial()
 	}			
 }
 
@@ -34,6 +34,5 @@ object segundoNivel {
 }
 
 
-object tercerNivel {
+
 	
-}

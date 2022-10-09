@@ -98,6 +98,10 @@ object personaje {
 	method chocasteConEnemigo(unEnemigo) {
 		self.disminuirVida() 
 	}
+
+	method chocasteConBorde(){
+		
+	}
 }
 
 class Enemigo {
@@ -141,7 +145,7 @@ class Enemigo {
 	method chocasteConJugador() {}
 
 	method chocasteConBorde() {
-		
+		gameOver.finalizarJuego() 
 	}
 	
 }
@@ -162,12 +166,12 @@ class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
 	method image() = "zombieAlfa.png"
 	
 
-	override method agregarse() {
+	/*override method agregarse() {
 		 game.addVisual(self)
 		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
 	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
 		
-	}
+	}*/ 
 }
 
 

@@ -1,6 +1,7 @@
  import wollok.game.*
  import juego.*
  import personajes.*
+ import texto.*
  
  
 class Corazon {
@@ -72,7 +73,7 @@ object curita {
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
 		textoCurita.agregarse()
-		game.schedule(10000, {})
+		game.schedule(5000, {game.removeVisual(textoCurita)})
 		game.removeVisual(self)
 	}
 
@@ -81,17 +82,22 @@ object curita {
 
 object relojDeArena {
 	
-	var property position = game.at(15,15)
+	var property position = game.at(16,16)
 	
-	method image() = "relojArena.png"
+	method image() = "hora.png"
 	
 	method chocasteConJugador() {
 		
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
 		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas()})})
+		textoRelojDeArena.agregarse()
+		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})
 		
 	}
 	
+	method chocasteConEnemigo(unEnemigo) {
+		
+	}
 	method agregarse() {
 		
 		
@@ -110,10 +116,9 @@ object borde {
 	method image() = "bordes.png"
 
 	method configuracionInicial(){
+		game.addVisual(self)
 		game.onCollideDo(self,{unElemento=>unElemento.chocasteConBorde()})
-		
 	}
 }
-
 
 const unProyectil = new Proyectil() 
