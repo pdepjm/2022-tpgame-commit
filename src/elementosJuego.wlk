@@ -34,8 +34,9 @@ class Proyectil {
     	
     }
     
-
-
+    method chocasteConJugador() {
+    	
+    }
 	
 }
 
@@ -60,6 +61,53 @@ object contadorDeBalas {
 	}
 }
 
+object curita {
+	
+	var property position = game.center() 
+	
+	method image() = "vendajeChico.png"
+	
+	method agregarse() {
+		
+		
+		game.schedule(5000,{=> game.addVisual(self)})
+		
+		
+		}
+		
+	method chocasteConEnemigo(unEnemigo) {
+		
+	}
+	
+	method chocasteConJugador() {
+		personaje.aumentarTodaLaVida() 
+		game.removeVisual(self)
+	}
+
+	
+}
+
+object relojDeArena {
+	
+	var property position = game.at(5,5)
+	
+	method image() = "relojArena.png"
+	
+	method chocasteConJugador() {
+		
+		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
+		game.schedule(12500,{keyboard.r().onPressDo({personaje.recargarBalas()})})
+		
+	}
+	
+	method agregarse() {
+		
+		
+		game.schedule(5000,{=> game.addVisual(self)})
+		
+		
+	}
+}
 
 
 const unProyectil = new Proyectil() 

@@ -20,12 +20,24 @@ object personaje {
     	
 		position = direccion.siguientePosicion(position)
 	}
+	
+	method aumentarTodaLaVida() {
+		
+		vida = [new Corazon(position = game.at(0,23)), new Corazon(position = game.at(1,23)), new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23))]
+		vida.forEach{corazon => corazon.agregarse()}
+		
+	}
 
 	
 	method disminuirVida() {
-		hitSound.play()
-		game.removeVisual(vida.last())
-		vida.remove(vida.last())
+		if (vida.size() > 0) {
+		 
+			hitSound.play()
+			game.removeVisual(vida.last())
+			vida.remove(vida.last())
+		 	
+		}
+	
 		
 		if(vida.size() == 0)
 		{
@@ -35,7 +47,6 @@ object personaje {
 
 	method disparar() {
 		
-		//game.onCollideDo(self,{unPersonaje=>unPersonaje.chocasteConProyectil()})
 	
 		if (bolasDeFuego.size() > 0) {
 			const otroProyectil = new Proyectil() 
@@ -54,6 +65,7 @@ object personaje {
 		method configurarAcciones() {
 
 			vida.forEach{corazon => corazon.agregarse()}
+			game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
 	}
 	
@@ -62,7 +74,19 @@ object personaje {
 		
 		if (bolasDeFuego.size() == 0) {
 			game.say(self, "Recargando balas, espere unos segundos")
-			game.schedule(500, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			game.schedule(2000, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			
+			
+		}
+		else 
+			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
+	}
+	
+	method recargarBalas(tiempo) {
+		
+		if (bolasDeFuego.size() == 0) {
+			game.say(self, "Recargando balas, espere unos segundos")
+			game.schedule(tiempo, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
 			
 			
 		}
@@ -95,7 +119,11 @@ class Enemigo {
 	
 	
 	method disminuirVida() {
-		vida -= 1
+		if (vida > 0) {
+		 	
+		 	vida -= 1
+		}
+			
 		
 		if(vida == 0)
 		{
@@ -109,6 +137,8 @@ class Enemigo {
 	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
 		
 	}
+	
+	method chocasteConJugador() {}
 
 	
 }
@@ -120,6 +150,8 @@ class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
 
 
 	
+
+	
 }
 
 class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
@@ -127,7 +159,12 @@ class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
 	method image() = "zombieAlfa.png"
 	
 
-	
+	override method agregarse() {
+		 game.addVisual(self)
+		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
+	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
+		
+	}
 }
 
 
