@@ -12,8 +12,6 @@ object personaje {
 
     var property position = game.center()
 
-    //method position() = position
-
     method image() = "personaje.png"
 
     method moverA(direccion) {
@@ -108,13 +106,12 @@ class Enemigo {
 	
 	var property position
 	var property vida
-	var property velocidad 
+	const property velocidad 
 	
-	var x  = position.x()
 
 	method moverse() {
-		x -= 1 
-		position = game.at(x, position.y())
+		
+		position = position.left(1)
 		
 		/*if(position.x() < 0) {     
 			gameOver.finalizarJuego()
@@ -150,7 +147,7 @@ class Enemigo {
 	
 }
 
-class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
+class Zombie inherits Enemigo (vida = 2, velocidad = 1000) {
 	
 	
 	method image() = "zombie.png"
@@ -159,17 +156,10 @@ class Zombie inherits Enemigo (vida = 1, velocidad = 1000) {
 	
 }
 
-class ZombieAlfa inherits Enemigo (vida = 2, velocidad = 750)  {
+class ZombieAlfa inherits Enemigo (vida = 3, velocidad = 750)  {
 	
 	method image() = "zombieAlfa.png"
 	
-
-	/*override method agregarse() {
-		 game.addVisual(self)
-		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
-	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
-		
-	}*/ 
 }
 
 

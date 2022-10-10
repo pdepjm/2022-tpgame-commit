@@ -14,12 +14,16 @@ object primerNivel {
 	method configuracionInicial(){
 		game.boardGround("grass00.png")
 		music1.play()
-		zombies1.forEach{zombie=> zombie.agregarse()}
-		game.schedule(15000, {zombies2.forEach{zombie=> zombie.agregarse()}})
-		game.schedule(25000, {zombies3.forEach{zombie=> zombie.agregarse()}})
+		self.configuracionOleadaZombies() 
 		personaje.configurarAcciones()
 		self.agregarElementosEspeciales() 
 		
+	}
+
+	method configuracionOleadaZombies() {
+		zombies1.forEach{zombie=> zombie.agregarse()}
+		game.schedule(15000, {zombies2.forEach{zombie=> zombie.agregarse()}})
+		game.schedule(25000, {zombies3.forEach{zombie=> zombie.agregarse()}})
 	}
 	
 	method agregarElementosEspeciales() {

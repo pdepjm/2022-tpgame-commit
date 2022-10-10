@@ -2,6 +2,7 @@
  import juego.*
  import personajes.*
  import texto.*
+ import direcciones.*
  
  
 class Corazon {
@@ -54,21 +55,29 @@ object imagenDelContador {
 
 class Elementos {
 	var imagen
-	var param1
-	var param2
+	var property position = game.center() 
+	const tiempoHastaAparicion
+	const tiempoEnPantalla
 	
 	method image() = imagen
-	method agregarse() {
-		game.schedule(param1,{=> game.addVisual(self)})
-		game.schedule(param2,{=> game.removeVisual(self)})
-		}
-		
+
 	method chocasteConEnemigo(unEnemigo) {
 		}
+	
+	method agregarse() {
+
+		position = aleatorio.dondeAparecer() 
+		
+		game.schedule(tiempoHastaAparicion,{=> game.removeVisual(self)})
+		
+		game.addVisual(self)
+		game.schedule(tiempoEnPantalla,{=> game.removeVisual(self)})
+
+	}
+
 } 
 
-object curita inherits Elementos(imagen = "vendajeChico.png", param1 = 20000, param2 = 25000){
-	var property position = game.center()
+object curita inherits Elementos(imagen = "vendajeChico.png", tiempoHastaAparicion = 20000, tiempoEnPantalla= 25000){
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
@@ -78,9 +87,8 @@ object curita inherits Elementos(imagen = "vendajeChico.png", param1 = 20000, pa
 	}
 }
 
-object relojDeArena inherits Elementos (imagen = "hora.png", param1 = 16000, param2 = 26000){
-	var property position = game.at(16,16)
-		
+object relojDeArena inherits Elementos (imagen = "hora.png", tiempoHastaAparicion = 16000, tiempoEnPantalla = 26000){
+ 		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
 		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas()})})
@@ -103,5 +111,7 @@ object borde {
 		game.onCollideDo(self,{unElemento=>unElemento.chocasteConBorde()})
 	}
 }
+
+
 
 const unProyectil = new Proyectil() 
