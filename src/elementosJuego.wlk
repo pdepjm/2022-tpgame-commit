@@ -68,16 +68,15 @@ class Elementos {
 
 		position = aleatorio.dondeAparecer() 
 		
-		game.schedule(tiempoHastaAparicion,{=> game.removeVisual(self)})
+		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
 		
-		game.addVisual(self)
 		game.schedule(tiempoEnPantalla,{=> game.removeVisual(self)})
 
 	}
 
 } 
 
-object curita inherits Elementos(imagen = "vendajeChico.png", tiempoHastaAparicion = 30000, tiempoEnPantalla= 25000){
+object curita inherits Elementos(imagen = "vendajeChico.png", tiempoHastaAparicion = 25000, tiempoEnPantalla= 35000){
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
@@ -87,7 +86,7 @@ object curita inherits Elementos(imagen = "vendajeChico.png", tiempoHastaAparici
 	}
 }
 
-object relojDeArena inherits Elementos (imagen = "hora.png", tiempoHastaAparicion = 32000, tiempoEnPantalla = 26000){
+object relojDeArena inherits Elementos (imagen = "hora.png", tiempoHastaAparicion = 26000, tiempoEnPantalla = 37000){
  		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
