@@ -24,7 +24,16 @@ object aleatorio {
 		const y = 0.randomUpTo(game.height())
 
 		// cambio a nueva posicion
-		return game.at(x, y)
+		return game.at(x, self.coordenadaEnY(y))
+	}
+	
+	method coordenadaEnY(unaPosicion) {
+		
+		if (unaPosicion%2 == 0) 
+			return unaPosicion
+		else
+			return unaPosicion + 1
+		
 	}
 
 }
