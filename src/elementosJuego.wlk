@@ -52,24 +52,23 @@ object imagenDelContador {
 	
 }
 
-object curita {
+class Elementos {
+	var imagen
+	var param1
+	var param2
 	
-	var property position = game.center() 
-	
-	method image() = "vendajeChico.png"
-	
+	method image() = imagen
 	method agregarse() {
-		
-		
-		game.schedule(20000,{=> game.addVisual(self)})
-		game.schedule(25000,{=> game.removeVisual(self)})
-		
-		
+		game.schedule(param1,{=> game.addVisual(self)})
+		game.schedule(param2,{=> game.removeVisual(self)})
 		}
 		
 	method chocasteConEnemigo(unEnemigo) {
-		
-	}
+		}
+} 
+
+object curita inherits Elementos(imagen = "vendajeChico.png", param1 = 20000, param2 = 25000){
+	var property position = game.center()
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
@@ -77,36 +76,17 @@ object curita {
 		game.schedule(5000, {game.removeVisual(textoCurita)})
 		game.removeVisual(self)
 	}
-
-	
 }
 
-object relojDeArena {
-	
+object relojDeArena inherits Elementos (imagen = "hora.png", param1 = 16000, param2 = 26000){
 	var property position = game.at(16,16)
-	
-	method image() = "hora.png"
-	
-	method chocasteConJugador() {
 		
+	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
 		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas()})})
 		game.removeVisual(self)
 		textoRelojDeArena.agregarse()
 		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})
-		
-	}
-	
-	method chocasteConEnemigo(unEnemigo) {
-		
-	}
-	method agregarse() {
-		
-		
-		game.schedule(16000,{=> game.addVisual(self)})
-		game.schedule(26000,{=> game.removeVisual(self)})
-		
-		
 	}
 }
 
