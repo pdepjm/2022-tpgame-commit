@@ -97,20 +97,33 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
 	}
 }
 
-object borde {
 
-	const position = game.at(0,0)
+
+class Borde {
+    const property position 
+
+	method image() = "pared.png"
 
 	method position() = position
 
-	method image() = "bordes.png"
-
-	method configuracionInicial(){
-		game.addVisual(self)
+    method agregarse() {
+        game.addVisual(self)
 		game.onCollideDo(self,{unElemento=>unElemento.chocasteConBorde()})
 	}
+	
+	method chocasteConJugador() {}
+    
+
 }
 
+object generacionBordes {
+	
 
+	method crearBordesIzquierdos(bordesDeUnNivel) {
+
+		bordesDeUnNivel.add(game.height().times{n => new Borde(position = game.at(0,n))})
+	}
+
+}
 
 const unProyectil = new Proyectil() 

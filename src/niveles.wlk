@@ -5,11 +5,13 @@ import personajes.*
 import elementosJuego.*
 import texto.*
 
+
 object primerNivel {
 	
 	const zombies1 = [new ZombieAlfa(position = game.at(26, 10)), new Zombie(position = game.at(27, 12)), new Zombie(position = game.at(27, 14)), new ZombieAlfa(position = game.at(26, 16)), new Zombie(position = game.at(26, 18))]
 	const zombies2 = [new ZombieAlfa(position = game.at(22, 8)), new ZombieAlfa(position = game.at(22, 12)), new Zombie(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 18)), new Zombie(position = game.at(22, 20))]
 	const zombies3 = [new ZombieAlfa(position = game.at(22, 6)), new ZombieAlfa(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 16)), new ZombieAlfa(position = game.at(22, 12)), new Zombie(position = game.at(22, 18))]
+	const bordes = []
 	
 	method configuracionInicial(){
 		game.boardGround("grass00.png")
@@ -31,7 +33,8 @@ object primerNivel {
 		relojDeArena.agregarse() 
 		imagenDelContador.agregarse()
 		textoDelContador.agregarse()
-		borde.configuracionInicial()
+		generacionBordes.crearBordesIzquierdos(bordes) 
+		bordes.forEach{unBorde=> unBorde.agregarse()}
 	}			
 }
 
