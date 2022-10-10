@@ -6,14 +6,17 @@ import elementosJuego.*
 import texto.*
 
 object primerNivel {
-	//const zombies = [new Zombie(position = game.at(22, 10)), new Zombie(position = game.at(22, 12)), new Zombie(position = game.at(22, 14)), new Zombie(position = game.at(22, 16)), new Zombie(position = game.at(22, 18))] 
 	
-	const zombies = [new ZombieAlfa(position = game.at(22, 10)), new Zombie(position = game.at(22, 12)), new Zombie(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 16)), new Zombie(position = game.at(22, 18))]
+	const zombies1 = [new ZombieAlfa(position = game.at(26, 10)), new Zombie(position = game.at(27, 12)), new Zombie(position = game.at(27, 14)), new ZombieAlfa(position = game.at(26, 16)), new Zombie(position = game.at(26, 18))]
+	const zombies2 = [new ZombieAlfa(position = game.at(22, 8)), new ZombieAlfa(position = game.at(22, 12)), new Zombie(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 18)), new Zombie(position = game.at(22, 20))]
+	const zombies3 = [new ZombieAlfa(position = game.at(22, 6)), new ZombieAlfa(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 16)), new ZombieAlfa(position = game.at(22, 12)), new Zombie(position = game.at(22, 18))]
 	
 	method configuracionInicial(){
 		game.boardGround("grass00.png")
 		music1.play()
-		zombies.forEach{zombie=> zombie.agregarse()}
+		zombies1.forEach{zombie=> zombie.agregarse()}
+		game.schedule(15000, {zombies2.forEach{zombie=> zombie.agregarse()}})
+		game.schedule(25000, {zombies3.forEach{zombie=> zombie.agregarse()}})
 		personaje.configurarAcciones()
 		self.agregarElementosEspeciales() 
 		

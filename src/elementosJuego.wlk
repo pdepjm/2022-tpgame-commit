@@ -61,7 +61,8 @@ object curita {
 	method agregarse() {
 		
 		
-		game.schedule(5000,{=> game.addVisual(self)})
+		game.schedule(20000,{=> game.addVisual(self)})
+		game.schedule(25000,{=> game.removeVisual(self)})
 		
 		
 		}
@@ -102,7 +103,8 @@ object relojDeArena {
 	method agregarse() {
 		
 		
-		game.schedule(5000,{=> game.addVisual(self)})
+		game.schedule(16000,{=> game.addVisual(self)})
+		game.schedule(26000,{=> game.removeVisual(self)})
 		
 		
 	}
