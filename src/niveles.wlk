@@ -33,7 +33,7 @@ object primerNivel {
 		relojDeArena.agregarse() 
 		imagenDelContador.agregarse()
 		textoDelContador.agregarse()
-		generacionBordes.crearBordesIzquierdos(bordes) 
+		generacionBordes.crearBordesIzquierdosEn(bordes) 
 		bordes.forEach{unBorde=> unBorde.agregarse()}
 	}			
 }

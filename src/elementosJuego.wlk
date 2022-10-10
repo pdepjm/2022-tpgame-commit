@@ -112,6 +112,8 @@ class Borde {
 	}
 	
 	method chocasteConJugador() {}
+	
+	method chocasteConEnemigo() {}
     
 
 }
@@ -119,10 +121,15 @@ class Borde {
 object generacionBordes {
 	
 
-	method crearBordesIzquierdos(bordesDeUnNivel) {
+	method crearBordesIzquierdosEn(bordesDeUnNivel) {
 
-		bordesDeUnNivel.add(game.height().times{n => new Borde(position = game.at(0,n))})
+		game.height().times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})  
+	
+	
 	}
+	
+	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
+
 
 }
 
