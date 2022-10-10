@@ -76,7 +76,7 @@ class ElementoEspecial {
 
 } 
 
-object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHastaAparicion = 25000, tiempoEnPantalla= 35000){
+object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHastaAparicion = 15000, tiempoEnPantalla= 35000){
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
@@ -86,7 +86,7 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 	}
 }
 
-object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 26000, tiempoEnPantalla = 37000){
+object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 16000, tiempoEnPantalla = 37000){
  		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
