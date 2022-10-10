@@ -32,7 +32,6 @@ object juego {
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
 		keyboard.r().onPressDo({personaje.recargarBalas()})
-		
 	}
 	
 

@@ -6,22 +6,24 @@ import niveles.*
 
 object personaje {
 
-    var property vida = [new Corazon(position = game.at(0,23)), new Corazon(position = game.at(1,23)), new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23))]
+    var property vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 
-    var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()]
+    var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
 
     var property position = game.center()
-
+	
     method image() = "personaje.png"
-
+	
     method moverA(direccion) {
-    	
-		position = direccion.siguientePosicion(position)
+    	//if (direccion.siguientePosicion(position).x() < 1)
+    	//	position = game.at(1,position.y())
+		//else 
+			position = direccion.siguientePosicion(position)
 	}
 	
 	method aumentarTodaLaVida() {
 		
-		vida = [new Corazon(position = game.at(0,23)), new Corazon(position = game.at(1,23)), new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23))]
+		vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 		vida.forEach{corazon => corazon.agregarse()}
 		
 	}
@@ -72,7 +74,7 @@ object personaje {
 		
 		if (bolasDeFuego.size() == 0) {
 			game.say(self, "Recargando balas, espere unos segundos")
-			game.schedule(2000, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			game.schedule(2000, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()])})
 			
 			
 		}
@@ -98,7 +100,6 @@ object personaje {
 	}
 
 	method chocasteConBorde(){
-		
 	}
 }
 
@@ -147,7 +148,7 @@ class Enemigo {
 	
 }
 
-class Zombie inherits Enemigo (vida = 2, velocidad = 1000) {
+class Zombie inherits Enemigo (vida = 2, velocidad = 1500) {
 	
 	
 	method image() = "zombie.png"
@@ -156,7 +157,7 @@ class Zombie inherits Enemigo (vida = 2, velocidad = 1000) {
 	
 }
 
-class ZombieAlfa inherits Enemigo (vida = 3, velocidad = 750)  {
+class ZombieAlfa inherits Enemigo (vida = 3, velocidad = 1000)  {
 	
 	method image() = "zombieAlfa.png"
 	
