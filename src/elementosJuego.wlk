@@ -53,7 +53,7 @@ object imagenDelContador {
 	
 }
 
-class Elementos {
+class ElementoEspecial {
 	var imagen
 	var property position = game.center() 
 	const tiempoHastaAparicion
@@ -76,7 +76,7 @@ class Elementos {
 
 } 
 
-object curita inherits Elementos(imagen = "vendajeChico.png", tiempoHastaAparicion = 25000, tiempoEnPantalla= 35000){
+object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHastaAparicion = 25000, tiempoEnPantalla= 35000){
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
@@ -86,7 +86,7 @@ object curita inherits Elementos(imagen = "vendajeChico.png", tiempoHastaAparici
 	}
 }
 
-object relojDeArena inherits Elementos (imagen = "hora.png", tiempoHastaAparicion = 26000, tiempoEnPantalla = 37000){
+object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 26000, tiempoEnPantalla = 37000){
  		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
