@@ -20,8 +20,8 @@ object aleatorio {
 		
 		// calculo coordenadas aleatorias dentro la pantalla
 
-		const x = 1.randomUpTo(game.width())
-		const y = 1.randomUpTo(game.height())
+		const x = 2.randomUpTo(game.width())
+		const y = 2.randomUpTo(game.height())
 
 		// cambio a nueva posicion
 		return game.at(x, self.coordenadaEnY(y))
