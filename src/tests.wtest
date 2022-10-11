@@ -7,6 +7,8 @@ import wollok.game.*
 import texto.*
 
 describe "Jugador"{
+	
+	
 
 	test "Al moverse hacia arriba, el jugador actualiza su posición" {
 
@@ -23,6 +25,7 @@ describe "Jugador"{
 	}
 
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
+		game.addVisual(curita)
 		curita.chocasteConJugador()
 		assert.equals((personaje.vida()).size(),5)
 
@@ -36,7 +39,8 @@ describe "Enemigo"{
 	test "El enemigo pierde vida cuando se le dispara con un proyectil" {
 
 		const algunProyectil = new Proyectil()
-
+		
+		game.addVisual(algunProyectil)
 		algunProyectil.chocasteConEnemigo(unEnemigo)
 		assert.equals(unEnemigo.vida(),1)
 
@@ -44,7 +48,6 @@ describe "Enemigo"{
 
 	test "Cuando un zombie toca el borde, se produce el game over"{
 		unEnemigo.chocasteConBorde()
-		gameOver.finalizarJuego() 
-		assert.that(true)
+		assert.that(game.hasVisual(gameOver))
 	}
 }
