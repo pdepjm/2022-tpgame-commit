@@ -10,34 +10,34 @@ describe "Jugador"{
 
 	test "Al moverse hacia arriba, el jugador actualiza su posición" {
 
-		jugador.position() = game.at(0,0)
-		jugador.moverA(arriba)
-		assert.equals(protagonista.position(),game.at(0,1))
+		personaje.position(game.at(0,0))
+		personaje.moverA(arriba)
+		assert.equals(personaje.position(),game.at(0,1))
 	}
 
 	test "El jugador pierde una vida al chocarse con un enemigo" {
 
-		const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0))
-		jugador.position = game.at(0,0)
-		assert.equals(jugador.vida.size(),4)
+		const algunEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500)
+		personaje.chocasteConEnemigo(algunEnemigo)
+		assert.equals((personaje.vida()).size(),4)
 	}
 
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
 		curita.chocasteConJugador()
-		assert.equals(personaje.vida.size(),5)
+		assert.equals((personaje.vida()).size(),5)
 
 	}
 }
 
 describe "Enemigo"{
 
-	const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0))
+	const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500)
 
 	test "El enemigo pierde vida cuando se le dispara con un proyectil" {
 
-		const unProyectil = new Proyectil()
+		const algunProyectil = new Proyectil()
 
-		unProyectil.chocasteConEnemigo(unEnemigo)
+		algunProyectil.chocasteConEnemigo(unEnemigo)
 		assert.equals(unEnemigo.vida(),1)
 
 	}
@@ -45,5 +45,6 @@ describe "Enemigo"{
 	test "Cuando un zombie toca el borde, se produce el game over"{
 		unEnemigo.chocasteConBorde()
 		gameOver.finalizarJuego() 
+		assert.that(true)
 	}
 }
