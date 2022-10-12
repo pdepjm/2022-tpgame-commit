@@ -1,0 +1,78 @@
+@startuml Diagramas
+
+abstract class ElementoEspecial {
+    imagen
+    position
+    tiempoHastaAparicion
+    tiempoEnPantalla
+
+    image()
+    agregarse()
+    chocasteConJugador()
+
+}
+
+object curita {
+
+    chocasteConJugador()
+}
+
+object relojDeArena {
+
+    chocasteConJugador()
+} 
+
+ElementoEspecial <|-- curita
+ElementoEspecial <|-- relojDeArena
+
+
+object personaje {
+    vida
+    bolasDeFuego
+    ----
+    aumentarTodaLaVida()
+    disminuirVida()
+    disparar()
+    recargarBalas()
+    recargarBalas(tiempo)
+    chocasteConEnemigo(unEnemigo)
+}
+
+ElementoEspecial -l-> personaje
+
+class Corazon {
+
+}
+
+class Proyectil {
+    position
+
+    mover()
+    trayectoria()
+    chocasteConEnemigo()
+
+}
+
+personaje ..> Proyectil
+personaje ..> Corazon
+Proyectil --> personaje
+
+ class Enemigo {
+    vida
+    velocidad
+
+    disminuirVida()
+
+}
+
+
+
+Enemigo --> personaje
+Proyectil <--> Enemigo
+
+
+
+
+@enduml
+
+
