@@ -17,13 +17,6 @@ describe "Jugador"{
 		assert.equals(personaje.position(),game.at(0,1))
 	}
 
-	test "El jugador pierde una vida al chocarse con un enemigo" {
-
-		const algunEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500)
-		personaje.chocasteConEnemigo(algunEnemigo)
-		assert.equals((personaje.vida()).size(),4)
-	}
-
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
 		game.addVisual(curita)
 		curita.chocasteConJugador()
@@ -35,15 +28,26 @@ describe "Jugador"{
 describe "Enemigo"{
 
 	const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500)
+	
+	const algunProyectil = new Proyectil()
+
 
 	test "El enemigo pierde vida cuando se le dispara con un proyectil" {
 
-		const algunProyectil = new Proyectil()
 		
 		game.addVisual(algunProyectil)
 		algunProyectil.chocasteConEnemigo(unEnemigo)
 		assert.equals(unEnemigo.vida(),1)
 
+	}
+
+	test "Cuando el enemigo pierde toda su vida, muere" {
+
+		unEnemigo.vida(1)
+		game.addVisual(algunProyectil)
+		algunProyectil.chocasteConEnemigo(unEnemigo)
+		assert.notThat(game.hasVisual(unEnemigo))
+		
 	}
 
 	test "Cuando un zombie toca el borde, se produce el game over"{
