@@ -124,7 +124,10 @@ class Enemigo {
 	method disminuirVida() {
 		
 		
-		vida = (vida-=1).max(0)
+		if(vida > 0)
+		{
+			vida -= 1
+		}
 		 	
 		if(vida == 0)
 		{

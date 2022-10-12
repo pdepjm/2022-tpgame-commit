@@ -27,7 +27,7 @@ describe "Jugador"{
 
 describe "Enemigo"{
 
-	const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500)
+	const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500, image = "zombie.png")
 	
 	const algunProyectil = new Proyectil()
 

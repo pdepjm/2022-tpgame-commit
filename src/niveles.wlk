@@ -8,9 +8,9 @@ import texto.*
 
 object primerNivel {
 	
-	const Enemigos1 = [new Enemigo(vida = 3, velocidad = 1000, position = game.at(26, 10), image = "zombieAlfa.png"), new Enemigo(vida = 2, velocidad = 1500, position = game.at(27, 12), image = "zombie.png"), new Enemigo(position = game.at(27, 14), vida = 2, velocidad = 1500, image = "zombie.png"), new Enemigo (position = game.at(26, 16), vida = 3, velocidad = 1000, image = "zombieAlfa.png"), new Enemigo(position = game.at(26, 18), vida = 2, velocidad = 1500, image = "zombie.png")]
-	const Enemigos2 = [new Enemigo (position = game.at(22, 8)), new Enemigo (position = game.at(22, 12)), new Enemigo(position = game.at(22, 14)), new Enemigo (position = game.at(22, 18)), new Enemigo(position = game.at(22, 20))]
-	const Enemigos3 = [new Enemigo (position = game.at(22, 6)), new Enemigo (position = game.at(22, 14)), new Enemigo (position = game.at(22, 16)), new Enemigo (position = game.at(22, 12)), new Enemigo(position = game.at(22, 18))]
+	const enemigos1 = [new Enemigo(vida = 3, velocidad = 1000, position = game.at(26, 10), image = "zombieAlfa.png"), new Enemigo(vida = 2, velocidad = 1500, position = game.at(27, 12), image = "zombie.png"), new Enemigo(position = game.at(27, 14), vida = 2, velocidad = 1500, image = "zombie.png"), new Enemigo (position = game.at(26, 16), vida = 3, velocidad = 1000, image = "zombieAlfa.png"), new Enemigo(position = game.at(26, 18), vida = 2, velocidad = 1500, image = "zombie.png")]
+	const enemigos2 = [new Enemigo(vida = 2, velocidad = 1000, position = game.at(26, 8), image = "zombie.png"), new Enemigo(vida = 3, velocidad = 1000, position = game.at(27, 10), image = "zombieAlfa.png"), new Enemigo(position = game.at(27, 14), vida = 3, velocidad = 1000, image = "zombieAlfa.png"), new Enemigo (position = game.at(26, 18), vida = 3, velocidad = 1000, image = "zombieAlfa.png"), new Enemigo(position = game.at(26, 20), vida = 2, velocidad = 1500, image = "zombie.png")]	
+	const enemigos3 = [new Enemigo(vida = 3, velocidad = 1000, position = game.at(26, 6), image = "zombieAlfa.png"), new Enemigo(vida = 3, velocidad = 1000, position = game.at(27, 10), image = "zombieAlfa.png"), new Enemigo(position = game.at(27, 14), vida = 2, velocidad = 1500, image = "zombieAlfa.png"), new Enemigo (position = game.at(26, 16), vida = 3, velocidad = 1000, image = "zombieAlfa.png"), new Enemigo(position = game.at(26, 22), vida = 2, velocidad = 1500, image = "zombie.png")]	
 	const bordes = []
 	
 	method configuracionInicial(){
@@ -23,9 +23,9 @@ object primerNivel {
 	}
 
 	method configuracionOleadaEnemigos() {
-		Enemigos1.forEach{Enemigo=> Enemigo.agregarse()}
-		game.schedule(15000, {Enemigos2.forEach{Enemigo=> Enemigo.agregarse()}})
-		game.schedule(25000, {Enemigos3.forEach{Enemigo=> Enemigo.agregarse()}})
+		enemigos1.forEach{enemigo=> enemigo.agregarse()}
+		game.schedule(15000, {enemigos2.forEach{enemigo=> enemigo.agregarse()}})
+		game.schedule(25000, {enemigos3.forEach{enemigo=> enemigo.agregarse()}})
 	}
 	
 	method agregarElementosEspeciales() {
