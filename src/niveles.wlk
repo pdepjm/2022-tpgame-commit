@@ -8,24 +8,24 @@ import texto.*
 
 object primerNivel {
 	
-	const zombies1 = [new ZombieAlfa(position = game.at(26, 10)), new Zombie(position = game.at(27, 12)), new Zombie(position = game.at(27, 14)), new ZombieAlfa(position = game.at(26, 16)), new Zombie(position = game.at(26, 18))]
-	const zombies2 = [new ZombieAlfa(position = game.at(22, 8)), new ZombieAlfa(position = game.at(22, 12)), new Zombie(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 18)), new Zombie(position = game.at(22, 20))]
-	const zombies3 = [new ZombieAlfa(position = game.at(22, 6)), new ZombieAlfa(position = game.at(22, 14)), new ZombieAlfa(position = game.at(22, 16)), new ZombieAlfa(position = game.at(22, 12)), new Zombie(position = game.at(22, 18))]
+	const Enemigos1 = [new Enemigo(vida = 3, velocidad = 1000, position = game.at(26, 10), image = "zombieAlfa.png"), new Enemigo(vida = 2, velocidad = 1500, position = game.at(27, 12), image = "zombie.png"), new Enemigo(position = game.at(27, 14), vida = 2, velocidad = 1500, image = "zombie.png"), new Enemigo (position = game.at(26, 16), vida = 3, velocidad = 1000, image = "zombieAlfa.png"), new Enemigo(position = game.at(26, 18), vida = 2, velocidad = 1500, image = "zombie.png")]
+	const Enemigos2 = [new Enemigo (position = game.at(22, 8)), new Enemigo (position = game.at(22, 12)), new Enemigo(position = game.at(22, 14)), new Enemigo (position = game.at(22, 18)), new Enemigo(position = game.at(22, 20))]
+	const Enemigos3 = [new Enemigo (position = game.at(22, 6)), new Enemigo (position = game.at(22, 14)), new Enemigo (position = game.at(22, 16)), new Enemigo (position = game.at(22, 12)), new Enemigo(position = game.at(22, 18))]
 	const bordes = []
 	
 	method configuracionInicial(){
 		game.boardGround("grass00.png")
 		music1.play()
-		self.configuracionOleadaZombies() 
+		self.configuracionOleadaEnemigos() 
 		personaje.configurarAcciones()
 		self.agregarElementosEspeciales() 
 		
 	}
 
-	method configuracionOleadaZombies() {
-		zombies1.forEach{zombie=> zombie.agregarse()}
-		game.schedule(15000, {zombies2.forEach{zombie=> zombie.agregarse()}})
-		game.schedule(25000, {zombies3.forEach{zombie=> zombie.agregarse()}})
+	method configuracionOleadaEnemigos() {
+		Enemigos1.forEach{Enemigo=> Enemigo.agregarse()}
+		game.schedule(15000, {Enemigos2.forEach{Enemigo=> Enemigo.agregarse()}})
+		game.schedule(25000, {Enemigos3.forEach{Enemigo=> Enemigo.agregarse()}})
 	}
 	
 	method agregarElementosEspeciales() {

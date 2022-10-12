@@ -107,6 +107,7 @@ class Enemigo {
 	
 	var property position
 	var property vida
+	var property image
 	const property velocidad 
 	
 
@@ -121,12 +122,10 @@ class Enemigo {
 	
 	
 	method disminuirVida() {
-		if (vida > 0) {
-		 	
-		 	vida -= 1
-		}
-			
 		
+		
+		vida = (vida-=1).max(0)
+		 	
 		if(vida == 0)
 		{
 			game.removeVisual(self)
@@ -148,7 +147,7 @@ class Enemigo {
 	
 }
 
-class Zombie inherits Enemigo (vida = 2, velocidad = 1500) {
+/*class Zombie inherits Enemigo (vida = 2, velocidad = 1500) {
 	
 	
 	method image() = "zombie.png"
@@ -162,7 +161,7 @@ class ZombieAlfa inherits Enemigo (vida = 3, velocidad = 1000)  {
 	method image() = "zombieAlfa.png"
 	
 }
-
+*/ 
 
 
 
