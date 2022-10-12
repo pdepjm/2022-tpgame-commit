@@ -44,6 +44,7 @@ describe "Enemigo"{
 	test "Cuando el enemigo pierde toda su vida, muere" {
 
 		unEnemigo.vida(1)
+		game.addVisual(unEnemigo)
 		game.addVisual(algunProyectil)
 		algunProyectil.chocasteConEnemigo(unEnemigo)
 		assert.notThat(game.hasVisual(unEnemigo))
