@@ -25,6 +25,12 @@ object relojDeArena {
 ElementoEspecial <|-- curita
 ElementoEspecial <|-- relojDeArena
 
+interface PerdedorDeVida {
+    vida
+    
+    disminuirVida()
+}
+
 
 object personaje {
     vida
@@ -57,7 +63,7 @@ personaje ..> Proyectil
 personaje ..> Corazon
 Proyectil --> personaje
 
- class Enemigo {
+ class Enemigo implements PerdedorDeVida {
     vida
     velocidad
 
