@@ -17,8 +17,9 @@ object juego {
 
 	method configurarJuego() {
 		game.title("Juego")
-		game.width(25)
-		game.height(25)
+		game.width(12)
+		game.height(12)
+		game.cellSize(100)
 	}
 
 	method agregarPersonajes() {
@@ -45,8 +46,12 @@ object gameOver {
 	method image() = "game over.png"
 	
 	method finalizarJuego(){
-		game.schedule(400, {game.clear()})
-		game.addVisual(self)
+		
+		if (!game.hasVisual(self)) { 
+			game.schedule(400, {game.clear()})
+			game.addVisual(self) 
+		}
+			
 	}
 }
 

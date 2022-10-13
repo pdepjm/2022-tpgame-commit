@@ -15,10 +15,8 @@ object personaje {
     method image() = "personaje.png"
 	
     method moverA(direccion) {
-    	//if (direccion.siguientePosicion(position).x() < 1)
-    	//	position = game.at(1,position.y())
-		//else 
 			position = direccion.siguientePosicion(position)
+			game.say(self, self.position().toString())
 	}
 	
 	method aumentarTodaLaVida() {
@@ -106,39 +104,34 @@ object personaje {
 class Enemigo {
 	
 	var property position
-	var property vida
-	var property image
-	const property velocidad 
-	
+	var property especie
+	var property vida = especie.vida()
+
+	method image() = especie.image()	
 
 	method moverse() {
 		
 		position = position.left(1)
-		
-		/*if(position.x() < 0) {     
-			gameOver.finalizarJuego()
-		}*/ 
 	}
 	
 	
 	method disminuirVida() {
 		
 		
-		if(vida > 0)
-		{
+		if (vida > 0) 
+			
 			vida -= 1
-		}
-		 	
-		if(vida == 0)
-		{
+		
+		if (vida<=0) 
 			game.removeVisual(self)
-		}
+			
+		
 	}
 	
 	method agregarse() {
 		 game.addVisual(self)
 		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
-	     game.onTick(velocidad, "Movimiento Enemigo", {self.moverse()})
+	     game.onTick(especie.velocidad(), "Movimiento Enemigo", {self.moverse()})
 		
 	}
 	
@@ -150,21 +143,16 @@ class Enemigo {
 	
 }
 
-/*class Zombie inherits Enemigo (vida = 2, velocidad = 1500) {
-	
-	
-	method image() = "zombie.png"
-
-
-	
+class EspecieZombie {
+	var property vida
+	const property image
+	var property velocidad 
+		
 }
 
-class ZombieAlfa inherits Enemigo (vida = 3, velocidad = 1000)  {
-	
-	method image() = "zombieAlfa.png"
-	
-}
-*/ 
+const zombieBeta = new EspecieZombie (vida = 1, image = "zombie.png", velocidad = 1000)
+const zombieAlfa = new EspecieZombie (vida = 2, image = "zombieAlfa.png", velocidad = 1500)
+
 
 
 

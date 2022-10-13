@@ -27,7 +27,7 @@ describe "Jugador"{
 
 describe "Enemigo"{
 
-	const unEnemigo = new Enemigo(vida = 2, position = game.at(0,0), velocidad = 500, image = "zombie.png")
+	const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
 	
 	const algunProyectil = new Proyectil()
 
@@ -37,13 +37,13 @@ describe "Enemigo"{
 		
 		game.addVisual(algunProyectil)
 		algunProyectil.chocasteConEnemigo(unEnemigo)
-		assert.equals(unEnemigo.vida(),1)
+		assert.equals(unEnemigo.especie().vida(),1)
 
 	}
 
 	test "Cuando el enemigo pierde toda su vida, muere" {
 
-		unEnemigo.vida(1)
+		unEnemigo.especie().vida(1)
 		game.addVisual(unEnemigo)
 		game.addVisual(algunProyectil)
 		algunProyectil.chocasteConEnemigo(unEnemigo)
