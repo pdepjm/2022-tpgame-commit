@@ -15,9 +15,6 @@ object personaje {
     method image() = "personaje.png"
 	
     method moverA(direccion) {
-    	//if (direccion.siguientePosicion(position).x() < 1)
-    	//	position = game.at(1,position.y())
-		//else 
 			position = direccion.siguientePosicion(position)
 	}
 	
