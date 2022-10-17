@@ -102,7 +102,7 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
 class Borde {
     const property position 
 
-	method image() = "pared.png"
+	method image() = "paredAmpliada.png"
 
 	method position() = position
 
