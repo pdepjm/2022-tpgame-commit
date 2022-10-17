@@ -68,10 +68,17 @@ class ElementoEspecial {
 
 		position = aleatorio.dondeAparecer() 
 		
-		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self) ; game.say(self,self.position().toString())})
 		
-		game.schedule(tiempoEnPantalla,{=> game.removeVisual(self)})
-
+		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
+		
+	}
+	
+	method sacaloSiEsta() {
+		
+		if (game.hasVisual(self))
+			game.removeVisual(self)
+		else {}
 	}
 
 } 
@@ -113,7 +120,7 @@ class Borde {
 	
 	method chocasteConJugador() {}
 	
-	method chocasteConEnemigo() {}
+	method chocasteConEnemigo(unEnemigo) {}
     
 
 }
@@ -125,11 +132,9 @@ object generacionBordes {
 
 		game.height().times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})  
 	
-	
 	}
 	
 	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
-
 
 }
 
