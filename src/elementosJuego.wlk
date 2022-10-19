@@ -102,19 +102,21 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
 	}
 }
 
-object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 5000, tiempoEnPantalla= 39000){
+object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 2500, tiempoEnPantalla= 39000){
 	//habría que agregarlo en el nivel que corresponda
 	var property estaPlantada = false
 	method chocasteConJugador(){ 
-		keyboard.f().onPressDo({self.plantarse()})
-		game.removeVisual(self)
-		self.ponerEnInventario()
+		if(!estaPlantada){
+			keyboard.f().onPressDo({self.plantarse()})
+			game.removeVisual(self)
+			self.ponerEnInventario()
+		}
 	}
 	
 	method plantarse() {
 		//game.removeVisual(self)
-		self.position(personaje.position())
 		//game.addVisual(self)
+		self.position(personaje.position())
 		self.estaPlantada(true)
 	}
 
