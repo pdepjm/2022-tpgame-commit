@@ -35,6 +35,7 @@ object primerNivel {
 		textoDelContador.agregarse()
 		generacionBordes.crearBordesIzquierdosEn(bordes) 
 		bordes.forEach{unBorde=> unBorde.agregarse()}
+		mina.agregarse()
 	}			
 }
 
@@ -43,6 +44,9 @@ object segundoNivel {
 	
 }
 
+object tercerNivel {
+	
+}
 
 
 	

@@ -30,10 +30,8 @@ class Proyectil {
     }
     
     method chocasteConEnemigo(elEnemigo) {
-    	
     	elEnemigo.disminuirVida()
     	game.removeVisual(self)
-    	
     }
     
     method chocasteConJugador() {
@@ -55,7 +53,7 @@ object imagenDelContador {
 
 class ElementoEspecial {
 	var imagen
-	var property position = game.center() 
+	var property position = game.center()
 	const tiempoHastaAparicion
 	const tiempoEnPantalla
 	
@@ -68,7 +66,7 @@ class ElementoEspecial {
 
 		position = aleatorio.dondeAparecer() 
 		
-		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self) ; game.say(self,self.position().toString())})
+		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
 		
 		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
 		
@@ -101,6 +99,35 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
 		game.removeVisual(self)
 		textoRelojDeArena.agregarse()
 		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})
+	}
+}
+
+object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 5000, tiempoEnPantalla= 39000){
+	//habría que agregarlo en el nivel que corresponda
+	var property estaPlantada = false
+	method chocasteConJugador(){ 
+		keyboard.f().onPressDo({self.plantarse()})
+		game.removeVisual(self)
+		self.ponerEnInventario()
+	}
+	
+	method plantarse() {
+		//game.removeVisual(self)
+		self.position(personaje.position())
+		//game.addVisual(self)
+		self.estaPlantada(true)
+	}
+
+	method ponerEnInventario(){
+		self.position(game.at(11, 11))
+		game.addVisual(self)
+		game.say(personaje, "Tenes una mina en el inventario! Plantala con F!")
+	}
+	
+	override method chocasteConEnemigo(elEnemigo) {
+		if(estaPlantada) {hitSound.play()
+		game.removeVisual(elEnemigo)
+    	game.removeVisual(self) }
 	}
 }
 

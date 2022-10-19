@@ -16,7 +16,6 @@ object personaje {
 	
     method moverA(direccion) {
 			position = direccion.siguientePosicion(position)
-			game.say(self, self.position().toString())
 	}
 	
 	method aumentarTodaLaVida() {
@@ -98,6 +97,10 @@ object personaje {
 	}
 
 	method chocasteConBorde(){
+	}
+
+	method plantarMina(unaMina){
+		
 	}
 }
 
