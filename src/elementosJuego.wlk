@@ -3,6 +3,7 @@
  import personajes.*
  import texto.*
  import direcciones.*
+ import niveles.*
  
  
 class Corazon {
@@ -40,7 +41,7 @@ class Proyectil {
 	
 }
 
-class ProyectilEnemigo inherits Proyectil(position = boss.position()) {
+class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position()) {
 
 	override method mover() {
 		position = game.at(position.x()-1, position.y())
@@ -51,9 +52,14 @@ class ProyectilEnemigo inherits Proyectil(position = boss.position()) {
 	override method chocasteConJugador() {
 		personaje.disminuirVida()
 	}
+	
+	method chocasteConBorde() {
+		game.removeVisual(self)
+	}
 
 }
 
+const enemigoBoss = new Enemigo(especie = boss, position = game.center())
 
 const unProyectil = new Proyectil() 
 

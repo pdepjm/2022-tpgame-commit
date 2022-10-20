@@ -170,7 +170,7 @@ class EspecieBoss {
 const zombieBeta = new EspecieZombie (vida = 1, image = "zombie.png", velocidad = 1000)
 const zombieAlfa = new EspecieZombie (vida = 2, image = "zombieAlfa.png", velocidad = 1500)
 
-const boss = new EspecieBoss(vida = 1, image = "wollokGigante.png", velocidad = 1700)
+const boss = new EspecieBoss(vida = 7, image = "wollokGigante.png", velocidad = 4000)
 
 
 
