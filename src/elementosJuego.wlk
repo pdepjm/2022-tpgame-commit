@@ -39,6 +39,7 @@ class Proyectil {
     }
 	
 }
+const unProyectil = new Proyectil() 
 
 object imagenDelContador {
 	const property position = game.at(23, 23)
@@ -148,23 +149,22 @@ class Borde {
 	}
 	
 	method chocasteConJugador() {}
-	
 	method chocasteConEnemigo(unEnemigo) {}
-    
-
 }
 
 object generacionBordes {
-	
-
-	method crearBordesIzquierdosEn(bordesDeUnNivel) {
-
-		game.height().times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})  
-	
-	}
-	
+	method crearBordesIzquierdosEn(bordesDeUnNivel) { 11.times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)}) }
 	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
-
 }
 
-const unProyectil = new Proyectil() 
+object barraVisual{
+	const property position = game.at(0,11)
+	method image() = "barraVisualAlternativa.png" //Esto se cambia
+	method agregarse(){
+		game.addVisual(self)
+	}
+	// La perdida de corazones pasa a ser responsabilidad de la barrita en vez del personaje (?
+	// En vez de que el personaje tenga cargador, que se cargue la barrita
+}
+
+

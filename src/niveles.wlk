@@ -15,6 +15,7 @@ object primerNivel {
 	
 	method configuracionInicial(){
 		game.boardGround("grass00.png")
+		barraVisual.agregarse()
 		music1.play()
 		self.configuracionOleadaEnemigos() 
 		personaje.configurarAcciones()
