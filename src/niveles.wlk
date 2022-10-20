@@ -6,6 +6,16 @@ import elementosJuego.*
 import texto.*
 
 
+class Nivel {
+
+	method configuracionInicial() 
+
+	method configuracionOleadaEnemigos() 
+
+	method agregarElementosEspeciales()
+}
+
+
 object primerNivel {
 	
 	const enemigos1 = [new Enemigo(especie = zombieAlfa, position = game.at(26, 10)), new Enemigo(especie= zombieBeta, position = game.at(27, 12)), new Enemigo(position = game.at(27, 14), especie = zombieBeta), new Enemigo (position = game.at(26, 16), especie = zombieBeta), new Enemigo(position = game.at(26, 18), especie = zombieBeta)]
