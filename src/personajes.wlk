@@ -44,7 +44,6 @@ object personaje {
 
 	method disparar() {
 		
-	
 		if (bolasDeFuego.size() > 0) {
 			const otroProyectil = new Proyectil() 
 		
@@ -58,7 +57,7 @@ object personaje {
 		else {
 			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
 		}
-}
+	}
 		method configurarAcciones() {
 
 			vida.forEach{corazon => corazon.agregarse()}
@@ -109,8 +108,7 @@ class Enemigo {
 	var property position
 	var property especie
 	var property vida = especie.vida()
-
-	method image() = especie.image()	
+	var property image = especie.image()
 
 	method moverse() {
 		
@@ -153,8 +151,28 @@ class EspecieZombie {
 		
 }
 
+class EspecieBoss {
+	var property vida
+	const property image
+	var property velocidad
+
+	method dispararPersonaje() {
+
+		const proyEnemigo = new ProyectilEnemigo() 
+		
+		game.addVisual(proyEnemigo)
+		
+		proyEnemigo.trayectoria()
+	}
+}
+
+
 const zombieBeta = new EspecieZombie (vida = 1, image = "zombie.png", velocidad = 1000)
 const zombieAlfa = new EspecieZombie (vida = 2, image = "zombieAlfa.png", velocidad = 1500)
+
+const boss = new EspecieBoss(vida = 1, image = "wollokGigante.png", velocidad = 1700)
+
+
 
 
 

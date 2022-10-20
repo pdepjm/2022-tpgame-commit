@@ -39,6 +39,22 @@ class Proyectil {
     }
 	
 }
+
+class ProyectilEnemigo inherits Proyectil(position = boss.position()) {
+
+	override method mover() {
+		position = game.at(position.x()-1, position.y())
+	}
+
+	override method chocasteConEnemigo(elEnemigo) { }
+
+	override method chocasteConJugador() {
+		personaje.disminuirVida()
+	}
+
+}
+
+
 const unProyectil = new Proyectil() 
 
 object imagenDelContador {

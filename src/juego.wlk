@@ -42,9 +42,7 @@ object juego {
 object gameOver {
 	
 	method position() = game.center()
-	
 	method image() = "game over.png"
-	
 	method finalizarJuego(){
 		
 		if (!game.hasVisual(self)) { 
