@@ -10,12 +10,12 @@ describe "Jugador"{
 	
 	
 
-	test "Al moverse hacia arriba, el jugador actualiza su posición" {
+	/*test "Al moverse hacia arriba, el jugador actualiza su posición" {
 
 		personaje.position(game.at(0,0))
 		personaje.moverA(arriba)
 		assert.equals(personaje.position(),game.at(0,1))
-	}
+	}*/ 
 
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
 		game.addVisual(curita)
@@ -32,18 +32,9 @@ describe "Enemigo"{
 	const algunProyectil = new Proyectil()
 
 
-	test "El enemigo pierde vida cuando se le dispara con un proyectil" {
-
-		
-		game.addVisual(algunProyectil)
-		algunProyectil.chocasteConEnemigo(unEnemigo)
-		assert.equals(unEnemigo.especie().vida(),1)
-
-	}
 
 	test "Cuando el enemigo pierde toda su vida, muere" {
 
-		unEnemigo.especie().vida(1)
 		game.addVisual(unEnemigo)
 		game.addVisual(algunProyectil)
 		algunProyectil.chocasteConEnemigo(unEnemigo)
