@@ -2,12 +2,12 @@ import direcciones.*
 import elementosJuego.*
 import juego.*
 import niveles.*
-import personaje.*
+import personajes.*
 import wollok.game.*
 import texto.*
-import enemigos.*
 
 describe "Jugador"{
+	
 	
 
 	test "Al moverse hacia arriba, el jugador actualiza su posición" {

@@ -1,9 +1,8 @@
 import wollok.game.*
-import personaje.*
+import personajes.*
 import direcciones.*
 import elementosJuego.*
 import niveles.*
-import enemigos.*
 
 object juego {
 	

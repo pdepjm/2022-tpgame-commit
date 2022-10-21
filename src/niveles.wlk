@@ -1,20 +1,9 @@
 import wollok.game.*
 import direcciones.* 
 import juego.*
-import personaje.*
-import enemigos.*
+import personajes.*
 import elementosJuego.*
 import texto.*
-
-
-class Nivel {
-
-	method configuracionInicial() 
-
-	method configuracionOleadaEnemigos() 
-
-	method agregarElementosEspeciales()
-}
 
 
 object primerNivel {

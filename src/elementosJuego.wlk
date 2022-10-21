@@ -1,10 +1,9 @@
  import wollok.game.*
  import juego.*
- import personaje.*
+ import personajes.*
  import texto.*
  import direcciones.*
  import niveles.*
- import enemigos.*
  
  
 class Corazon {
@@ -108,18 +107,10 @@ class ElementoEspecial {
 object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHastaAparicion = 15000, tiempoEnPantalla= 35000){
 	
 	method chocasteConJugador() {
-
-		if (personaje.vida().size() < 5 ) {
-			personaje.aumentarTodaLaVida() 
-			textoCurita.agregarse()
-			game.schedule(5000, {game.removeVisual(textoCurita)})
-			game.removeVisual(self)
-		}
-
-		else {
-			
-		}
-		
+		personaje.aumentarTodaLaVida() 
+		textoCurita.agregarse()
+		game.schedule(5000, {game.removeVisual(textoCurita)})
+		game.removeVisual(self)
 	}
 }
 
@@ -127,7 +118,7 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
  		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
-		game.schedule(1000,{keyboard.r().onPressDo({personaje.tiempoDeRecarga()})})
+		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})})
 		game.removeVisual(self)
 		textoRelojDeArena.agregarse()
 		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})

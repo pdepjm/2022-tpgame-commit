@@ -1,11 +1,10 @@
 import wollok.game.*
-import personaje.*
-import enemigos.*
+import personajes.*
 
 object textoDelContador {
 	const property position = game.at(22, 23)
 	
-	method text() = (personaje.cargador().size()).toString() + "x" 
+	method text() = (personaje.cargador().tamanio()).toString() + "x" 
 
 	method textColor() = "000000"
 	
