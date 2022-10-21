@@ -5,6 +5,18 @@ import personajes.*
 import elementosJuego.*
 import texto.*
 
+const fondoIntro = new Visual (image = "inicio.jpeg" ,position=game.at(0,0))
+
+object nivel0 {
+	
+		
+	method configuracionInicial(){
+		game.boardGround("grass00.png")
+		game.addVisual(fondoIntro)
+		keyboard.e().onPressDo({primerNivel.configuracionInicial()} )
+	}
+}
+
 
 object primerNivel {
 	
@@ -16,7 +28,7 @@ object primerNivel {
 
 	
 	method configuracionInicial(){
-		game.boardGround("grass00.png")
+		game.removeVisual(fondoIntro)
 		barraVisual.agregarse()
 		music1.play()
 		self.configuracionOleadaEnemigos() 
@@ -37,7 +49,7 @@ object primerNivel {
 		curita.agregarse() 
 		relojDeArena.agregarse() 
 		imagenDelContador.agregarse()
-		textoDelContador.agregarse()
+		//textoDelContador.agregarse()
 		generacionBordes.crearBordesIzquierdosEn(bordes) 
 		bordes.forEach{unBorde=> unBorde.agregarse()}
 		mina.agregarse()

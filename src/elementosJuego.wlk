@@ -9,7 +9,9 @@
 class Corazon {
     const property position = game.at(0,11)
     
-	method image() = "corazon.png"
+    var property image
+    
+	method image() = image
 	
 	method agregarse(){
 		game.addVisual(self)
@@ -177,6 +179,13 @@ class Borde {
 object generacionBordes {
 	method crearBordesIzquierdosEn(bordesDeUnNivel) { 11.times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)}) }
 	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
+}
+
+
+class Visual {
+	var property image
+	var property position
+	
 }
 
 object barraVisual{

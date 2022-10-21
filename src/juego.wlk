@@ -10,7 +10,7 @@ object juego {
 		self.configurarJuego()
 		self.agregarPersonajes()
 		self.configurarTeclas()
-		primerNivel.configuracionInicial()
+		nivel0.configuracionInicial()
 		game.start()
 		
 	}
