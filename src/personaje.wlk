@@ -9,7 +9,7 @@ object personaje {
 
     var property vida = vidaPersonaje.vida() 
 
-    var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
+	var property cargador = cargadorComun.cargarMunicion() 
 
     var property position = game.center()
 	
@@ -32,14 +32,15 @@ object personaje {
 
 	method disparar() {
 		
-		if (bolasDeFuego.size() > 0) {
-			const otroProyectil = new Proyectil() 
+		if (cargador.size() > 0) {
+
+			var proyectil = cargador.head()
 		
-			game.addVisual(otroProyectil)
+			game.addVisual(proyectil)
 		
-			otroProyectil.trayectoria()
+			proyectil.trayectoria()
 			
-			bolasDeFuego.remove(bolasDeFuego.head())
+			cargador.remove(proyectil)
 			
 		}
 		else {
@@ -53,29 +54,17 @@ object personaje {
 		
 	}
 	
-	
-	method recargarBalas() {
-		
-		if (bolasDeFuego.size() == 0) {
-			game.say(self, "Recargando balas, espere unos segundos")
-			game.schedule(2000, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()])})
-			
-			
-		}
-		else 
-			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
-	}
-	
 	method recargarBalas(tiempo) {
 		
-		if (bolasDeFuego.size() == 0) {
+		if (cargador.size() == 0) {
+			
 			game.say(self, "Recargando balas, espere unos segundos")
-			game.schedule(tiempo, {self.bolasDeFuego([new Proyectil(), new Proyectil(), new Proyectil(),new Proyectil(), new Proyectil()])})
+			game.schedule(tiempo, {cargador.cargarMunicion()})
 			
-			
+		
 		}
 		else 
-			game.say(self, "Todavía no es momento de recargar balas porque tenés " + bolasDeFuego.size().toString())
+			game.say(self, "Todavía no es momento de recargar balas porque tenés " + cargador.size().toString())
 	}
 
 
@@ -97,6 +86,8 @@ object vidaPersonaje {
 	const property vidaInicial = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 	
 	var vida = vidaInicial 
+
+	method vida() =  vida 
 
 	method disminuir() {
 
@@ -124,4 +115,10 @@ object vidaPersonaje {
 	
 
 
+}
+
+
+object cargadorComun {
+
+	method cargarMunicion() = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
 }
