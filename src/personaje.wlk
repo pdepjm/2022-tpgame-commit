@@ -9,7 +9,7 @@ object personaje {
 
     var property vida = vidaPersonaje
 
-	var property cargador = cargadorComun.cargarMunicion() 
+	var property cargador = new CargadorComun() 
 	
 	var property tiempoDeRecarga = cargadorComun.tiempoDeRecarga() 
 
@@ -34,15 +34,15 @@ object personaje {
 
 	method disparar() {
 		
-		if (cargador.size() > 0) {
+		if (cargador.tamanio() > 0) {
 
-			//var proyectil = cargador.head()
+			var proyectil = new Proyectil()
 		
-			game.addVisual(cargador.head())
+			game.addVisual(proyectil)
 		
-			cargador.head().trayectoria()
+			proyectil.trayectoria()
 			
-			cargador.remove(cargador.head())
+			cargador.disminui()
 			
 		}
 		else {
@@ -58,7 +58,7 @@ object personaje {
 	
 	method recargarBalas(tiempo) {
 		
-		if (cargador.size() == 0) {
+		if (cargador.tamanio() == 0) {
 			
 			game.say(self, "Recargando balas, espere unos segundos")
 			game.schedule(tiempo, {cargador.cargarMunicion()})
@@ -66,7 +66,7 @@ object personaje {
 		
 		}
 		else 
-			game.say(self, "Todavía no es momento de recargar balas porque tenés " + cargador.size().toString())
+			game.say(self, "Todavía no es momento de recargar balas porque tenés " + cargador.tamanio().toString())
 	}
 
 
@@ -125,8 +125,13 @@ object vidaPersonaje {
 }
 
 
-object cargadorComun {
-
-	method cargarMunicion() = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
+class CargadorComun {
+	var property municionInicial = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
+	
 	method tiempoDeRecarga() = 2000
+	}
+	
+	
 }
+
+class CargadorPotenciado
