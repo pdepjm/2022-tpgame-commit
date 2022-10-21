@@ -1,9 +1,10 @@
  import wollok.game.*
  import juego.*
- import personajes.*
+ import personaje.*
  import texto.*
  import direcciones.*
  import niveles.*
+ import enemigos.*
  
  
 class Corazon {
