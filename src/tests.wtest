@@ -9,13 +9,13 @@ import texto.*
 describe "Jugador"{
 	
 	
-
-	/*test "Al moverse hacia arriba, el jugador actualiza su posición" {
-
-		personaje.position(game.at(0,0))
-		personaje.moverA(arriba)
-		assert.equals(personaje.position(),game.at(0,1))
-	}*/ 
+	test "Al chocarse con el borde, el personaje se mantiene en la misma posición en la que estaba" {
+		
+		personaje.position(game.at(1,10))
+		personaje.chocasteConBorde()
+		assert.equals(personaje.position(),game.at(1,10))
+		
+	}
 
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
 		game.addVisual(curita)
@@ -23,6 +23,13 @@ describe "Jugador"{
 		assert.equals((personaje.vida()).size(),5)
 
 	}
+	
+	/*test "Al eliminar a todos los enemigos de un nivel, el personaje puede pasar al siguiente" {
+		
+		personaje.enemigosMatados(personaje.nivelActual().puntosAConseguir())
+		assert.that(game.hasVisual(segundoNivel))
+	} lo dejo comentado porq no funciono ni idea por que */
+	
 }
 
 describe "Enemigo"{
@@ -46,4 +53,15 @@ describe "Enemigo"{
 		unEnemigo.chocasteConBorde()
 		assert.that(game.hasVisual(gameOver))
 	}
+}
+
+describe "Cargador" {
+	
+	test "Cuando el personaje dispara, tiene una bala menos en su inventario" {
+		
+		personaje.disparar()
+		assert.equals(municion.elCargador().size(),4)
+	}
+	
+	
 }

@@ -70,15 +70,16 @@ object primerNivel {
 	}		
 
 	method configurarSiguienteNivel() {
+		//game.addVisual(segundoNivel)
 		segundoNivel.configuracionInicial()
 	}	
 }
 
 
 object segundoNivel {
-	
+	method image() = "LEVEL2.PNG"
 	method configuracionInicial() {
-		
+		//game.removeVisual(self)
 	}
 }
 

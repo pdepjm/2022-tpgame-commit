@@ -17,6 +17,9 @@ object personaje {
     var property position = game.center()
 	    
 	method image() = "personaje.png"
+	
+	method enemigosMatados(_enemigosMatados)= enemigosMatados 
+	
     
 	method moverA(direccion) {
 			position = direccion.siguientePosicion(position)
@@ -28,7 +31,7 @@ object personaje {
 
 		if(enemigosMatados == nivelActual.puntosAConseguir()){
 			game.say(self,"¡Pasaste de nivel!")
-			//nivelActual.configurarSiguienteNivel()
+			nivelActual.configurarSiguienteNivel()
 		}
 		
 		else {
