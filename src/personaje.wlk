@@ -7,7 +7,7 @@ import enemigos.*
 
 object personaje {
 
-    var property vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
+    var property vida = vidaPersonaje.vida() 
 
     var property bolasDeFuego = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
 
@@ -21,26 +21,13 @@ object personaje {
 	
 	method aumentarTodaLaVida() {
 		
-		vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
-		vida.forEach{corazon => corazon.agregarse()}
-		
+		vida.aumentateToda()	
 	}
 
 	
 	method disminuirVida() {
-		if (vida.size() > 0) {
-		 
-			hitSound.play()
-			game.removeVisual(vida.last())
-			vida.remove(vida.last())
-		 	
-		}
-	
-		
-		if(vida.size() == 0)
-		{
-			gameOver.finalizarJuego()
-		}
+
+		vida.disminuirVida()
 	}
 
 	method disparar() {
@@ -102,4 +89,39 @@ object personaje {
 	method plantarMina(unaMina){
 		
 	}
+}
+
+
+object vidaPersonaje {
+
+	const property vidaInicial = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
+	
+	var vida = vidaInicial 
+
+	method disminuir() {
+
+		if (vida.size() > 0) {
+		 
+			hitSound.play()
+			game.removeVisual(vida.last())
+			vida.remove(vida.last())
+		 	
+		}
+	
+		
+		if(vida.size() == 0)
+		{
+			gameOver.finalizarJuego()
+		}
+	}
+
+	method aumentarTodaLaVida() { 
+
+		vida = vidaInicial 
+		vida.forEach{corazon => corazon.agregarse()}
+
+	}
+	
+
+
 }

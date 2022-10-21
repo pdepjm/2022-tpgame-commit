@@ -8,7 +8,6 @@ import texto.*
 
 describe "Jugador"{
 	
-	
 
 	test "Al moverse hacia arriba, el jugador actualiza su posición" {
 
