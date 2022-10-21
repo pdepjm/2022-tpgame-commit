@@ -10,7 +10,7 @@ object personaje {
 
 	const property cargador = municion
 	
-	var property puntos = 0
+	var enemigosMatados = 0
 	
 	var property nivelActual = primerNivel 
 
@@ -24,10 +24,9 @@ object personaje {
 	
 	method sumarPuntos(){
 		
-		puntos+=1 
-		game.say(self,puntos.toString())
+		enemigosMatados+=1 
 
-		if(puntos == nivelActual.puntosAConseguir()){
+		if(enemigosMatados == nivelActual.puntosAConseguir()){
 			game.say(self,"¡Pasaste de nivel!")
 			//nivelActual.configurarSiguienteNivel()
 		}
