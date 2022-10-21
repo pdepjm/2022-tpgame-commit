@@ -108,10 +108,18 @@ class ElementoEspecial {
 object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHastaAparicion = 15000, tiempoEnPantalla= 35000){
 	
 	method chocasteConJugador() {
-		personaje.aumentarTodaLaVida() 
-		textoCurita.agregarse()
-		game.schedule(5000, {game.removeVisual(textoCurita)})
-		game.removeVisual(self)
+
+		if (personaje.vida().size() < 5 ) {
+			personaje.aumentarTodaLaVida() 
+			textoCurita.agregarse()
+			game.schedule(5000, {game.removeVisual(textoCurita)})
+			game.removeVisual(self)
+		}
+
+		else {
+			
+		}
+		
 	}
 }
 

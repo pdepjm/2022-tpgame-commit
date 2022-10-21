@@ -9,17 +9,18 @@ object personaje {
 
     var property vida = vidaPersonaje
 
-	var property cargador = new CargadorComun() 
+	const property cargador = municion
 	
-	var property tiempoDeRecarga = cargadorComun.tiempoDeRecarga() 
-
+	
     var property position = game.center()
-	
-    method image() = "personaje.png"
-	
-    method moverA(direccion) {
+	    
+	method image() = "personaje.png"
+    
+	method moverA(direccion) {
 			position = direccion.siguientePosicion(position)
 	}
+	
+	method tiempoDeRecarga() = cargador.tiempoDeRecarga()
 	
 	method aumentarTodaLaVida() {
 		
@@ -42,7 +43,7 @@ object personaje {
 		
 			proyectil.trayectoria()
 			
-			cargador.disminui()
+			cargador.disparar()
 			
 		}
 		else {
@@ -51,6 +52,7 @@ object personaje {
 	}
 		method configurarAcciones() {
 
+			
 			vidaPersonaje.agregarse() 
 			game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
@@ -61,7 +63,7 @@ object personaje {
 		if (cargador.tamanio() == 0) {
 			
 			game.say(self, "Recargando balas, espere unos segundos")
-			game.schedule(tiempo, {cargador.cargarMunicion()})
+			game.schedule(tiempo, {cargador.recargar()})
 			
 		
 		}
@@ -84,12 +86,8 @@ object personaje {
 
 
 object vidaPersonaje {
-
-	const property vidaInicial = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 	
-	var vida = vidaInicial 
-
-	method vida() =  vida 
+	var property vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 
 	method disminuir() {
 
@@ -110,7 +108,7 @@ object vidaPersonaje {
 
 	method aumentarTodaLaVida() { 
 
-		vida = vidaInicial 
+		vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 		vida.forEach{corazon => corazon.agregarse()}
 
 	}
@@ -124,14 +122,25 @@ object vidaPersonaje {
 
 }
 
-
-class CargadorComun {
-	var property municionInicial = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
+object municion {
 	
-	method tiempoDeRecarga() = 2000
+	var tipoMunicion = "comun"
+	
+	var property elCargador = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()] 
+
+	method recargar() {
+		elCargador = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()] 
 	}
-	
-	
-}
 
-class CargadorPotenciado
+	method disparar() {
+		elCargador.remove(elCargador.head())
+	}
+
+	method tiempoDeRecarga() = 2000
+
+	method tamanio() = elCargador.size()
+
+	}
+
+// const comun = new Proyectil()
+const chetado = new Proyectil()
