@@ -10,7 +10,10 @@ object personaje {
 
 	const property cargador = municion
 	
+	var property puntos = 0
 	
+	var property nivelActual = primerNivel 
+
     var property position = game.center()
 	    
 	method image() = "personaje.png"
@@ -19,6 +22,21 @@ object personaje {
 			position = direccion.siguientePosicion(position)
 	}
 	
+	method sumarPuntos(){
+		
+		puntos+=1 
+		game.say(self,puntos.toString())
+
+		if(puntos == nivelActual.puntosAConseguir()){
+			game.say(self,"¡Pasaste de nivel!")
+			//nivelActual.configurarSiguienteNivel()
+		}
+		
+		else {
+			
+		}
+
+	}
 	method tiempoDeRecarga() = cargador.tiempoDeRecarga()
 	
 	method aumentarTodaLaVida() {
@@ -139,8 +157,11 @@ class Enemigo {
 			
 			vida -= 1
 		
-		if (vida<=0) 
+		if (vida<=0) {
 			game.removeVisual(self)
+			personaje.sumarPuntos()
+		}
+			
 			
 		
 	}
