@@ -7,9 +7,9 @@
  
  
 class Corazon {
-    const property position
+    const property position = game.at(0,11)
     
-	method image() = "corazon4.png"
+	method image() = "corazon.png"
 	
 	method agregarse(){
 		game.addVisual(self)
@@ -64,7 +64,7 @@ const enemigoBoss = new Enemigo(especie = boss, position = game.center())
 const unProyectil = new Proyectil() 
 
 object imagenDelContador {
-	const property position = game.at(23, 23)
+	const property position = game.at(11, 11)
 	
 	method image() = "bolaFuego.png"
 	

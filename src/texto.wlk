@@ -1,8 +1,8 @@
 import wollok.game.*
 import personajes.*
 
-object textoDelContador {
-	const property position = game.at(22, 23)
+/*object textoDelContador {
+	const property position = game.at(10, 11)
 	
 	method text() = (personaje.cargador().tamanio()).toString() + "x" 
 
@@ -12,7 +12,7 @@ object textoDelContador {
 		game.addVisual(self)
 	}
 }
-
+*/ //No se ve
 object textoCurita {
     const property position = game.at(15, 22)
 	

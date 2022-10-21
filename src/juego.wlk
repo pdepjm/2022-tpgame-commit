@@ -51,6 +51,10 @@ object gameOver {
 		}
 			
 	}
+
+	method chocasteConJugador(){
+		
+	}
 }
 
 object music1 {

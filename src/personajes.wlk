@@ -6,7 +6,7 @@ import niveles.*
 
 object personaje {
 
-    var property vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
+    var property vida = [new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
 
 	const property cargador = municion
 	
@@ -23,7 +23,7 @@ object personaje {
 	
 	method aumentarTodaLaVida() {
 		
-		vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
+		vida = [new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
 		vida.forEach{corazon => corazon.agregarse()}	
 	}
 
