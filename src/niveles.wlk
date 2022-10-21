@@ -15,7 +15,7 @@ import texto.*
 	var puntos
 }*/ 
 
-const fondoIntro = new Visual (image = "FIN DEL JUEGO.png",position=game.at(0,0))
+const fondoIntro = new Visual (image = "inicio.png",position=game.at(0,0))
 
 object nivel0 {
 	
