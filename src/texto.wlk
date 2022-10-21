@@ -5,7 +5,7 @@ import enemigos.*
 object textoDelContador {
 	const property position = game.at(22, 23)
 	
-	method text() = (personaje.bolasDeFuego().size()).toString() + "x" 
+	method text() = (personaje.cargador().size()).toString() + "x" 
 
 	method textColor() = "000000"
 	

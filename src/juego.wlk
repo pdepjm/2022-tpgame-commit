@@ -33,7 +33,7 @@ object juego {
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
-		keyboard.r().onPressDo({personaje.recargarBalas()})
+		keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})
 	}
 	
 

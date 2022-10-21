@@ -7,9 +7,11 @@ import enemigos.*
 
 object personaje {
 
-    var property vida = vidaPersonaje.vida() 
+    var property vida = vidaPersonaje
 
 	var property cargador = cargadorComun.cargarMunicion() 
+	
+	var property tiempoDeRecarga = cargadorComun.tiempoDeRecarga() 
 
     var property position = game.center()
 	
@@ -21,26 +23,26 @@ object personaje {
 	
 	method aumentarTodaLaVida() {
 		
-		vida.aumentateToda()	
+		vidaPersonaje.aumentarTodaLaVida()	
 	}
 
 	
 	method disminuirVida() {
 
-		vida.disminuirVida()
+		vidaPersonaje.disminuir()
 	}
 
 	method disparar() {
 		
 		if (cargador.size() > 0) {
 
-			var proyectil = cargador.head()
+			//var proyectil = cargador.head()
 		
-			game.addVisual(proyectil)
+			game.addVisual(cargador.head())
 		
-			proyectil.trayectoria()
+			cargador.head().trayectoria()
 			
-			cargador.remove(proyectil)
+			cargador.remove(cargador.head())
 			
 		}
 		else {
@@ -49,7 +51,7 @@ object personaje {
 	}
 		method configurarAcciones() {
 
-			vida.forEach{corazon => corazon.agregarse()}
+			vidaPersonaje.agregarse() 
 			game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
 	}
@@ -113,6 +115,11 @@ object vidaPersonaje {
 
 	}
 	
+	method agregarse() {
+		
+		vida.forEach{corazon => corazon.agregarse()}
+	}
+	
 
 
 }
@@ -121,4 +128,5 @@ object vidaPersonaje {
 object cargadorComun {
 
 	method cargarMunicion() = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()]
+	method tiempoDeRecarga() = 2000
 }

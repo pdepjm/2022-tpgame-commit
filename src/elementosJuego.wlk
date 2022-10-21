@@ -119,7 +119,7 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
  		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
-		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas()})})
+		game.schedule(1000,{keyboard.r().onPressDo({personaje.tiempoDeRecarga()})})
 		game.removeVisual(self)
 		textoRelojDeArena.agregarse()
 		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})

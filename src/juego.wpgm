@@ -1,11 +1,12 @@
 import wollok.game.*
 import direcciones.*
-import personajes.*
+import personaje.*
 import juego.*
 
 program juego {
 		
 	juego.iniciar()
+	
 }
 
 
