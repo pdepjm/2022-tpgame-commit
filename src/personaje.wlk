@@ -7,7 +7,7 @@ import enemigos.*
 
 object personaje {
 
-    var property vida = vidaPersonaje
+    var property vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
 
 	const property cargador = municion
 	
@@ -24,24 +24,36 @@ object personaje {
 	
 	method aumentarTodaLaVida() {
 		
-		vidaPersonaje.aumentarTodaLaVida()	
+		vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
+		vida.forEach{corazon => corazon.agregarse()}	
 	}
 
 	
 	method disminuirVida() {
 
-		vidaPersonaje.disminuir()
+		if (vida.size() > 0) {
+		 
+			hitSound.play()
+			game.removeVisual(vida.last())
+			vida.remove(vida.last())
+		 	
+		}
+	
+		
+		if(vida.size() == 0)
+		{
+			gameOver.finalizarJuego()
+		}
 	}
 
 	method disparar() {
 		
 		if (cargador.tamanio() > 0) {
-
-			var proyectil = new Proyectil()
+			const otroProyectil = new Proyectil() 
 		
-			game.addVisual(proyectil)
+			game.addVisual(otroProyectil)
 		
-			proyectil.trayectoria()
+			otroProyectil.trayectoria()
 			
 			cargador.disparar()
 			
@@ -50,10 +62,12 @@ object personaje {
 			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
 		}
 	}
+	
 		method configurarAcciones() {
 
 			
-			vidaPersonaje.agregarse() 
+			vida.forEach{corazon => corazon.agregarse()}
+
 			game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
 	}
@@ -84,52 +98,14 @@ object personaje {
 	}
 }
 
-
-object vidaPersonaje {
-	
-	var property vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
-
-	method disminuir() {
-
-		if (vida.size() > 0) {
-		 
-			hitSound.play()
-			game.removeVisual(vida.last())
-			vida.remove(vida.last())
-		 	
-		}
-	
-		
-		if(vida.size() == 0)
-		{
-			gameOver.finalizarJuego()
-		}
-	}
-
-	method aumentarTodaLaVida() { 
-
-		vida = [new Corazon(position = game.at(2,23)), new Corazon(position = game.at(3,23)), new Corazon(position = game.at(4,23)), new Corazon(position = game.at(5,23)), new Corazon(position = game.at(6,23))]
-		vida.forEach{corazon => corazon.agregarse()}
-
-	}
-	
-	method agregarse() {
-		
-		vida.forEach{corazon => corazon.agregarse()}
-	}
-	
-
-
-}
-
 object municion {
 	
-	var tipoMunicion = "comun"
+	var property tipoMunicion = comun 
 	
-	var property elCargador = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()] 
-
+	var property elCargador = [tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion]
+	
 	method recargar() {
-		elCargador = [new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil(), new Proyectil()] 
+		elCargador = [tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion] 
 	}
 
 	method disparar() {
@@ -141,6 +117,5 @@ object municion {
 	method tamanio() = elCargador.size()
 
 	}
-
-// const comun = new Proyectil()
-const chetado = new Proyectil()
+	
+const comun = new Proyectil() 
