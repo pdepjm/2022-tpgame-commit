@@ -20,7 +20,7 @@ class Corazon {
 
 object municion {
 	
-	var property tipoMunicion = chetado 
+	var property tipoMunicion = comun 
 	
 	var property elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)]
 	
@@ -65,7 +65,7 @@ class TipoProyectil {
 }
 
 const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1)
-const chetado = new TipoProyectil(imagen = "balaSuper.png", velocidad = 150, danio = 2)
+const chetado = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2)
 
 class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position(), tipoProyectil = comun) {
 
@@ -154,7 +154,16 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
 	}
 }
 
-object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 2500, tiempoEnPantalla= 39000){
+object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 30000){
+	
+	method chocasteConJugador() {
+		personaje.cargador().tipoMunicion(chetado)
+		game.removeVisual(self)
+	}
+
+}
+
+object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 39000){
 	//habría que agregarlo en el nivel que corresponda
 	var property estaPlantada = false
 	method chocasteConJugador(){ 

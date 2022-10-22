@@ -60,12 +60,13 @@ object primerNivel {
 	}
 	
 	method agregarElementosEspeciales() {
-		curita.agregarse() 
-		relojDeArena.agregarse() 
-		imagenDelContador.agregarse()
-		//textoDelContador.agregarse()
 		generacionBordes.crearBordesIzquierdosEn(bordes) 
 		bordes.forEach{unBorde=> unBorde.agregarse()}
+		imagenDelContador.agregarse()
+		//textoDelContador.agregarse()
+		curita.agregarse() 
+		relojDeArena.agregarse()
+		balaChetada.agregarse() 
 		mina.agregarse()
 	}		
 
