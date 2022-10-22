@@ -3,6 +3,7 @@ import direcciones.*
 import juego.*
 import elementosJuego.*
 import niveles.*
+import inventarioPersonaje.*
 
 
 object personaje {
@@ -13,10 +14,16 @@ object personaje {
 	
 	var enemigosMatados = 0
 	
+
+	
 	var property nivelActual = primerNivel 
 
     var property position = game.center()
 	    
+	method enemigosMatados(cant) {
+		enemigosMatados = cant
+	}
+	
 	method image() = "personaje.png"
 		
     

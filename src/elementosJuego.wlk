@@ -6,29 +6,8 @@
  import direcciones.*
  import niveles.*
  
- 
-
 
 /**********************       PROYECTILES       **********************/
-
-object municion {
-	
-	var property tipoMunicion = comun 
-	
-	var property elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)]
-	
-	method recargar() {
-		elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)] 
-	}
-
-	method retirarUnaBala() {
-		elCargador.remove(elCargador.head())
-	}
-
-	method tiempoDeRecarga() = 2000
-
-	method tamanio() = elCargador.size()
-}
 
 class Proyectil {
     var property position = personaje.position()
@@ -130,6 +109,8 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 	
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
+		game.say(self,"¡Te curaste toda la vida!")
+
 		textoCurita.agregarse()
 		game.schedule(5000, {game.removeVisual(textoCurita)})
 		game.removeVisual(self)
@@ -140,7 +121,8 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
  		
 	method chocasteConJugador() {
 		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
-		game.schedule(1000,{keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})})
+		game.say(self,"Ahora tus balas tardan más en cargarse")
+		game.schedule(5000,{keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})})
 		game.removeVisual(self)
 		textoRelojDeArena.agregarse()
 		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})
@@ -151,6 +133,7 @@ object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiemp
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(chetado)
+		game.say(self,"¡Ahora disparás con más daño!")
 		game.removeVisual(self)
 	}
 

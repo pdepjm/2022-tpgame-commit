@@ -66,7 +66,7 @@ object primerNivel {
 	}		
 
 	method configurarSiguienteNivel() {
-		//game.addVisual(segundoNivel)
+		game.addVisual(segundoNivel)
 		segundoNivel.configuracionInicial()
 	}	
 }

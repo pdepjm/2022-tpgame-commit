@@ -49,6 +49,7 @@ object gameOver {
 		if (!game.hasVisual(self)) { 
 			game.schedule(400, {game.clear()})
 			game.addVisual(self) 
+			music1.stop() 
 		}
 			
 	}
@@ -66,6 +67,10 @@ object music1 {
 		theme.volume(0.1)
 		theme.shouldLoop(true)
 		game.schedule(10, {theme.play()})
+	}
+	
+	method stop() {
+		theme.stop()
 	}
 }
 

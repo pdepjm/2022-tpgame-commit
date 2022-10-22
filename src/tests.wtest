@@ -3,11 +3,13 @@ import elementosJuego.*
 import juego.*
 import niveles.*
 import personajePrincipal.*
+import inventarioPersonaje.*
 import enemigos.*
 import wollok.game.*
 import texto.*
 
 describe "Jugador"{
+	
 	
 	
 	test "Al chocarse con el borde, el personaje se mantiene en la misma posición en la que estaba" {
@@ -25,11 +27,7 @@ describe "Jugador"{
 
 	}
 	
-	/*test "Al eliminar a todos los enemigos de un nivel, el personaje puede pasar al siguiente" {
-		
-		personaje.enemigosMatados(personaje.nivelActual().puntosAConseguir())
-		assert.that(game.hasVisual(segundoNivel))
-	} lo dejo comentado porq no funciono ni idea por que */
+	
 	
 }
 
@@ -37,9 +35,18 @@ describe "Enemigo"{
 
 	const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
 	
+	const enemigoMayor = new Enemigo(position=game.at(0,0), especie = zombieAlfa)
+	
 	const algunProyectil = new Proyectil(tipoProyectil = comun)
 
-
+	test "Cuando se le dispara, el enemigo pierde vida " {
+		
+		game.addVisual(enemigoMayor)
+		game.addVisual(algunProyectil)
+		
+		algunProyectil.chocasteConEnemigo(enemigoMayor)
+		assert.equals(enemigoMayor.vida(),1)
+	}
 
 	test "Cuando el enemigo pierde toda su vida, muere" {
 
@@ -49,11 +56,11 @@ describe "Enemigo"{
 		assert.notThat(game.hasVisual(unEnemigo))
 		
 	}
+	
+		
+	
 
-	test "Cuando un zombie toca el borde, se produce el game over"{
-		unEnemigo.chocasteConBorde()
-		assert.that(game.hasVisual(gameOver))
-	}
+	
 }
 
 describe "Cargador" {
