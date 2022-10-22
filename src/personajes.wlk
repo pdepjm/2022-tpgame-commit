@@ -68,13 +68,13 @@ object personaje {
 	method disparar() {
 		
 		if (cargador.tamanio() > 0) {
-			const otroProyectil = new Proyectil() 
+			const otroProyectil = new Proyectil(tipoProyectil = municion.tipoMunicion())
 		
 			game.addVisual(otroProyectil)
 		
 			otroProyectil.trayectoria()
 			
-			cargador.disparar()
+			cargador.retirarUnaBala()
 			
 		}
 		else {
@@ -117,28 +117,6 @@ object personaje {
 	}
 }
 
-object municion {
-	
-	var property tipoMunicion = comun 
-	
-	var property elCargador = [tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion]
-	
-	method recargar() {
-		elCargador = [tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion,tipoMunicion] 
-	}
-
-	method disparar() {
-		elCargador.remove(elCargador.head())
-	}
-
-	method tiempoDeRecarga() = 2000
-
-	method tamanio() = elCargador.size()
-
-	}
-	
-const comun = new Proyectil() 
-
 class Enemigo {
 	
 	var property position
@@ -152,12 +130,12 @@ class Enemigo {
 	}
 	
 	
-	method disminuirVida() {
+	method disminuirVida(cant) {
 		
 		
 		if (vida > 0) 
 			
-			vida -= 1
+			vida -= cant
 		
 		if (vida<=0) {
 			game.removeVisual(self)

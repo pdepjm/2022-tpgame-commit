@@ -10,38 +10,62 @@ class Corazon {
     const property position = game.at(0,11)
     
     var property image
-    
-	method image() = image
 	
 	method agregarse(){
 		game.addVisual(self)
 	}
 }
 
+/**********************       PROYECTILES       **********************/
+
+object municion {
+	
+	var property tipoMunicion = chetado 
+	
+	var property elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)]
+	
+	method recargar() {
+		elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)] 
+	}
+
+	method retirarUnaBala() {
+		elCargador.remove(elCargador.head())
+	}
+
+	method tiempoDeRecarga() = 2000
+
+	method tamanio() = elCargador.size()
+}
+
 class Proyectil {
-
     var property position = personaje.position()
+    var property tipoProyectil
 
-    method image() = "bolaFuego.png"
+    method image() = tipoProyectil.imagen()
 
     method mover() {
 		position = game.at(position.x()+1, position.y())
     }
    
     method trayectoria() {
-    	game.onTick(100, "Movimiento proyectil",{self.mover()})
+    	game.onTick(tipoProyectil.velocidad(), "Movimiento proyectil",{self.mover()})
     }
     
     method chocasteConEnemigo(elEnemigo) {
-    	elEnemigo.disminuirVida()
+    	elEnemigo.disminuirVida(tipoProyectil.danio())
     	game.removeVisual(self)
     }
     
-    method chocasteConJugador() {
-    	
-    }
-	
+    method chocasteConJugador() {}
 }
+class TipoProyectil {
+	const property imagen 
+	const property velocidad
+	const property danio
+}
+
+const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1)
+const chetado = new TipoProyectil(imagen = "balaSuper.png", velocidad = 150, danio = 2)
 
 class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position()) {
 
@@ -60,6 +84,9 @@ class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position()) {
 	}
 
 }
+
+/**********************       PROYECTILES       **********************/
+
 
 const enemigoBoss = new Enemigo(especie = boss, position = game.center())
 
