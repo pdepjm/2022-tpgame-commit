@@ -36,7 +36,7 @@ describe "Enemigo"{
 
 	const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
 	
-	const algunProyectil = new Proyectil()
+	const algunProyectil = new Proyectil(tipoProyectil = comun)
 
 
 

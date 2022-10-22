@@ -67,7 +67,7 @@ class TipoProyectil {
 const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1)
 const chetado = new TipoProyectil(imagen = "balaSuper.png", velocidad = 150, danio = 2)
 
-class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position()) {
+class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position(), tipoProyectil = comun) {
 
 	override method mover() {
 		position = game.at(position.x()-1, position.y())
@@ -85,23 +85,23 @@ class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position()) {
 
 }
 
-/**********************       PROYECTILES       **********************/
-
-
-const enemigoBoss = new Enemigo(especie = boss, position = game.center())
-
-const unProyectil = new Proyectil() 
-
 object imagenDelContador {
 	const property position = game.at(11, 11)
 	
-	method image() = "bolaFuego.png"
+	method image() = personaje.cargador().tipoMunicion().imagen()
 	
 	method agregarse(){
 		game.addVisual(self)
 	}
 	
 }
+
+/**********************       PROYECTILES       **********************/
+
+const enemigoBoss = new Enemigo(especie = boss, position = game.center())
+
+const unProyectil = new Proyectil(tipoProyectil = comun) 
+
 
 class ElementoEspecial {
 	var imagen
