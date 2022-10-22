@@ -1,19 +1,11 @@
 import wollok.game.*
 import direcciones.* 
 import juego.*
-import personajes.*
+import personajePrincipal.*
 import elementosJuego.*
 import texto.*
+import enemigos.*
 
-
-/*class Nivel {
-
-	var fondoIntro
-
-	method configuracionInicial() 
-
-	var puntos
-}*/ 
 
 const fondoIntro = new Visual (image = "fondoIntro.jpg",position=game.at(0,0))
 
@@ -23,6 +15,8 @@ object nivel0 {
 	method configuracionInicial(){
 		game.boardGround("grass00.png")
 		game.addVisual(fondoIntro)
+		
+		
 		keyboard.e().onPressDo({primerNivel.configuracionInicial()} )
 	}
 }
@@ -45,6 +39,7 @@ object primerNivel {
 		game.removeVisual(fondoIntro)
 		barraVisual.agregarse()
 		music1.play()
+		generacionBordes.crearBordesIzquierdos(bordes) 
 		self.configuracionOleadaEnemigos() 
 		personaje.configurarAcciones()
 		self.agregarElementosEspeciales() 
@@ -60,7 +55,7 @@ object primerNivel {
 	}
 	
 	method agregarElementosEspeciales() {
-		generacionBordes.crearBordesIzquierdosEn(bordes) 
+		
 		bordes.forEach{unBorde=> unBorde.agregarse()}
 		imagenDelContador.agregarse()
 		//textoDelContador.agregarse()

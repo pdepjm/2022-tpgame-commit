@@ -1,5 +1,6 @@
 import wollok.game.*
-import personajes.*
+import personajePrincipal.*
+import enemigos.*
 
 /*object textoDelContador {
 	const property position = game.at(10, 11)

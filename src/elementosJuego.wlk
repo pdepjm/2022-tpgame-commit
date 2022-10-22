@@ -1,20 +1,13 @@
  import wollok.game.*
  import juego.*
- import personajes.*
+ import personajePrincipal.*
+ import enemigos.* 
  import texto.*
  import direcciones.*
  import niveles.*
  
  
-class Corazon {
-    const property position = game.at(0,11)
-    
-    var property image
-	
-	method agregarse(){
-		game.addVisual(self)
-	}
-}
+
 
 /**********************       PROYECTILES       **********************/
 
@@ -213,7 +206,11 @@ class Borde {
 }
 
 object generacionBordes {
-	method crearBordesIzquierdosEn(bordesDeUnNivel) { 11.times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)}) }
+	method crearBordesIzquierdos(bordesDeUnNivel) { 
+		
+		(game.height()-1).times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})
+		
+	}
 	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
 }
 

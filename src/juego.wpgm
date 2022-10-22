@@ -1,6 +1,7 @@
 import wollok.game.*
 import direcciones.*
-import personajes.*
+import enemigos.*
+import personajePrincipal.*
 import juego.*
 
 program juego {

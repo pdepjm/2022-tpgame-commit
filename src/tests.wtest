@@ -2,7 +2,8 @@ import direcciones.*
 import elementosJuego.*
 import juego.*
 import niveles.*
-import personajes.*
+import personajePrincipal.*
+import enemigos.*
 import wollok.game.*
 import texto.*
 
