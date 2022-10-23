@@ -4,13 +4,13 @@ object arriba {
 	method siguientePosicion(pos) = if (pos.up(1).y() > 10) game.at(pos.x(), 10) else pos
 }
 object derecha {
-	method siguientePosicion(pos) = if (pos.right(1).x() > 24) game.at(24, pos.y()) else pos	
+	method siguientePosicion(pos) = if (pos.right(1).x() > 12) game.at(12, pos.y()) else pos
 }
 object izquierda {
 	method siguientePosicion(pos) = if (pos.left(1).x() < 1) game.at(1,pos.y()) else pos
 }
 object abajo {
-	method siguientePosicion(pos) = if (pos.down(1).y() < 1) game.at(pos.x(), 1) else pos	
+	method siguientePosicion(pos) = if (pos.down(1).y() < 1) game.at(pos.x(), 1) else pos
 }
 
 

@@ -14,8 +14,6 @@ object personaje {
 	
 	var enemigosMatados = 0
 	
-
-	
 	var property nivelActual = primerNivel 
 
     var property position = game.center()
@@ -38,6 +36,7 @@ object personaje {
 		if(enemigosMatados == nivelActual.puntosAConseguir()){
 			game.say(self,"¡Pasaste de nivel!")
 			nivelActual.configurarSiguienteNivel()
+			nivelActual = nivelActual.siguienteNivel()
 		}
 		
 		else {

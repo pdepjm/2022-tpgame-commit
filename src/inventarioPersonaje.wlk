@@ -11,10 +11,12 @@ import wollok.game.*
 	
 	var property tipoMunicion = comun 
 	
-	var property elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)]
+	var property elCargador = 
+			[new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)]
 	
 	method recargar() {
-		elCargador = [new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)] 
+		elCargador =
+			[new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion), new Proyectil(tipoProyectil = tipoMunicion)] 
 	}
 
 	method retirarUnaBala() {

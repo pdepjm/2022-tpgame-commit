@@ -12,6 +12,7 @@ class Enemigo {
 	var property especie
 	var property vida = especie.vida()
 	var property image = especie.image()
+	var property velocidad = especie.velocidad()
 
 	method moverse() {
 		
@@ -38,7 +39,7 @@ class Enemigo {
 	method agregarse() {
 		 game.addVisual(self)
 		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
-	     game.onTick(especie.velocidad(), "Movimiento Enemigo", {self.moverse()})
+	     game.onTick(velocidad, "Movimiento Enemigo: " + self.toString(), {self.moverse()})
 		
 	}
 	
@@ -50,7 +51,7 @@ class Enemigo {
 	
 }
 
-class EspecieZombie {
+class EspecieEnemigo {
 	var property vida
 	const property image
 	var property velocidad 
@@ -73,10 +74,13 @@ class EspecieBoss {
 }
 
 
-const zombieBeta = new EspecieZombie (vida = 1, image = "zombie.png", velocidad = 1000)
-const zombieAlfa = new EspecieZombie (vida = 2, image = "zombieAlfa.png", velocidad = 1500)
+const zombieBeta = new EspecieEnemigo (vida = 1, image = "zombie.png", velocidad = 1000)
+const zombieAlfa = new EspecieEnemigo (vida = 2, image = "zombieAlfa.png", velocidad = 1500)
+const zombieEsqueleto = new EspecieEnemigo (vida = 4, image = "zombieEsqueleto.png", velocidad = 1800)
+const zombieEsqueletoBalde = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoBalde.png", velocidad = 1800)
+const zombieEsqueletoHalloween = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoHalloween.png", velocidad = 1800)
 
-const boss = new EspecieBoss(vida = 7, image = "wollokGigante.png", velocidad = 4000)
+const boss = new EspecieBoss(vida = 10, image = "wollokGigante.png", velocidad = 4000)
 
 
 

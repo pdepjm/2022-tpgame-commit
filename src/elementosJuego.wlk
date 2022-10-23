@@ -117,17 +117,19 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 	}
 }
 
+/* 
+
 object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 16000, tiempoEnPantalla = 37000){
  		
-	method chocasteConJugador() {
-		keyboard.r().onPressDo({personaje.recargarBalas(4500)})
-		game.say(self,"Ahora tus balas tardan más en cargarse")
-		game.schedule(5000,{keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})})
+	method chocasteConJugador() {}
+	
+	override method chocasteConEnemigo(unEnemigo) {
+		unEnemigo.quedateQuieto()
 		game.removeVisual(self)
-		textoRelojDeArena.agregarse()
-		game.schedule(5000, {game.removeVisual(textoRelojDeArena)})
 	}
 }
+
+*/
 
 object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 30000){
 	
@@ -144,10 +146,14 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	var property estaPlantada = false
 	method chocasteConJugador(){ 
 		if(!estaPlantada){
-			keyboard.f().onPressDo({self.plantarse()})
+			keyboard.f().onPressDo({self.plantarseSoloUnaVez()})
 			game.removeVisual(self)
 			self.ponerEnInventario()
 		}
+	}
+	
+	method plantarseSoloUnaVez() { 
+		if (!estaPlantada) self.plantarse()
 	}
 	
 	method plantarse() {
