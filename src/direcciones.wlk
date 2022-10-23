@@ -10,6 +10,7 @@ object direccion {
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
 		keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})
+		
 	}
 }
 
@@ -33,8 +34,8 @@ object aleatorio {
 		
 		// calculo coordenadas aleatorias dentro la pantalla
 
-		const x = 2.randomUpTo(game.width()).roundUp()
-		const y = 2.randomUpTo(game.height() - 2).roundUp()
+		const x = 3.randomUpTo(11).roundUp()
+		const y = 3.randomUpTo(10).roundUp()
 
 		// cambio a nueva posicion
 		return game.at(x, y)
