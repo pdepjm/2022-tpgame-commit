@@ -10,7 +10,6 @@ object juego {
 	method iniciar() {
 		self.configurarJuego()
 		self.agregarPersonajes()
-		self.configurarTeclas()
 		nivel0.configuracionInicial()
 		game.start()
 		
@@ -24,19 +23,9 @@ object juego {
 	}
 
 	method agregarPersonajes() {
-		game.addVisualCharacter(personaje)
+		game.addVisual(personaje)
+		direccion.configurarTeclas()
 	}
-
-	method configurarTeclas() {
-		keyboard.up().onPressDo({personaje.moverA(arriba)})
-		keyboard.right().onPressDo({personaje.moverA(derecha)})
-		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
-		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
-		keyboard.space().onPressDo({personaje.disparar()})
-		keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})
-	}
-	
-
 
 }
 

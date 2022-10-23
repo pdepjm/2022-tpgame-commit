@@ -90,7 +90,7 @@ object segundoNivel {
 		game.removeVisual(fondoIntroNivel_2)
 		game.addVisual(fondoNivel_2)
 		game.removeVisual(personaje)
-		game.addVisualCharacter(personaje)
+		game.addVisual(personaje)
 		
 	}
 }
