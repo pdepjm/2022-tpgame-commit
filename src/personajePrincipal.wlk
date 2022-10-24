@@ -25,8 +25,8 @@ object personaje {
 	method image() = "personaje.png"
 		
     
-	method moverA(direccion) {
-			position = direccion.siguientePosicion(position)
+	method moverA(unaDireccion) {
+			position = unaDireccion.siguientePosicion(position)
 	}
 	
 	method sumarPuntos(){

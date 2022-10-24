@@ -10,6 +10,13 @@ import texto.*
 
 describe "Jugador"{
 	
+
+	test "Al moverse hacia arriba, el jugador actualiza su posición" {
+
+		personaje.position(game.at(0,0))
+		personaje.moverA(arriba)
+		assert.equals(personaje.position(),game.at(0,1))
+	}
 	
 	
 	test "Al chocarse con el borde, el personaje se mantiene en la misma posición en la que estaba" {
@@ -23,7 +30,7 @@ describe "Jugador"{
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
 		game.addVisual(curita)
 		curita.chocasteConJugador()
-		assert.equals((personaje.vida()).size(),5)
+		assert.equals((personaje.vida()).size(),6)
 
 	}
 	
@@ -56,10 +63,6 @@ describe "Enemigo"{
 		assert.notThat(game.hasVisual(unEnemigo))
 		
 	}
-	
-		
-	
-
 	
 }
 

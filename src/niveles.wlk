@@ -21,7 +21,6 @@ object nivel0 {
 		game.boardGround("grass00.png")
 		game.addVisual(fondoIntro)
 		
-		
 		keyboard.e().onPressDo({primerNivel.configuracionInicial()} )
 	}
 }
