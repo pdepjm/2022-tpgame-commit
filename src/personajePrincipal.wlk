@@ -37,6 +37,7 @@ object personaje {
 			game.say(self,"¡Pasaste de nivel!")
 			nivelActual.configurarSiguienteNivel()
 			nivelActual = nivelActual.siguienteNivel()
+			enemigosMatados = 0
 		}
 		
 		else {

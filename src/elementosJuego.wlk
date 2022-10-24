@@ -39,7 +39,8 @@ class TipoProyectil {
 const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1)
 const chetado = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2)
 
-class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position(), tipoProyectil = comun) {
+class ProyectilEnemigo inherits Proyectil(tipoProyectil = comun) {
+
 
 	override method mover() {
 		position = game.at(position.x()-1, position.y())
@@ -54,7 +55,6 @@ class ProyectilEnemigo inherits Proyectil(position = enemigoBoss.position(), tip
 	method chocasteConBorde() {
 		game.removeVisual(self)
 	}
-
 }
 
 object imagenDelContador {
@@ -68,11 +68,11 @@ object imagenDelContador {
 	
 }
 
+const unProyectil = new Proyectil(tipoProyectil = comun) 
+
 /**********************       PROYECTILES       **********************/
 
-const enemigoBoss = new Enemigo(especie = boss, position = game.center())
 
-const unProyectil = new Proyectil(tipoProyectil = comun) 
 
 
 class ElementoEspecial {
@@ -171,7 +171,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	
 	override method chocasteConEnemigo(elEnemigo) {
 		if(estaPlantada) {hitSound.play()
-		game.removeVisual(elEnemigo)
+		elEnemigo.disminuirVida(elEnemigo.vida())
     	game.removeVisual(self) }
 	}
 }
@@ -207,6 +207,10 @@ object generacionBordes {
 class Visual {
 	var property image
 	var property position
+	
+	method chocasteConBorde(){
+		
+	}
 	
 }
 

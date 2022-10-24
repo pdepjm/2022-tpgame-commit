@@ -32,8 +32,6 @@ class Enemigo {
 			personaje.sumarPuntos()
 		}
 			
-			
-		
 	}
 	
 	method agregarse() {
@@ -55,20 +53,16 @@ class EspecieEnemigo {
 	var property vida
 	const property image
 	var property velocidad 
-		
+	
 }
 
-class EspecieBoss {
-	var property vida
-	const property image
-	var property velocidad
+object boss inherits Enemigo(position = game.at(11,6), especie = especieBoss ){
+	
 
 	method dispararPersonaje() {
 
-		const proyEnemigo = new ProyectilEnemigo() 
-		
+		const proyEnemigo = new ProyectilEnemigo(position = self.position()) 
 		game.addVisual(proyEnemigo)
-		
 		proyEnemigo.trayectoria()
 	}
 }
@@ -80,7 +74,7 @@ const zombieEsqueleto = new EspecieEnemigo (vida = 4, image = "zombieEsqueleto.p
 const zombieEsqueletoBalde = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoBalde.png", velocidad = 1800)
 const zombieEsqueletoHalloween = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoHalloween.png", velocidad = 1800)
 
-const boss = new EspecieBoss(vida = 10, image = "wollokGigante.png", velocidad = 4000)
+const especieBoss = new EspecieEnemigo(vida = 10, image = "wollokGigante.png", velocidad = 4000)
 
 
 
