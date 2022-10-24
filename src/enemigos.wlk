@@ -47,6 +47,9 @@ class Enemigo {
 		gameOver.finalizarJuego() 
 	}
 	
+	method chocasteConEnemigo(unEnemigo){
+		
+	}
 }
 
 class EspecieEnemigo {
@@ -65,14 +68,27 @@ object boss inherits Enemigo(position = game.at(11,6), especie = especieBoss ){
 		game.addVisual(proyEnemigo)
 		proyEnemigo.trayectoria()
 	}
+	
+	override method disminuirVida(cant){
+		
+		if (vida > 0) 
+			
+			vida -= cant
+		
+		if (vida<=0) {
+			game.removeVisual(self)
+			personaje.sumarPuntos()
+			game.removeTickEvent("BolaBoss")
+		}
+	}
 }
 
 
 const zombieBeta = new EspecieEnemigo (vida = 1, image = "zombie.png", velocidad = 1000)
 const zombieAlfa = new EspecieEnemigo (vida = 2, image = "zombieAlfa.png", velocidad = 1500)
 const zombieEsqueleto = new EspecieEnemigo (vida = 4, image = "zombieEsqueleto.png", velocidad = 1800)
-const zombieEsqueletoBalde = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoBalde.png", velocidad = 1800)
-const zombieEsqueletoHalloween = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoHalloween.png", velocidad = 1800)
+const zombieEsqueletoBalde = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoBalde.png", velocidad = 2500)
+const zombieEsqueletoHalloween = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoHalloween.png", velocidad = 2500)
 
 const especieBoss = new EspecieEnemigo(vida = 10, image = "wollokGigante.png", velocidad = 4000)
 

@@ -8,7 +8,7 @@ import inventarioPersonaje.*
 
 object personaje {
 
-    var property vida = [new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
+    var property vida = [new Corazon (image = "corazon0.png"), new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
 
 	const property cargador = municion
 	
@@ -49,7 +49,7 @@ object personaje {
 	
 	method aumentarTodaLaVida() {
 		
-		vida = [new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
+		vida = [new Corazon (image = "corazon0.png"), new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
 		vida.forEach{corazon => corazon.agregarse()}	
 	}
 
@@ -65,7 +65,7 @@ object personaje {
 		}
 	
 		
-		if(vida.size() == 0)
+		if(vida.size()-1 == 0)
 		{
 			gameOver.finalizarJuego()
 		}
@@ -84,7 +84,7 @@ object personaje {
 			
 		}
 		else {
-			game.say(self, "Estoy sin bolas de fuego, recargalas con r")
+			game.say(self, "Estoy sin munición, recargar con r")
 		}
 	}
 	
@@ -101,13 +101,18 @@ object personaje {
 		
 		if (cargador.tamanio() == 0) {
 			
-			game.say(self, "Recargando balas, espere unos segundos")
+			game.say(self, "Recargando, espere unos segundos")
 			game.schedule(tiempo, {cargador.recargar()})
 			
 		
 		}
 		else 
-			game.say(self, "Todavía no es momento de recargar balas porque tenés " + cargador.tamanio().toString())
+			game.say(self, "Todavía no es momento de recargar porque tenés " + cargador.tamanio().toString())
+	}
+
+	method renovarCargador() {
+		
+		cargador.recargar() 
 	}
 
 
