@@ -142,7 +142,8 @@ object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiemp
 }
 
 object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 39000){
-	//habría que agregarlo en el nivel que corresponda
+	
+	var property enInventario = false 
 	var property estaPlantada = false
 	method chocasteConJugador(){ 
 		if(!estaPlantada){
@@ -164,6 +165,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 
 	method ponerEnInventario(){
+		enInventario = true
 		self.position(game.at(11, 11))
 		game.addVisual(self)
 		game.say(personaje, "Tenes una mina en el inventario! Plantala con F!")
@@ -174,6 +176,28 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 		elEnemigo.disminuirVida(elEnemigo.vida())
     	game.removeVisual(self) }
 	}
+	
+	override method agregarse() {
+
+		position = aleatorio.dondeAparecer() 
+		
+		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		
+		game.schedule(tiempoEnPantalla,{=> self.sacalaSiNoEstaEnInventario()})
+		
+	}
+	
+	method sacalaSiNoEstaEnInventario() {
+		
+		if (enInventario) {
+			
+		}
+		
+		else {
+			removeVisual(self)
+		}
+	}
+	
 }
 
 
