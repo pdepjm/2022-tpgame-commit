@@ -2,6 +2,7 @@ import wollok.game.*
 import direcciones.* 
 import juego.*
 import personajePrincipal.*
+import inventarioPersonaje.*
 import elementosJuego.*
 import texto.*
 import enemigos.*
@@ -38,7 +39,7 @@ object primerNivel {
 	
 	method configuracionInicial(){
 		game.removeVisual(fondoIntro)
-		barraVisual.agregarse()
+		inventario.forEach({cuadrado=>cuadrado.agregarse()})
 		music1.play()
 		generacionBordes.crearBordesIzquierdos(bordes) 
 		self.configuracionOleadaEnemigos() 

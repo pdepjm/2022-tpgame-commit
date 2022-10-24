@@ -214,14 +214,5 @@ class Visual {
 	
 }
 
-object barraVisual{
-	const property position = game.at(0,11)
-	method image() = "barraVisualAlternativa.png" //Esto se cambia
-	method agregarse(){
-		game.addVisual(self)
-	}
-	// La perdida de corazones pasa a ser responsabilidad de la barrita en vez del personaje (?
-	// En vez de que el personaje tenga cargador, que se cargue la barrita
-}
 
 
