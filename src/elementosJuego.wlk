@@ -131,7 +131,7 @@ object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaA
 
 */
 
-object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 30000){
+object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 30000){
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(chetado)

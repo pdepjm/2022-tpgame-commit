@@ -9,8 +9,7 @@ object juego {
 	
 	method iniciar() {
 		self.configurarJuego()
-		self.agregarPersonajes()
-		nivel0.configuracionInicial()
+		nivel_0.configuracionInicial()
 		game.start()
 		
 	}

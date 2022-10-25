@@ -8,26 +8,34 @@ import texto.*
 import enemigos.*
 
 
-const fondoIntro = new Visual (image = "fondoIntro.jpg", position = game.at(0,0))
+const fondoIntroNivel_0 = new Visual (image = "LEVEL0.png", position = game.at(0,0))
+const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0,0))
 const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
-const fondoNivel_2 = new Visual(image = "fondoAgua.png", position = game.at(1,0))
 const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
-const fondoNivel_3 = new Visual (image = "fondoNaranja.png", position = game.at(1,0))
+const fondoNivel_1 = "grass00.png"
+const fondoNivel_2 = new Visual(image = "agua.png", position = game.at(1,0))
+const fondoNivel_3 = new Visual (image = "lava.png", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
-object nivel0 {
+object nivel_0 {
 	
 		
 	method configuracionInicial(){
-		game.boardGround("grass00.png")
-		game.addVisual(fondoIntro)
-		
-		keyboard.e().onPressDo({primerNivel.configuracionInicial()} )
+		game.boardGround(fondoNivel_1)
+		game.addVisual(fondoIntroNivel_0)
+		keyboard.e().onPressDo{self.configurarSiguienteNivel()}
+	}
+	
+	method configurarSiguienteNivel() {
+		game.removeVisual(fondoIntroNivel_0)
+		game.addVisual(fondoIntroNivel_1)
+		game.schedule(4900, {juego.agregarPersonajes()})
+		game.schedule(5000, {=>nivel_1.configuracionInicial()})
 	}
 }
 
 
-object primerNivel {
+object nivel_1 {
 	
 	const enemigos1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta)]
 	const enemigos2 = [new Enemigo(especie = zombieBeta, position = game.at(14, 2)), new Enemigo(especie= zombieAlfa, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieAlfa), new Enemigo (position = game.at(14, 5), especie = zombieAlfa), new Enemigo(position = game.at(14, 3), especie = zombieBeta)]
@@ -38,7 +46,7 @@ object primerNivel {
 	method puntosAConseguir() = enemigos1.size() + enemigos2.size() + enemigos3.size()
 	
 	method configuracionInicial(){
-		game.removeVisual(fondoIntro)
+		game.removeVisual(fondoIntroNivel_1)
 		inventario.forEach({cuadrado=>cuadrado.agregarse()})
 		music1.play()
 		generacionBordes.crearBordesIzquierdos(bordes) 
@@ -59,18 +67,19 @@ object primerNivel {
 		bordes.forEach{unBorde=> unBorde.agregarse()}
 		imagenDelContador.agregarse()
 		mina.agregarse()
+		balaChetada.agregarse() 
 	}		
 
 	method configurarSiguienteNivel() {
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_2)})
-		game.schedule(10000, {=>segundoNivel.configuracionInicial()})
+		game.schedule(5000, {=>nivel_2.configuracionInicial()})
 	}	
 	
-	method siguienteNivel() = segundoNivel
+	method siguienteNivel() = nivel_2
 }
 
 
-object segundoNivel {
+object nivel_2 {
 	
 	const enemigos1 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 3)), new Enemigo(especie= zombieEsqueletoHalloween, position = game.at(15, 6)), new Enemigo(position = game.at(15, 8), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 9), especie = zombieEsqueleto), new Enemigo(position = game.at(14,2), especie = zombieEsqueletoHalloween)]
 	const enemigos2 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueletoBalde, position = game.at(15, 5)), new Enemigo(position = game.at(15, 7), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 8), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14,9), especie = zombieEsqueletoHalloween)]
@@ -101,19 +110,18 @@ object segundoNivel {
 	method agregarElementosEspeciales() {
 		
 		curita.agregarse() 
-		balaChetada.agregarse() 
 		mina.agregarse()
 	}		
 
 	method configurarSiguienteNivel() {
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_3)})
-		game.schedule(10000, {=>tercerNivel.configuracionInicial()})
+		game.schedule(5000, {=>nivel_3.configuracionInicial()})
 	}	
 	
-	method siguienteNivel() = tercerNivel
+	method siguienteNivel() = nivel_3
 }
 
-object tercerNivel {
+object nivel_3 {
 	
 	const enemigos1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta), new Enemigo(position = game.at(14, 6), especie = zombieAlfa)]
 	const enemigos2 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueleto, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 5), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 3), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14, 6), especie = zombieEsqueletoBalde)]

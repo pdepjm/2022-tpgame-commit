@@ -14,7 +14,7 @@ object personaje {
 	
 	var enemigosMatados = 0
 	
-	var property nivelActual = primerNivel 
+	var property nivelActual = nivel_1 
 
     var property position = game.center()
 	    
