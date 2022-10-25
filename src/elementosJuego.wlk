@@ -118,7 +118,7 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 
 
 
-object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 30000){
+object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 45000){
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(chetado)
@@ -128,10 +128,11 @@ object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiemp
 
 }
 
-object balaInfinito inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 30000){
+object balaInfinito inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 35000){
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(infinito)
+		personaje.renovarCargador() 
 		game.say(self,"¡Ahora tardas menos en recargar!")
 		game.removeVisual(self)
 	}

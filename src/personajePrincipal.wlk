@@ -39,12 +39,9 @@ object personaje {
 			nivelActual.configurarSiguienteNivel()
 			nivelActual = nivelActual.siguienteNivel()
 			enemigosMatados = 0}
-		}
 		
-		else {
-			
-		}
-
+		
+		
 	}
 	
 	method aumentarTodaLaVida() {
@@ -74,6 +71,7 @@ object personaje {
 	method disparar() {
 		
 		if (cargador.tamanio() > 0) {
+		
 			const otroProyectil = new Proyectil(tipoProyectil = municion.tipoMunicion())
 		
 			game.addVisual(otroProyectil)

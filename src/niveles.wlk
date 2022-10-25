@@ -54,7 +54,6 @@ object nivel_1 {
 	
 	method configuracionInicial(){
 		game.removeVisual(fondoIntroNivel_1)
-		inventario.forEach({cuadrado=>cuadrado.agregarse()})
 		music1.play()
 		generacionBordes.crearBordesIzquierdos(bordes) 
 		self.configuracionOleadaEnemigos() 
@@ -119,6 +118,7 @@ object nivel_2 {
 		
 		curita.agregarse() 
 		mina.agregarse()
+		balaInfinito.agregarse() 
 	}		
 
 	method configurarSiguienteNivel() {
