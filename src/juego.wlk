@@ -23,7 +23,7 @@ object juego {
 
 	method agregarPersonajes() {
 		game.addVisual(personaje)
-		direccion.configurarTeclas()
+		teclado.configurarTeclas()
 	}
 
 }

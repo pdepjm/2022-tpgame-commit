@@ -80,6 +80,7 @@ object nivel_1 {
 	method configurarSiguienteNivel() {
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_2)})
 		game.schedule(5000, {=>nivel_2.configuracionInicial()})
+		game.schedule(1000, {=>mina.sacaloSiEsta()})
 	}	
 	
 	method siguienteNivel() = nivel_2
@@ -147,6 +148,7 @@ object nivel_3 {
 		self.agregarElementosEspeciales()
 		personaje.aumentarTodaLaVida()
 		personaje.renovarCargador() 
+		game.schedule(1000, {=>mina.sacaloSiEsta()})
 		
 	}
 	

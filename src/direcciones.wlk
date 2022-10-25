@@ -1,7 +1,7 @@
  import wollok.game.*
  import personajePrincipal.*
 
-object direccion {
+object teclado {
 	
 	method configurarTeclas() {
 		keyboard.up().onPressDo({personaje.moverA(arriba)})
@@ -9,7 +9,7 @@ object direccion {
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
 		keyboard.space().onPressDo({personaje.disparar()})
-		keyboard.r().onPressDo({personaje.recargarBalas(personaje.tiempoDeRecarga())})
+		keyboard.r().onPressDo({personaje.recargarBalas()})
 		
 	}
 }

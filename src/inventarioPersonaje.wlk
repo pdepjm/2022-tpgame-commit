@@ -6,27 +6,6 @@ import wollok.game.*
  import direcciones.*
  import niveles.*
  import elementosJuego.*
-
- class Inventario {
-	const property position
-	method image() = "inventarioPared.png" 
-
-	method agregarse(){
-		game.addVisual(self)
-	}
-	
-	method chocasteConBorde() {
-		
-	}
-	
-	
- }
-
-const cuadrado1 = new Inventario(position=game.at(11,11))
-const cuadrado2 = new Inventario (position=game.at(10,11))
-
-const inventario = [cuadrado1,cuadrado2]
-
  
  object municion {
 	
@@ -44,7 +23,8 @@ const inventario = [cuadrado1,cuadrado2]
 		elCargador.remove(elCargador.head())
 	}
 
-	method tiempoDeRecarga() = 500
+	method tiempoDeRecarga() = tipoMunicion.tiempoDeRecarga()
 
 	method tamanio() = elCargador.size()
 }
+
