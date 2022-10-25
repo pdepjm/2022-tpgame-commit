@@ -33,11 +33,13 @@ object personaje {
 		
 		enemigosMatados+=1 
 
-		if(enemigosMatados == nivelActual.puntosAConseguir()){
+		if(enemigosMatados == nivelActual.puntosAConseguir() && ){
 			game.say(self,"¡Pasaste de nivel!")
+			
 			nivelActual.configurarSiguienteNivel()
+			if(nivelActual != nivel_3){
 			nivelActual = nivelActual.siguienteNivel()
-			enemigosMatados = 0
+			enemigosMatados = 0}
 		}
 		
 		else {

@@ -13,8 +13,8 @@ const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0
 const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
 const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
 const fondoNivel_1 = "grass00.png"
-const fondoNivel_2 = new Visual(image = "agua.png", position = game.at(1,0))
-const fondoNivel_3 = new Visual (image = "lava.png", position = game.at(1,0))
+const fondoNivel_2 = new Visual(image = "agua.jpg", position = game.at(1,0))
+const fondoNivel_3 = new Visual (image = "lava.jpg", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
 object nivel_0 {
@@ -163,8 +163,18 @@ object nivel_3 {
 	}		
 	
 	method configurarSiguienteNivel(){
+		self.siguienteNivel().configuracionInicial() 
+	}
+	
+	method siguienteNivel() = nivel_4
+	
+}
+
+object nivel_4{
+	
+	method confguracionInicial(){
 		game.say(personaje, "Ganaste!")
-		game.schedule(1500, {=>game.addVisual(finDeJuego)})
+		game.schedule(1500, {=> game.addVisual(finDeJuego)})
 	}
 	
 }
