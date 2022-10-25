@@ -18,12 +18,20 @@ const fondoNivel_3 = new Visual (image = "lava.png", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
 object nivel_0 {
-	
+	var siguienteNivelConfigurado = false
 		
 	method configuracionInicial(){
 		game.boardGround(fondoNivel_1)
 		game.addVisual(fondoIntroNivel_0)
-		keyboard.e().onPressDo{self.configurarSiguienteNivel()}
+		keyboard.e().onPressDo{self.iniciarJuego()}
+	}
+	
+	method iniciarJuego() {
+		
+		if (!siguienteNivelConfigurado) { 
+			siguienteNivelConfigurado = true
+			self.configurarSiguienteNivel()
+		} else {}
 	}
 	
 	method configurarSiguienteNivel() {
