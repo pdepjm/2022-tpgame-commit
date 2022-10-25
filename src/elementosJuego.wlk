@@ -172,9 +172,11 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 	
 	override method chocasteConEnemigo(elEnemigo) {
-		if(estaPlantada) {hitSound.play()
+		if(estaPlantada) {
+	   // hitSound.play()
 		elEnemigo.disminuirVida(elEnemigo.vida())
-    	game.removeVisual(self) }
+    	game.removeVisual(self) 
+    	}
 	}
 	
 	override method agregarse() {
@@ -189,12 +191,10 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	
 	method sacalaSiNoEstaEnInventario() {
 		
-		if (enInventario) {
-			
-		}
+		if (enInventario) {}
 		
 		else {
-			removeVisual(self)
+			game.removeVisual(self)
 		}
 	}
 	

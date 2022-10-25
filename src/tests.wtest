@@ -8,7 +8,12 @@ import enemigos.*
 import wollok.game.*
 import texto.*
 
+const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
+	
+const enemigoMayor = new Enemigo(position=game.at(0,0), especie = zombieAlfa)
+
 describe "Jugador"{
+	
 	
 
 	test "Al moverse hacia arriba, el jugador actualiza su posición" {
@@ -34,15 +39,11 @@ describe "Jugador"{
 
 	}
 	
-	
-	
 }
 
 describe "Enemigo"{
 
-	const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
-	
-	const enemigoMayor = new Enemigo(position=game.at(0,0), especie = zombieAlfa)
+
 	
 	const algunProyectil = new Proyectil(tipoProyectil = comun)
 
@@ -64,6 +65,14 @@ describe "Enemigo"{
 		
 	}
 	
+	test "Una mina plantada elimina a un enemigo" {
+		
+		game.addVisual(mina)
+		mina.plantarse() 
+		game.addVisual(enemigoMayor)
+		mina.chocasteConEnemigo(enemigoMayor)
+		assert.notThat(game.hasVisual(enemigoMayor))
+	}
 }
 
 describe "Cargador" {
@@ -74,5 +83,18 @@ describe "Cargador" {
 		assert.equals(municion.elCargador().size(),4)
 	}
 	
+	test "Cuando el personaje recarga su municion, vuelve a tener balas en su inventario" {
+		game.addVisual(personaje)
+		personaje.cargador().elCargador([]) // no hay balas en el cargador del personaje
+		municion.recargar()
+		assert.equals(municion.elCargador().size(),5)
+	}
+	 
 	
 }
+
+
+
+
+
+ 
