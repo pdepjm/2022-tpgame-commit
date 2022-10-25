@@ -33,11 +33,10 @@ object personaje {
 		
 		enemigosMatados+=1 
 
-		if(enemigosMatados == nivelActual.puntosAConseguir() && ){
+		if(enemigosMatados == nivelActual.puntosAConseguir() ){
 			game.say(self,"¡Pasaste de nivel!")
 			
 			nivelActual.configurarSiguienteNivel()
-			if(nivelActual != nivel_3){
 			nivelActual = nivelActual.siguienteNivel()
 			enemigosMatados = 0}
 		}
@@ -47,7 +46,6 @@ object personaje {
 		}
 
 	}
-	method tiempoDeRecarga() = cargador.tiempoDeRecarga()
 	
 	method aumentarTodaLaVida() {
 		
@@ -99,12 +97,12 @@ object personaje {
 		
 	}
 	
-	method recargarBalas(tiempo) {
+	method recargarBalas() {
 		
 		if (cargador.tamanio() == 0) {
 			
 			game.say(self, "Recargando, espere unos segundos")
-			game.schedule(tiempo, {cargador.recargar()})
+			game.schedule(cargador.tiempoDeRecarga(), {cargador.recargar()})
 			
 		
 		}

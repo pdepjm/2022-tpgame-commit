@@ -34,10 +34,12 @@ class TipoProyectil {
 	const property imagen 
 	const property velocidad
 	const property danio
+	const property tiempoDeRecarga
 }
 
-const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1)
-const chetado = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2)
+const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
+const chetado = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2, tiempoDeRecarga = 500)
+const infinito = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2, tiempoDeRecarga = 1) 
 
 class ProyectilEnemigo inherits Proyectil(tipoProyectil = comun) {
 
@@ -71,9 +73,6 @@ object imagenDelContador {
 const unProyectil = new Proyectil(tipoProyectil = comun) 
 
 /**********************       PROYECTILES       **********************/
-
-
-
 
 class ElementoEspecial {
 	var imagen
@@ -117,19 +116,7 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 	}
 }
 
-/* 
 
-object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 16000, tiempoEnPantalla = 37000){
- 		
-	method chocasteConJugador() {}
-	
-	override method chocasteConEnemigo(unEnemigo) {
-		unEnemigo.quedateQuieto()
-		game.removeVisual(self)
-	}
-}
-
-*/
 
 object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 30000){
 	
@@ -141,10 +128,21 @@ object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiemp
 
 }
 
+object balaInfinito inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 30000){
+	
+	method chocasteConJugador() {
+		personaje.cargador().tipoMunicion(infinito)
+		game.say(self,"¡Ahora tardas menos en recargar!")
+		game.removeVisual(self)
+	}
+
+}
+
 object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 39000){
 	
 	var property enInventario = false 
 	var property estaPlantada = false
+	
 	method chocasteConJugador(){ 
 		if(!estaPlantada){
 			keyboard.f().onPressDo({self.plantarseSoloUnaVez()})
@@ -166,7 +164,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 
 	method ponerEnInventario(){
 		enInventario = true
-		self.position(game.at(11, 11))
+		self.position(game.at(10, 11))
 		game.addVisual(self)
 		game.say(personaje, "Tenes una mina en el inventario! Plantala con F!")
 	}
@@ -174,7 +172,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	override method chocasteConEnemigo(elEnemigo) {
 		if(estaPlantada) {
 	   // hitSound.play()
-		elEnemigo.disminuirVida(elEnemigo.vida())
+		elEnemigo.disminuirVida(6)
     	game.removeVisual(self) 
     	}
 	}
@@ -192,14 +190,12 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	method sacalaSiNoEstaEnInventario() {
 		
 		if (enInventario) {}
-		
 		else {
 			game.removeVisual(self)
 		}
 	}
 	
 }
-
 
 
 class Borde {
@@ -239,4 +235,16 @@ class Visual {
 }
 
 
+/* 
 
+object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 16000, tiempoEnPantalla = 37000){
+ 		
+	method chocasteConJugador() {}
+	
+	override method chocasteConEnemigo(unEnemigo) {
+		unEnemigo.quedateQuieto()
+		game.removeVisual(self)
+	}
+}
+
+*/
