@@ -27,7 +27,6 @@ object nivel_0 {
 	}
 	
 	method iniciarJuego() {
-		
 		if (!siguienteNivelConfigurado) { 
 			siguienteNivelConfigurado = true
 			self.configurarSiguienteNivel()
