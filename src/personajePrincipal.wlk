@@ -9,7 +9,6 @@ import inventarioPersonaje.*
 object personaje {
 
     var property vida = [new Corazon (image = "corazon0.png"), new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
-
 	const property cargador = municion
 	
 	var enemigosMatados = 0
@@ -90,6 +89,7 @@ object personaje {
 
 			
 			vida.forEach{corazon => corazon.agregarse()}
+			cargador.agregarProyectiles()
 
 			game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
@@ -101,8 +101,8 @@ object personaje {
 			
 			game.say(self, "Recargando, espere unos segundos")
 			game.schedule(cargador.tiempoDeRecarga(), {cargador.recargar()})
-			
-		
+			cargador.agregarProyectiles()
+	
 		}
 		else 
 			game.say(self, "Todavía no es momento de recargar porque tenés " + cargador.tamanio().toString())

@@ -8,7 +8,7 @@ import texto.*
 import enemigos.*
 
 
-const fondoIntroNivel_0 = new Visual (image = "LEVEL0.png", position = game.at(0,0))
+const fondoIntroNivel_0 = new Visual (image = "fondo.png", position = game.at(0,0))
 const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0,0))
 const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
 const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
@@ -63,15 +63,14 @@ object nivel_1 {
 	}
 
 	method configuracionOleadaEnemigos() {
-		enemigos1.forEach{enemigo=> enemigo.agregarse()}
-		game.schedule(10000, {enemigos2.forEach{enemigo=> enemigo.agregarse()}})
-		game.schedule(17000, {enemigos3.forEach{enemigo=> enemigo.agregarse()}})
+		enemigos1.forEach{unEnemigo=> unEnemigo.agregarse()}
+		game.schedule(10000, {enemigos2.forEach{unEnemigo=> unEnemigo.agregarse()}})
+		game.schedule(17000, {enemigos3.forEach{unEnemigo=> unEnemigo.agregarse()}})
 	}
 	
 	method agregarElementosEspeciales() {
 		
 		bordes.forEach{unBorde=> unBorde.agregarse()}
-		imagenDelContador.agregarse()
 		mina.agregarse()
 		balaChetada.agregarse() 
 	}		
@@ -109,9 +108,9 @@ object nivel_2 {
 	}
 	
 	method configuracionOleadaEnemigos() {
-		enemigos1.forEach{enemigo=> enemigo.agregarse()}
-		game.schedule(15000, {enemigos2.forEach{enemigo=> enemigo.agregarse()}})
-		game.schedule(25000, {enemigos3.forEach{enemigo=> enemigo.agregarse()}})
+		enemigos1.forEach{unEnemigo=> unEnemigo.agregarse()}
+		game.schedule(15000, {enemigos2.forEach{unEnemigo=> unEnemigo.agregarse()}})
+		game.schedule(25000, {enemigos3.forEach{unEnemigo=> unEnemigo.agregarse()}})
 	}
 	
 	method agregarElementosEspeciales() {
@@ -124,6 +123,7 @@ object nivel_2 {
 	method configurarSiguienteNivel() {
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_3)})
 		game.schedule(5000, {=>nivel_3.configuracionInicial()})
+		game.schedule(1000, {=>mina.sacaloSiEsta()})
 	}	
 	
 	method siguienteNivel() = nivel_3
@@ -153,8 +153,8 @@ object nivel_3 {
 	}
 	
 	method configuracionOleadaEnemigos() {
-		enemigos1.forEach{enemigo=> enemigo.agregarse()}
-		game.schedule(15000, {enemigos2.forEach{enemigo=> enemigo.agregarse()}})
+		enemigos1.forEach{unEnemigo=> unEnemigo.agregarse()}
+		game.schedule(15000, {enemigos2.forEach{unEnemigo=> unEnemigo.agregarse()}})
 		game.schedule(20000, {boss.agregarse()})
 		game.onTick(1500, "BolaBoss", {boss.dispararPersonaje()})
 	}
@@ -174,7 +174,7 @@ object nivel_3 {
 
 object nivel_4{
 	
-	method confguracionInicial(){
+	method configuracionInicial(){
 		game.say(personaje, "Ganaste!")
 		game.schedule(1500, {=> game.addVisual(finDeJuego)})
 	}

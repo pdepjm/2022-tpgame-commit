@@ -29,6 +29,10 @@ class Proyectil {
     }
     
     method chocasteConJugador() {}
+    
+    method agregarse(){
+		game.addVisual(self)
+	}
 }
 class TipoProyectil {
 	const property imagen 
@@ -37,11 +41,12 @@ class TipoProyectil {
 	const property tiempoDeRecarga
 }
 
-const comun = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
-const chetado = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2, tiempoDeRecarga = 500)
+const enemigo = new TipoProyectil(imagen = "bolaWollok.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
+const comun = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
+const chetado = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 150, danio = 2, tiempoDeRecarga = 500)
 const infinito = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2, tiempoDeRecarga = 1) 
 
-class ProyectilEnemigo inherits Proyectil(tipoProyectil = comun) {
+class ProyectilEnemigo inherits Proyectil(tipoProyectil = enemigo) {
 
 
 	override method mover() {
@@ -59,16 +64,6 @@ class ProyectilEnemigo inherits Proyectil(tipoProyectil = comun) {
 	}
 }
 
-object imagenDelContador {
-	const property position = game.at(11, 11)
-	
-	method image() = personaje.cargador().tipoMunicion().imagen()
-	
-	method agregarse(){
-		game.addVisual(self)
-	}
-	
-}
 
 const unProyectil = new Proyectil(tipoProyectil = comun) 
 
@@ -118,12 +113,13 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 
 
 
-object balaChetada inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 45000){
+object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 45000){
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(chetado)
 		game.say(self,"¡Ahora disparás con más daño!")
 		game.removeVisual(self)
+		personaje.renovarCargador()
 	}
 
 }
@@ -164,17 +160,19 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 
 	method ponerEnInventario(){
-		enInventario = true
-		self.position(game.at(10, 11))
+		self.enInventario(true)
+		self.position(game.at(5, 11))
 		game.addVisual(self)
 		game.say(personaje, "Tenes una mina en el inventario! Plantala con F!")
 	}
 	
 	override method chocasteConEnemigo(elEnemigo) {
 		if(estaPlantada) {
-	   // hitSound.play()
+	   	//hitSound.play()
 		elEnemigo.disminuirVida(6)
     	game.removeVisual(self) 
+    	self.estaPlantada(false)
+    	self.enInventario(false)
     	}
 	}
 	
