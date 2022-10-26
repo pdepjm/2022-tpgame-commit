@@ -10,7 +10,7 @@ object personaje {
 
 	/************    ATRIBUTOS    ***************/
     var property vida = [new Corazon (image = "corazon0.png"), new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
-	var enemigosMatados = 0
+	var property enemigosMatados = 0
 	var property nivelActual = nivel_1
     var property position = game.center()
 	const property cargador = municion
@@ -108,9 +108,7 @@ object personaje {
 		}
 	}
 
-	method enemigosMatados(cant) {
-		enemigosMatados = cant
-	}
+
 	
 }
 
