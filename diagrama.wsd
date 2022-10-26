@@ -1,15 +1,11 @@
 @startuml Diagramas
 
 abstract class ElementoEspecial {
-    imagen
     position
     tiempoHastaAparicion
     tiempoEnPantalla
 
-    image()
-    agregarse()
     chocasteConJugador()
-
 }
 
 object curita {
@@ -17,64 +13,86 @@ object curita {
     chocasteConJugador()
 }
 
-object relojDeArena {
-
+object mina {
     chocasteConJugador()
-} 
 
-ElementoEspecial <|-- curita
-ElementoEspecial <|-- relojDeArena
-
-interface PerdedorDeVida {
-    vida
-    
-    disminuirVida()
 }
 
 
-object personaje {
+class Municion {
+    tipoMunicion
+
+}
+
+ElementoEspecial <|-- curita
+ElementoEspecial <|-- mina
+
+Municion <-- personaje
+Proyectil " * "<-- Municion
+Proyectil -l-> TipoProyectil
+
+Enemigo <.. personaje
+Proyectil <--> Enemigo
+Boss -l-|> Enemigo
+Enemigo --> EspecieEnemigo
+ProyectilEnemigo --|> Proyectil
+
+
+object personaje  {
     vida
-    bolasDeFuego
+    cargador
     ----
     aumentarTodaLaVida()
     disminuirVida()
     disparar()
     recargarBalas()
-    recargarBalas(tiempo)
+    renovarCargador()
     chocasteConEnemigo(unEnemigo)
 }
 
 ElementoEspecial -l-> personaje
 
-class Corazon {
-
-}
 
 class Proyectil {
-    position
 
+    tipoProyectil
+
+    chocasteConEnemigo(unEnemigo)
     mover()
-    trayectoria()
-    chocasteConEnemigo()
-
 }
 
-personaje ..> Proyectil
-personaje ..> Corazon
-Proyectil --> personaje
+class TipoProyectil{
+    danio
+    velocidad
+    tiempoDeRecarga
+}
 
- class Enemigo implements PerdedorDeVida {
+ class Enemigo {
     vida
+    especie
     velocidad
 
-    disminuirVida()
+    disminuirVida(cantidad)
+}
 
+object Boss {
+    
+    disminuirVida(cantidad)
+    dispararPersonaje()
+}
+
+class EspecieEnemigo {
+    vida 
+    velocidad
+}
+
+class ProyectilEnemigo {
+    chocasteConJugador()
+    mover()
+    
 }
 
 
-
-Enemigo --> personaje
-Proyectil <--> Enemigo
 
 
 
