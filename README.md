@@ -8,11 +8,17 @@
 - Sandoval, Aylén
 - Soteras, Martina
 
-## Capturas
+## Capturas!
+![ff00cd5c-ded1-4775-9007-d32af2a4737e](https://user-images.githubusercontent.com/102746619/198117335-a64b3e42-8c06-4fb0-80fe-dded4ba7459b.jpg)
+![64dd9a9d-8993-4b9d-886a-85e8c5e7c92b](https://user-images.githubusercontent.com/102746619/198117230-ff170ced-0bb4-4b92-a84c-b0a2b32d60b3.jpg)
+[9dbab1c5-8145-42fe-b925-6debf79d599c](https://user-images.githubusercontent.com/102746619/198117155-28333423-6f24-40cd-8117-acd441159b85.jpg)
 
-(agregar)
+
+
+
 
 ## Reglas de Juego / Instrucciones
+
 
 Human vs. Zombies es un videojuego del genero Tower Defense, al estilo Plants vs. Zombies. 
 
