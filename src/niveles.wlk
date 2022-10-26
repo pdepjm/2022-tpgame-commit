@@ -14,7 +14,7 @@ const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0
 const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
 const fondoNivel_1 = "grass00.png"
 const fondoNivel_2 = new Visual(image = "lava.jpg", position = game.at(1,0))
-const fondoNivel_3 = new Visual (image = "fondo3.jpeg", position = game.at(1,0))
+const fondoNivel_3 = new Visual (image = "fondo3.png", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
 object nivel_0 {
