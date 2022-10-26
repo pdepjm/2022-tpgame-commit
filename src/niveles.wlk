@@ -8,14 +8,7 @@ import texto.*
 import enemigos.*
 
 
-const fondoIntroNivel_0 = new Visual (image = "fondoInicial.png", position = game.at(0,0))
-const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0,0))
-const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
-const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
-const fondoNivel_1 = "grass00.png"
-const fondoNivel_2 = new Visual(image = "lava.jpg", position = game.at(1,0))
-const fondoNivel_3 = new Visual (image = "fondo3.png", position = game.at(1,0))
-const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
+
 
 object nivel_0 {
 	var siguienteNivelConfigurado = false
@@ -36,7 +29,7 @@ object nivel_0 {
 	method configurarSiguienteNivel() {
 		game.removeVisual(fondoIntroNivel_0)
 		game.addVisual(fondoIntroNivel_1)
-		game.schedule(4900, {juego.agregarPersonajes()})
+		game.schedule(5000, {juego.agregarPersonajes()})
 		game.schedule(5000, {=>nivel_1.configuracionInicial()})
 	}
 }
@@ -91,7 +84,6 @@ object nivel_2 {
 	const enemigos2 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueletoBalde, position = game.at(15, 5)), new Enemigo(position = game.at(15, 7), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 8), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14,9), especie = zombieEsqueletoHalloween)]
 	const enemigos3 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 3)), new Enemigo(especie= zombieEsqueletoHalloween, position = game.at(15, 6)), new Enemigo(position = game.at(15, 8), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueletoBalde), new Enemigo(position = game.at(14, 9), especie = zombieEsqueletoBalde), new Enemigo(position = game.at(14,5), especie = zombieEsqueletoHalloween)]
 
-		
 	method puntosAConseguir() = enemigos1.size() + enemigos2.size() + enemigos3.size() 
 	
 	method configuracionInicial() {
@@ -101,7 +93,6 @@ object nivel_2 {
 		game.addVisual(personaje)
 		personaje.aumentarTodaLaVida()
 		personaje.renovarCargador()
-
 		//music1.play()
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales() 
@@ -142,7 +133,6 @@ object nivel_3 {
 		game.addVisual(fondoNivel_3)
 		game.removeVisual(personaje)
 		game.addVisual(personaje)
-		
 		//music1.play()
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales()

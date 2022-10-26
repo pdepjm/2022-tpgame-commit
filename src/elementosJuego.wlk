@@ -67,7 +67,7 @@ class ProyectilEnemigo inherits Proyectil(tipoProyectil = enemigo) {
 
 const unProyectil = new Proyectil(tipoProyectil = comun) 
 
-/**********************       PROYECTILES       **********************/
+/**********************       ELEMENTOS ESPECIALES      **********************/
 
 class ElementoEspecial {
 	var imagen
@@ -77,23 +77,18 @@ class ElementoEspecial {
 	
 	method image() = imagen
 
-	method chocasteConEnemigo(unEnemigo) {
-		}
+	method chocasteConEnemigo(unEnemigo) {}
 	
 	method agregarse() {
 
 		position = aleatorio.dondeAparecer() 
-		
 		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
-		
 		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
 		
 	}
 	
 	method sacaloSiEsta() {
-		
-		if (game.hasVisual(self))
-			game.removeVisual(self)
+		if (game.hasVisual(self))game.removeVisual(self)
 		else {}
 	}
 
@@ -112,7 +107,6 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 }
 
 
-
 object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 45000){
 	
 	method chocasteConJugador() {
@@ -124,7 +118,7 @@ object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHa
 
 }
 
-object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 35000){
+object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHastaAparicion = 30000, tiempoEnPantalla = 45000){
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(infinito)
@@ -153,8 +147,6 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 	
 	method plantarse() {
-		//game.removeVisual(self)
-		//game.addVisual(self)
 		self.position(personaje.position())
 		self.estaPlantada(true)
 		self.enInventario(false)
@@ -180,56 +172,14 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	override method agregarse() {
 
 		position = aleatorio.dondeAparecer() 
-		
 		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
-		
 		game.schedule(tiempoEnPantalla,{=> self.sacalaSiNoEstaEnInventario()})
 		
 	}
 	
 	method sacalaSiNoEstaEnInventario() {
-		
 		if (enInventario) {}
-		else {
-			game.removeVisual(self)
-		}
-	}
-	
-}
-
-
-class Borde {
-    const property position 
-
-	method image() = "paredAmpliada.png"
-
-	method position() = position
-
-    method agregarse() {
-        game.addVisual(self)
-		game.onCollideDo(self,{unElemento=>unElemento.chocasteConBorde()})
-	}
-	
-	method chocasteConJugador() {}
-	method chocasteConEnemigo(unEnemigo) {}
-}
-
-object generacionBordes {
-	method crearBordesIzquierdos(bordesDeUnNivel) { 
-		
-		(game.height()-1).times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})
-		
-	}
-	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
-}
-
-
-class Visual {
-	var property image
-	var property position
-	
-	method chocasteConBorde(){
-		
+		else game.removeVisual(self)
 	}
 	
 }

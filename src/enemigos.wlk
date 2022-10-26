@@ -5,7 +5,7 @@ import elementosJuego.*
 import niveles.*
 import personajePrincipal.*
 
-
+/*************   ENEMIGOS NORMALES ***************/
 class Enemigo {
 	
 	var property position
@@ -18,10 +18,15 @@ class Enemigo {
 		
 		position = position.left(1)
 	}
-	
+
+	method agregarse() {
+		 game.addVisual(self)
+		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
+	     game.onTick(velocidad, "Movimiento Enemigo: " + self.toString(), {self.moverse()})
+		
+	}
 	
 	method disminuirVida(cant) {
-		
 		
 		if (vida > 0) 
 			
@@ -34,34 +39,17 @@ class Enemigo {
 			
 	}
 	
-	method agregarse() {
-		 game.addVisual(self)
-		 game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
-	     game.onTick(velocidad, "Movimiento Enemigo: " + self.toString(), {self.moverse()})
-		
-	}
-	
-	method chocasteConJugador() {}
-
+	/*** CHOCAR CON  ***/
 	method chocasteConBorde() {
 		gameOver.finalizarJuego() 
 	}
-	
-	method chocasteConEnemigo(unEnemigo){
-		
-	}
+	method chocasteConEnemigo(unEnemigo){}
+	method chocasteConJugador() {}
 }
 
-class EspecieEnemigo {
-	var property vida
-	const property image
-	var property velocidad 
-	
-}
-
+/*********  BOSS NIVEL 3   **********/
 object boss inherits Enemigo(position = game.at(11,6), especie = especieBoss ){
 	
-
 	method dispararPersonaje() {
 
 		const proyEnemigo = new ProyectilEnemigo(position = self.position()) 
@@ -83,6 +71,14 @@ object boss inherits Enemigo(position = game.at(11,6), especie = especieBoss ){
 	}
 }
 
+/**********   ESPECIES DE ENEMIGOS  *************/
+
+class EspecieEnemigo {
+	var property vida
+	const property image
+	var property velocidad 
+	
+}
 
 const zombieBeta = new EspecieEnemigo (vida = 1, image = "zombie.png", velocidad = 1000)
 const zombieAlfa = new EspecieEnemigo (vida = 2, image = "zombieAlfa.png", velocidad = 1500)

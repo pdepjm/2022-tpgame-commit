@@ -1,18 +1,6 @@
  import wollok.game.*
  import personajePrincipal.*
 
-object teclado {
-	
-	method configurarTeclas() {
-		keyboard.up().onPressDo({personaje.moverA(arriba)})
-		keyboard.right().onPressDo({personaje.moverA(derecha)})
-		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
-		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
-		keyboard.space().onPressDo({personaje.disparar()})
-		keyboard.r().onPressDo({personaje.recargarBalas()})
-		
-	}
-}
 
 object arriba {
 	method siguientePosicion(pos) = if (pos.up(1).y() > 10) game.at(pos.x(), 10) else pos.up(1)

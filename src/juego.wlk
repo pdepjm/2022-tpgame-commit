@@ -28,6 +28,19 @@ object juego {
 
 }
 
+object teclado {
+	
+	method configurarTeclas() {
+		keyboard.up().onPressDo({personaje.moverA(arriba)})
+		keyboard.right().onPressDo({personaje.moverA(derecha)})
+		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
+		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
+		keyboard.space().onPressDo({personaje.disparar()})
+		keyboard.r().onPressDo({personaje.recargarBalas()})
+		
+	}
+}
+
 object gameOver {
 	
 	method position() = game.at(0,0)
@@ -41,11 +54,53 @@ object gameOver {
 		}
 			
 	}
+	method chocasteConJugador(){}
 
-	method chocasteConJugador(){
+	method chocasteConBorde(){}
+}
+/*********** BORDES *************/
+class Borde {
+    const property position 
+
+	method image() = "paredAmpliada.png"
+
+	method position() = position
+
+    method agregarse() {
+        game.addVisual(self)
+		game.onCollideDo(self,{unElemento=>unElemento.chocasteConBorde()})
+	}
+	
+	method chocasteConJugador() {}
+	method chocasteConEnemigo(unEnemigo) {}
+}
+
+object generacionBordes {
+	method crearBordesIzquierdos(bordesDeUnNivel) { 
+		
+		(game.height()-1).times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})
 		
 	}
+	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
 }
+
+
+/*****Fondos y musica ****/
+class Visual {
+	var property image
+	var property position
+	
+	method chocasteConBorde(){}
+}
+
+const fondoIntroNivel_0 = new Visual (image = "fondoInicial.png", position = game.at(0,0))
+const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0,0))
+const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
+const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
+const fondoNivel_1 = "grass00.png"
+const fondoNivel_2 = new Visual(image = "lava.jpg", position = game.at(1,0))
+const fondoNivel_3 = new Visual (image = "fondo3.png", position = game.at(1,0))
+const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
 object music1 {
 	

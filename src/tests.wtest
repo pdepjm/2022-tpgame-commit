@@ -57,7 +57,34 @@ describe "Jugador"{
 		mina.chocasteConJugador() 
 		assert.notThat(mina.enInventario())
 		
-	}	
+	}
+
+	test "El jugador pasa de nivel cuando elimina a todos los enemigos del nivel en el que se encuentra" {
+		game.addVisual(personaje)
+		personaje.enemigosMatados(personaje.nivelActual().puntosAConseguir())
+		personaje.disparar()
+		assert.that(game.hasVisual(fondoIntroNivel_2)
+	}
+
+	test "El jugador pierde vida cuando el enemigo Boss le dispara" {
+
+		const proyectilEnemigo = new ProyectilEnemigo()
+
+		game.addVisual(personaje)
+		game.addVisual(boss)
+		proyectilEnemigo.chocasteConJugador()
+		assert.equals(personaje.vida().size(),5)
+		
+	}
+
+	test "El jugador gana el juego cuando elimina al enemigo boss y las oleadas del nivel 3" {
+
+		personaje.nivelActual(nivel_3)
+		personaje.enemigosMatados(nivelActual().puntosAConseguir())
+		personaje.disparar()
+		assert.that(game.hasVisual(finDeJuego))
+
+	}
 }
 
 describe "Enemigo"{
