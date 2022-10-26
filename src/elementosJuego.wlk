@@ -44,7 +44,7 @@ class TipoProyectil {
 const enemigo = new TipoProyectil(imagen = "bolaWollok.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
 const comun = new TipoProyectil(imagen = "balaOriginal.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
 const chetado = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 150, danio = 2, tiempoDeRecarga = 500)
-const infinito = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2, tiempoDeRecarga = 1) 
+const infinito = new TipoProyectil(imagen = "lapiz.png", velocidad = 150, danio = 2, tiempoDeRecarga = 1) 
 
 class ProyectilEnemigo inherits Proyectil(tipoProyectil = enemigo) {
 
@@ -124,7 +124,7 @@ object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHa
 
 }
 
-object balaInfinito inherits ElementoEspecial (imagen = "balaSuper150.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 35000){
+object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 35000){
 	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(infinito)
@@ -157,6 +157,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 		//game.addVisual(self)
 		self.position(personaje.position())
 		self.estaPlantada(true)
+		self.enInventario(false)
 	}
 
 	method ponerEnInventario(){

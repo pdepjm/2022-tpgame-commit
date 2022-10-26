@@ -12,11 +12,10 @@ const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
 	
 const enemigoMayor = new Enemigo(position=game.at(0,0), especie = zombieAlfa)
 
-const algunProyectil = new Proyectil(tipoProyectil = comun)
-
-
 describe "Jugador"{
 	
+	
+
 	test "Al moverse hacia arriba, el jugador actualiza su posición" {
 
 		personaje.position(game.at(0,0))
@@ -40,28 +39,13 @@ describe "Jugador"{
 
 	}
 	
-	test "Al levantar una mina el jugador puede luego plantarla" {
-		
-		game.addVisual(personaje)
-		game.addVisual(mina)
-		mina.chocasteConJugador() 
-		assert.that(mina.enInventario())
-	}
-
-	test "Cuando el jugador planta una mina, permanece en esa posición y no puede volver a plantarla" {
-		
-		game.addVisual(mina)
-		mina.enInventario(true)
-		mina.position(game.at(0,2))
-		mina.plantarseSoloUnaVez()
-		mina.chocasteConJugador() 
-		assert.notThat(mina.enInventario())
-		
-	}	
 }
 
 describe "Enemigo"{
 
+
+	
+	const algunProyectil = new Proyectil(tipoProyectil = comun)
 
 	test "Cuando se le dispara, el enemigo pierde vida " {
 		
@@ -81,7 +65,7 @@ describe "Enemigo"{
 		
 	}
 	
-	test "Una mina plantada elimina a enemigos con poca vida" {
+	test "Una mina plantada elimina a un enemigo" {
 		
 		game.addVisual(mina)
 		mina.plantarse() 
@@ -89,22 +73,12 @@ describe "Enemigo"{
 		mina.chocasteConEnemigo(enemigoMayor)
 		assert.notThat(game.hasVisual(enemigoMayor))
 	}
-	
-	test "Una mina plantada no puede eliminar al Boss" {
-		
-		game.addVisual(mina)
-		mina.plantarse()
-		game.addVisual(boss)
-		mina.chocasteConEnemigo(boss)
-		assert.that(game.hasVisual(boss))
-	}
 }
 
 describe "Cargador" {
 	
 	test "Cuando el personaje dispara, tiene una bala menos en su inventario" {
 		
-		municion.agregarProyectiles()
 		personaje.disparar()
 		assert.equals(municion.elCargador().size(),4)
 	}
@@ -116,16 +90,10 @@ describe "Cargador" {
 		assert.equals(municion.elCargador().size(),5)
 	}
 	 
-	test "Con un cargador con balas chetadas, el jugador puede matar a un enemigo con mayor vida" {
-		
-		const proyectilChetado = new Proyectil(tipoProyectil = chetado)
-		
-		game.addVisual(proyectilChetado)
-		game.addVisual(enemigoMayor) // enemigo de vida 2
-		proyectilChetado.chocasteConEnemigo(enemigoMayor)
-		assert.notThat(game.hasVisual(enemigoMayor))
-	}
+	
 }
+
+
 
 
 
