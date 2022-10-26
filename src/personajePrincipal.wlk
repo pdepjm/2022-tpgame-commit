@@ -37,10 +37,7 @@ object personaje {
 			
 			nivelActual.configurarSiguienteNivel()
 			nivelActual = nivelActual.siguienteNivel()
-			enemigosMatados = 0}
-		
-		
-		
+			enemigosMatados = 0}	
 	}
 	
 	method aumentarTodaLaVida() {
@@ -133,6 +130,10 @@ class Corazon {
 	
 	method agregarse(){
 		game.addVisual(self)
+	}
+	
+	method chocasteConBorde(){
+		
 	}
 }
 

@@ -42,7 +42,7 @@ class TipoProyectil {
 }
 
 const enemigo = new TipoProyectil(imagen = "bolaWollok.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
-const comun = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
+const comun = new TipoProyectil(imagen = "balaOriginal.png", velocidad = 100, danio = 1, tiempoDeRecarga = 500)
 const chetado = new TipoProyectil(imagen = "bolaFuego.png", velocidad = 150, danio = 2, tiempoDeRecarga = 500)
 const infinito = new TipoProyectil(imagen = "balaSuper150.png", velocidad = 150, danio = 2, tiempoDeRecarga = 1) 
 
