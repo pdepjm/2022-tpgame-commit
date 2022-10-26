@@ -63,7 +63,7 @@ describe "Jugador"{
 		game.addVisual(personaje)
 		personaje.enemigosMatados(personaje.nivelActual().puntosAConseguir())
 		personaje.disparar()
-		assert.that(game.hasVisual(fondoIntroNivel_2)
+		assert.that(game.hasVisual(fondoIntroNivel_2))
 	}
 
 	test "El jugador pierde vida cuando el enemigo Boss le dispara" {
@@ -80,11 +80,12 @@ describe "Jugador"{
 	test "El jugador gana el juego cuando elimina al enemigo boss y las oleadas del nivel 3" {
 
 		personaje.nivelActual(nivel_3)
-		personaje.enemigosMatados(nivelActual().puntosAConseguir())
+		personaje.enemigosMatados(personaje.nivelActual().puntosAConseguir())
 		personaje.disparar()
 		assert.that(game.hasVisual(finDeJuego))
 
 	}
+
 }
 
 describe "Enemigo"{
