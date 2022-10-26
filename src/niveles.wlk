@@ -29,7 +29,7 @@ object nivel_0 {
 	method configurarSiguienteNivel() {
 		game.removeVisual(fondoIntroNivel_0)
 		game.addVisual(fondoIntroNivel_1)
-		game.schedule(5000, {juego.agregarPersonajes()})
+		game.schedule(5100, {juego.agregarPersonajes()})
 		game.schedule(5000, {=>nivel_1.configuracionInicial()})
 	}
 }
@@ -48,11 +48,16 @@ object nivel_1 {
 	method configuracionInicial(){
 		game.removeVisual(fondoIntroNivel_1)
 		music1.play()
+		game.schedule(100,{=>self.configuracionInicial2()})
+		
+		
+	}
+	
+	method configuracionInicial2(){
 		personaje.configurarAcciones()
 		generacionBordes.crearBordesIzquierdos(bordes) 
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales() 
-		
 	}
 
 	method configuracionOleadaEnemigos() {
@@ -69,6 +74,7 @@ object nivel_1 {
 	}		
 
 	method configurarSiguienteNivel() {
+		music1.stop()
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_2)})
 		game.schedule(5000, {=>nivel_2.configuracionInicial()})
 		game.schedule(1000, {=>mina.sacaloSiEsta()})
@@ -93,7 +99,7 @@ object nivel_2 {
 		game.addVisual(personaje)
 		personaje.aumentarTodaLaVida()
 		personaje.renovarCargador()
-		//music1.play()
+		music2.play()
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales() 
 	}
@@ -112,6 +118,7 @@ object nivel_2 {
 	}		
 
 	method configurarSiguienteNivel() {
+		music2.stop()
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_3)})
 		game.schedule(5000, {=>nivel_3.configuracionInicial()})
 		game.schedule(1000, {=>mina.sacaloSiEsta()})
@@ -133,7 +140,7 @@ object nivel_3 {
 		game.addVisual(fondoNivel_3)
 		game.removeVisual(personaje)
 		game.addVisual(personaje)
-		//music1.play()
+		music3.play()
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales()
 		personaje.aumentarTodaLaVida()

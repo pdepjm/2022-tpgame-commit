@@ -98,7 +98,7 @@ const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0
 const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
 const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
 const fondoNivel_1 = "grass00.png"
-const fondoNivel_2 = new Visual(image = "lava.jpg", position = game.at(1,0))
+const fondoNivel_2 = new Visual(image = "lava.png", position = game.at(1,0))
 const fondoNivel_3 = new Visual (image = "fondo3.png", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
@@ -107,7 +107,7 @@ object music1 {
 	const theme = game.sound("music2.mp3")
 	
 	method play() {
-		theme.volume(0.1)
+		theme.volume(0.2)
 		theme.shouldLoop(true)
 		game.schedule(10, {theme.play()})
 	}
@@ -116,6 +116,37 @@ object music1 {
 		theme.stop()
 	}
 }
+
+object music2 {
+	
+	const theme = game.sound("music1.mp3")
+	
+	method play() {
+		theme.volume(0.2)
+		theme.shouldLoop(true)
+		game.schedule(10, {theme.play()})
+	}
+	
+	method stop() {
+		theme.stop()
+	}
+}
+
+object music3 {
+	
+	const theme = game.sound("music3.mp3")
+	
+	method play() {
+		theme.volume(0.2)
+		theme.shouldLoop(true)
+		game.schedule(10, {theme.play()})
+	}
+	
+	method stop() {
+		theme.stop()
+	}
+}
+
 
 object hitSound {
 		
