@@ -25,6 +25,12 @@ object juego {
 		game.addVisual(personaje)
 		teclado.configurarTeclas()
 	}
+	
+	method ganar(){
+		music3.stop()
+		musicWinning.play()
+		game.addVisual(finDeJuego)
+	}
 
 }
 
@@ -47,9 +53,11 @@ object gameOver {
 	method image() = "gameOver grande.png"
 	method finalizarJuego(){
 		
-		if (!game.hasVisual(self)) { 
-			game.schedule(400, {game.clear()})
+		if (!game.hasVisual(self)) {
+
+			game.schedule(20000, {game.clear()})
 			game.addVisual(self) 
+			musicLosing.play()
 			music1.stop() 
 		}
 			
@@ -107,7 +115,7 @@ object music1 {
 	const theme = game.sound("music2.mp3")
 	
 	method play() {
-		theme.volume(0.2)
+		theme.volume(0.5)
 		theme.shouldLoop(true)
 		game.schedule(10, {theme.play()})
 	}
@@ -122,7 +130,7 @@ object music2 {
 	const theme = game.sound("music1.mp3")
 	
 	method play() {
-		theme.volume(0.2)
+		theme.volume(0.5)
 		theme.shouldLoop(true)
 		game.schedule(10, {theme.play()})
 	}
@@ -137,7 +145,37 @@ object music3 {
 	const theme = game.sound("music3.mp3")
 	
 	method play() {
-		theme.volume(0.2)
+		theme.volume(0.5)
+		theme.shouldLoop(true)
+		game.schedule(10, {theme.play()})
+	}
+	
+	method stop() {
+		theme.stop()
+	}
+}
+
+object musicWinning {
+	
+	const theme = game.sound("winning.mp3")
+	
+	method play() {
+		theme.volume(0.5)
+		theme.shouldLoop(true)
+		game.schedule(10, {theme.play()})
+	}
+	
+	method stop() {
+		theme.stop()
+	}
+}
+
+object musicLosing {
+	
+	const theme = game.sound("gameovermusic.mp3")
+	
+	method play() {
+		theme.volume(0.5)
 		theme.shouldLoop(true)
 		game.schedule(10, {theme.play()})
 	}

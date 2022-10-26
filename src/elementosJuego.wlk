@@ -33,6 +33,8 @@ class Proyectil {
     method agregarse(){
 		game.addVisual(self)
 	}
+
+
 }
 class TipoProyectil {
 	const property imagen 
@@ -109,6 +111,14 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 
 object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHastaAparicion = 25000, tiempoEnPantalla = 45000){
 	
+	override method agregarse() {
+
+		position = game.center()
+		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
+		
+	}
+
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(chetado)
 		game.say(self,"¡Ahora disparás con más daño!")
@@ -120,6 +130,14 @@ object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHa
 
 object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHastaAparicion = 30000, tiempoEnPantalla = 45000){
 	
+	override method agregarse() {
+
+		position = game.center()
+		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
+		
+	}
+	
 	method chocasteConJugador() {
 		personaje.cargador().tipoMunicion(infinito)
 		personaje.renovarCargador() 
@@ -129,7 +147,7 @@ object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHasta
 
 }
 
-object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 2500, tiempoEnPantalla = 39000){
+object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 4000, tiempoEnPantalla = 39000){
 	
 	var property enInventario = false 
 	var property estaPlantada = false
@@ -143,7 +161,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 	
 	method plantarseSoloUnaVez() { 
-		if (!estaPlantada) self.plantarse()
+		if (!estaPlantada && enInventario) self.plantarse()   
 	}
 	
 	method plantarse() {
@@ -161,40 +179,26 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	
 	override method chocasteConEnemigo(elEnemigo) {
 		if(estaPlantada) {
-	   	//hitSound.play()
-		elEnemigo.disminuirVida(6)
-    	game.removeVisual(self) 
-    	self.estaPlantada(false)
-    	self.enInventario(false)
+	   		//hitSound.play()
+			elEnemigo.disminuirVida(6)
+    		self.estaPlantada(false)
+    		game.removeVisual(self)
     	}
 	}
 	
 	override method agregarse() {
-
+		self.enInventario(false)
+		self.estaPlantada(false)
 		position = aleatorio.dondeAparecer() 
 		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
 		game.schedule(tiempoEnPantalla,{=> self.sacalaSiNoEstaEnInventario()})
-		
 	}
 	
 	method sacalaSiNoEstaEnInventario() {
 		if (enInventario) {}
-		else game.removeVisual(self)
+		else self.sacaloSiEsta()
 	}
 	
 }
 
 
-/* 
-
-object relojDeArena inherits ElementoEspecial (imagen = "hora.png", tiempoHastaAparicion = 16000, tiempoEnPantalla = 37000){
- 		
-	method chocasteConJugador() {}
-	
-	override method chocasteConEnemigo(unEnemigo) {
-		unEnemigo.quedateQuieto()
-		game.removeVisual(self)
-	}
-}
-
-*/
