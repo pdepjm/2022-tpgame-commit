@@ -8,5 +8,3 @@ program juego {
 		
 	juego.iniciar()
 }
-
-  
