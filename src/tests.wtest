@@ -6,7 +6,6 @@ import personajePrincipal.*
 import inventarioPersonaje.*
 import enemigos.*
 import wollok.game.*
-import texto.*
 
 const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
 	

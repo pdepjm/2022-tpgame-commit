@@ -15,7 +15,7 @@ object juego {
 	}
 
 	method configurarJuego() {
-		game.title("Juego")
+		game.title("Human vs Zombies")
 		game.width(12)
 		game.height(12)
 		game.cellSize(100)

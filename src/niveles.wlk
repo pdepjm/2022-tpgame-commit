@@ -4,10 +4,7 @@ import juego.*
 import personajePrincipal.*
 import inventarioPersonaje.*
 import elementosJuego.*
-import texto.*
 import enemigos.*
-
-
 
 
 object nivel_0 {

@@ -2,7 +2,6 @@
  import juego.*
  import personajePrincipal.*
  import enemigos.* 
- import texto.*
  import direcciones.*
  import niveles.*
  
@@ -101,9 +100,7 @@ object curita inherits ElementoEspecial (imagen = "vendajeChico.png", tiempoHast
 	method chocasteConJugador() {
 		personaje.aumentarTodaLaVida() 
 		game.say(self,"¡Te curaste toda la vida!")
-
-		textoCurita.agregarse()
-		game.schedule(5000, {game.removeVisual(textoCurita)})
+	
 		game.removeVisual(self)
 	}
 }
