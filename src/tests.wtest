@@ -47,7 +47,17 @@ describe "Jugador"{
 		mina.chocasteConJugador() 
 		assert.that(mina.enInventario())
 	}
-	
+
+	test "Cuando el jugador planta una mina, permanece en esa posición y no puede volver a plantarla" {
+		
+		game.addVisual(mina)
+		mina.enInventario(true)
+		mina.position(game.at(0,2))
+		mina.plantarseSoloUnaVez()
+		mina.chocasteConJugador() 
+		assert.notThat(mina.enInventario())
+		
+	}	
 }
 
 describe "Enemigo"{
@@ -80,7 +90,7 @@ describe "Enemigo"{
 		assert.notThat(game.hasVisual(enemigoMayor))
 	}
 	
-	test "Una mina plantada no elimina al Boss" {
+	test "Una mina plantada no puede eliminar al Boss" {
 		
 		game.addVisual(mina)
 		mina.plantarse()
@@ -106,7 +116,14 @@ describe "Cargador" {
 		assert.equals(municion.elCargador().size(),5)
 	}
 	 
-	
+	test "Con un cargador con balas chetadas, el jugador puede matar a un enemigo con mayor vida" {
+		
+		const proyectilChetado = new Proyectil(tipoProyectil = chetado)
+		
+		game.addVisual(proyectilChetado)
+		game.addVisual(enemigoMayor) // enemigo de vida 2
+		proyectilChetado.chocasteConEnemigo(enemigoMayor)
+		assert.notThat(game.hasVisual(enemigoMayor))
+	}
 }
-
  

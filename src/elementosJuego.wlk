@@ -157,6 +157,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 		//game.addVisual(self)
 		self.position(personaje.position())
 		self.estaPlantada(true)
+		self.enInventario(false)
 	}
 
 	method ponerEnInventario(){
