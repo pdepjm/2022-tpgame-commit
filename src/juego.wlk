@@ -30,8 +30,8 @@ object juego {
 
 object gameOver {
 	
-	method position() = game.center()
-	method image() = "game over.png"
+	method position() = game.at(0,0)
+	method image() = "gameOver grande.png"
 	method finalizarJuego(){
 		
 		if (!game.hasVisual(self)) { 
