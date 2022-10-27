@@ -10,7 +10,7 @@ object inicio {
 	var siguienteNivelConfigurado = false
 		
 	method configuracionInicial(){
-		game.boardGround(fondoNivel_1)
+		
 		game.addVisual(fondoIntroNivel_0)
 		keyboard.e().onPressDo{self.iniciarJuego()}
 	}
@@ -18,19 +18,43 @@ object inicio {
 	method iniciarJuego() {
 		if (!siguienteNivelConfigurado) { 
 			siguienteNivelConfigurado = true
-			self.configurarSiguienteNivel()
+			self.configurarInicioJuego()
 		} else {}
 	}
 	
-	method configurarSiguienteNivel() {
+	method configurarInicioJuego() {
 		game.removeVisual(fondoIntroNivel_0)
-		game.addVisual(fondoIntroNivel_1)
-		music1.play()
-		game.schedule(5100, {juego.agregarPersonajes()})
-		game.schedule(5000, {=>nivel_1.configuracionInicial()})
+		//game.addVisual(fondoIntroNivel_1)
+		//music1.play()
+		game.schedule(5100, {juego.configuracionTeclado()})
+		game.schedule(5100, {personaje.configurarAcciones()})
+		game.schedule(5000, {nivel_1.configuracionInicial()})
+
 	}
 }
 
+class Nivel{
+	var property oleada1
+	var property oleada2
+	var property oleada3
+	var property elementosEspeciales
+	const property musica
+	const imagenIntro
+	const fondoNivel
+	const bordes = []
+
+	
+	method puntosAConseguir() = oleada1.size() + oleada2.size() + oleada3.size()
+	
+	method configuracionInicial() {
+		game.addVisual(imagenIntro)
+		game.schedule(1000, game.removeVisual(imagenIntro))
+		game.schedule
+		
+	}
+
+
+}
 
 object nivel_1 {
 	
@@ -40,17 +64,14 @@ object nivel_1 {
 	const property musica = music1
 	const bordes = []
 	
-	method puntosAConseguir() = enemigos1.size() + enemigos2.size() + enemigos3.size()
+	
 	
 	method configuracionInicial(){
 		game.removeVisual(fondoIntroNivel_1)
-		game.schedule(100,{=>self.configuracionInicial2()})
-		
-		
+		game.schedule(100,{self.configuracionInicial2()})
 	}
 	
 	method configuracionInicial2(){
-		personaje.configurarAcciones()
 		generacionBordes.crearBordes(bordes) 
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales() 
