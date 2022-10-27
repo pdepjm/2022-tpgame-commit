@@ -10,7 +10,7 @@ object inicio {
 	var siguienteNivelConfigurado = false
 		
 	method configuracionInicial(){
-		personaje.configuracionInicial()
+		
 		game.addVisual(fondoIntroNivel_0)
 		keyboard.e().onPressDo{self.iniciarJuego()}
 	}
@@ -37,7 +37,7 @@ class Nivel{
 	var property oleada3
 	var property elementosEspeciales
 	const property musica
-	const siguienteNivel
+	const property siguienteNivel
 	var tiempoOleada2
 	var tiempoOleada3
 	const imagenIntro
@@ -49,9 +49,10 @@ class Nivel{
 	method configuracionInicial() {
 		game.addVisual(imagenIntro)
 		musica.play()
-		game.schedule(1000, {game.removeVisual(imagenIntro)})
-		game.schedule(1000, {game.addVisual(fondoNivel)})
-		game.schedule(1100, {personaje.agregarse()})
+		game.schedule(2500, {game.removeVisual(imagenIntro)})
+		game.schedule(2500, {game.addVisual(fondoNivel)})
+		game.schedule(2600, {personaje.configuracionInicial()})
+
 		self.agregarElementosEspeciales()
 		self.configuracionOleadaEnemigos()
 			
@@ -73,6 +74,8 @@ class Nivel{
 
 		musica.stop()
 		game.removeVisual(fondoNivel)
+		game.removeVisual(personaje)
+		elementosEspeciales.forEach({unElemento=>unElemento.sacaloSiEsta()})
 		siguienteNivel.configuracionInicial()
 	}
 

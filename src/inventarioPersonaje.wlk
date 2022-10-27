@@ -20,7 +20,8 @@ import wollok.game.*
 	}
 	
 	method agregarProyectiles(){
-		elCargador.forEach{proyectil=> proyectil.agregarse()}
+		if (elCargador.all{proyectil=>!game.hasVisual(proyectil)})
+			elCargador.forEach{proyectil=> proyectil.agregarse()}
 	}
 	method retirarUnaBala() {
 		game.removeVisual(elCargador.last())

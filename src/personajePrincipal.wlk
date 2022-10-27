@@ -21,16 +21,17 @@ object personaje {
 	/************    CONFIG INICIAL    ***************/
     
 	method configuracionInicial() {
+		self.agregarse()
 		game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
 	}
 	
 	method agregarse() {	
-		if (!game.hasVisual(self)) {
+		//if (!game.hasVisual(self)) {
 			corazon.agregarse()
 			cargador.agregarProyectiles()
 			game.addVisual(self)
-		}
+		//}
 		self.aumentarTodaLaVida()
 		self.renovarCargador()
 	}
@@ -130,7 +131,7 @@ object corazon {
    method image() = "corazon" + personaje.vida() + ".png"
 	
 	method agregarse(){
-		game.addVisual(self)
+		if (!game.hasVisual(self)) game.addVisual(self)
 	}
 	
 	method chocasteConBorde(){
