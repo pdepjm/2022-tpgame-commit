@@ -6,7 +6,6 @@ import inventarioPersonaje.*
 import elementosJuego.*
 import enemigos.*
 
-
 object inicio {
 	var siguienteNivelConfigurado = false
 		
