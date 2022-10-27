@@ -90,5 +90,5 @@ F: plantar mina (se deben tener unidades en el inventario)
 ## Otros
 
 - Universidad Tecnológica Nacional, Facultad Regional Buenos Aires
-- Versión de wollok
+- Versión de wollok: Juana Azurduy
 - Una vez terminado, no tenemos problemas en que el repositorio sea público.
