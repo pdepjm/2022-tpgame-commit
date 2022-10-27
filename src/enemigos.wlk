@@ -41,7 +41,7 @@ class Enemigo {
 	
 	/*** CHOCAR CON  ***/
 	method chocasteConBorde() {
-		gameOver.finalizarJuego() 
+		personaje.nivelActual().perder() 
 	}
 	method chocasteConEnemigo(unEnemigo){}
 	method chocasteConJugador() {}

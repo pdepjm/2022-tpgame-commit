@@ -83,7 +83,7 @@ class ElementoEspecial {
 	method agregarse() {
 
 		position = aleatorio.dondeAparecer() 
-		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoHastaAparicion,{=> self.apareceSiNoPerdio()})
 		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
 		
 	}
@@ -91,6 +91,10 @@ class ElementoEspecial {
 	method sacaloSiEsta() {
 		if (game.hasVisual(self))game.removeVisual(self)
 		else {}
+	}
+	
+	method apareceSiNoPerdio(){
+		if(!game.hasVisual(gameOver)) game.addVisual(self)
 	}
 
 } 
@@ -111,7 +115,7 @@ object balaChetada inherits ElementoEspecial (imagen = "bolaFuego.png", tiempoHa
 	override method agregarse() {
 
 		position = game.center()
-		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoHastaAparicion,{=> self.apareceSiNoPerdio()})
 		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
 		
 	}
@@ -130,7 +134,7 @@ object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHasta
 	override method agregarse() {
 
 		position = game.center()
-		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoHastaAparicion,{=> self.apareceSiNoPerdio()})
 		game.schedule(tiempoEnPantalla,{=> self.sacaloSiEsta()})
 		
 	}
@@ -187,7 +191,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 		self.enInventario(false)
 		self.estaPlantada(false)
 		position = aleatorio.dondeAparecer() 
-		game.schedule(tiempoHastaAparicion,{=> game.addVisual(self)})
+		game.schedule(tiempoHastaAparicion,{=> self.apareceSiNoPerdio()})
 		game.schedule(tiempoEnPantalla,{=> self.sacalaSiNoEstaEnInventario()})
 	}
 	

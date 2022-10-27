@@ -26,6 +26,7 @@ object nivel_0 {
 	method configurarSiguienteNivel() {
 		game.removeVisual(fondoIntroNivel_0)
 		game.addVisual(fondoIntroNivel_1)
+		music1.play()
 		game.schedule(5100, {juego.agregarPersonajes()})
 		game.schedule(5000, {=>nivel_1.configuracionInicial()})
 	}
@@ -44,7 +45,6 @@ object nivel_1 {
 	
 	method configuracionInicial(){
 		game.removeVisual(fondoIntroNivel_1)
-		music1.play()
 		game.schedule(100,{=>self.configuracionInicial2()})
 		
 		
@@ -72,12 +72,18 @@ object nivel_1 {
 
 	method configurarSiguienteNivel() {
 		music1.stop()
+		game.schedule(1000, {=>music2.play()})
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_2)})
 		game.schedule(5000, {=>nivel_2.configuracionInicial()})
 		game.schedule(1000, {=>mina.sacaloSiEsta()})
 	}	
 	
 	method siguienteNivel() = nivel_2
+	
+	method perder(){
+		musica.stop()
+		gameOver.finalizarJuego()
+	}
 }
 
 
@@ -96,7 +102,6 @@ object nivel_2 {
 		game.addVisual(personaje)
 		personaje.aumentarTodaLaVida()
 		personaje.renovarCargador()
-		music2.play()
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales() 
 	}
@@ -116,12 +121,18 @@ object nivel_2 {
 
 	method configurarSiguienteNivel() {
 		music2.stop()
+		game.schedule(1000, {=>music3.play()})
 		game.schedule(1000, {=>game.addVisual(fondoIntroNivel_3)})
 		game.schedule(5000, {=>nivel_3.configuracionInicial()})
 		game.schedule(1000, {=>mina.sacaloSiEsta()})
 	}	
 	
 	method siguienteNivel() = nivel_3
+	
+	method perder(){
+		musica.stop()
+		gameOver.finalizarJuego()
+	}
 }
 
 object nivel_3 {
@@ -137,7 +148,7 @@ object nivel_3 {
 		game.addVisual(fondoNivel_3)
 		game.removeVisual(personaje)
 		game.addVisual(personaje)
-		music3.play()
+		
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales()
 		personaje.aumentarTodaLaVida()
@@ -163,6 +174,12 @@ object nivel_3 {
 	}
 	
 	method siguienteNivel() = nivel_4
+	
+	method perder(){
+		musica.stop()
+		game.removeTickEvent("BolaBoss")
+		gameOver.finalizarJuego()
+	}
 	
 }
 

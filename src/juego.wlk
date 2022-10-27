@@ -55,10 +55,10 @@ object gameOver {
 		
 		if (!game.hasVisual(self)) {
 
-			game.schedule(20000, {game.clear()})
+			game.schedule(20000, {game.stop()})
+			game.schedule(19999, {game.clear()})
 			game.addVisual(self) 
 			musicLosing.play()
-			music1.stop() 
 		}
 			
 	}

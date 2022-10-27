@@ -51,7 +51,7 @@ object personaje {
 		if(vida.size()-1 == 0)
 		{
 			self.nivelActual().musica().stop()
-			gameOver.finalizarJuego()
+			nivelActual.perder()
 		}
 	}
 	
