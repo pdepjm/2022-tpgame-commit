@@ -7,7 +7,7 @@ import elementosJuego.*
 import enemigos.*
 
 
-object nivel_0 {
+object inicio {
 	var siguienteNivelConfigurado = false
 		
 	method configuracionInicial(){
@@ -52,7 +52,7 @@ object nivel_1 {
 	
 	method configuracionInicial2(){
 		personaje.configurarAcciones()
-		generacionBordes.crearBordesIzquierdos(bordes) 
+		generacionBordes.crearBordes(bordes) 
 		self.configuracionOleadaEnemigos() 
 		self.agregarElementosEspeciales() 
 	}
@@ -173,7 +173,7 @@ object nivel_3 {
 		self.siguienteNivel().configuracionInicial() 
 	}
 	
-	method siguienteNivel() = nivel_4
+	method siguienteNivel() = finDelJuego 
 	
 	method perder(){
 		musica.stop()
@@ -183,7 +183,7 @@ object nivel_3 {
 	
 }
 
-object nivel_4{
+object finDelJuego{
 	
 	method configuracionInicial(){
 	    

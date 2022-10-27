@@ -27,6 +27,10 @@ class Proyectil {
     	game.removeVisual(self)
     }
     
+    method chocasteConBorde() {
+		game.removeVisual(self)
+	}
+	
     method chocasteConJugador() {}
     
     method agregarse(){
@@ -60,9 +64,7 @@ class ProyectilEnemigo inherits Proyectil(tipoProyectil = enemigo) {
 		personaje.disminuirVida()
 	}
 	
-	method chocasteConBorde() {
-		game.removeVisual(self)
-	}
+	
 }
 
 

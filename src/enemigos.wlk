@@ -86,7 +86,7 @@ const zombieEsqueleto = new EspecieEnemigo (vida = 4, image = "zombieEsqueleto.p
 const zombieEsqueletoBalde = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoBalde.png", velocidad = 2500)
 const zombieEsqueletoHalloween = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoHalloween.png", velocidad = 2500)
 
-const especieBoss = new EspecieEnemigo(vida = 15, image = "wollokGigante.png", velocidad = 4000)
+const especieBoss = new EspecieEnemigo(vida = 20,image = "wollokGigante.png", velocidad = 4000)
 
 
 

@@ -9,7 +9,7 @@ object juego {
 	
 	method iniciar() {
 		self.configurarJuego()
-		nivel_0.configuracionInicial()
+		inicio.configuracionInicial()
 		game.start()
 		
 	}
@@ -84,12 +84,15 @@ class Borde {
 }
 
 object generacionBordes {
-	method crearBordesIzquierdos(bordesDeUnNivel) { 
+	method crearBordes(bordesDeUnNivel) { 
 		
 		(game.height()-1).times({n => self.crearUnBordeEnLista(n-1, bordesDeUnNivel)})
 		
 	}
-	method crearUnBordeEnLista(posicion,listaBordes) = listaBordes.add(new Borde(position = game.at(0,posicion)))
+	method crearUnBordeEnLista(posicion,listaBordes) {
+		listaBordes.add(new Borde(position = game.at(0,posicion)))
+		listaBordes.add(new Borde (position=game.at(16,posicion)))
+	} 
 }
 
 
@@ -110,9 +113,11 @@ const fondoNivel_2 = new Visual(image = "lava.png", position = game.at(1,0))
 const fondoNivel_3 = new Visual (image = "fondo3.png", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))
 
-object music1 {
+
+
+class Musica {
 	
-	const theme = game.sound("music2.mp3")
+	const theme 
 	
 	method play() {
 		theme.volume(0.5)
@@ -123,67 +128,14 @@ object music1 {
 	method stop() {
 		theme.stop()
 	}
+		
 }
 
-object music2 {
-	
-	const theme = game.sound("music1.mp3")
-	
-	method play() {
-		theme.volume(0.5)
-		theme.shouldLoop(true)
-		game.schedule(10, {theme.play()})
-	}
-	
-	method stop() {
-		theme.stop()
-	}
-}
-
-object music3 {
-	
-	const theme = game.sound("music3.mp3")
-	
-	method play() {
-		theme.volume(0.5)
-		theme.shouldLoop(true)
-		game.schedule(10, {theme.play()})
-	}
-	
-	method stop() {
-		theme.stop()
-	}
-}
-
-object musicWinning {
-	
-	const theme = game.sound("winning.mp3")
-	
-	method play() {
-		theme.volume(0.5)
-		theme.shouldLoop(true)
-		game.schedule(10, {theme.play()})
-	}
-	
-	method stop() {
-		theme.stop()
-	}
-}
-
-object musicLosing {
-	
-	const theme = game.sound("gameovermusic.mp3")
-	
-	method play() {
-		theme.volume(0.5)
-		theme.shouldLoop(true)
-		game.schedule(10, {theme.play()})
-	}
-	
-	method stop() {
-		theme.stop()
-	}
-}
+const music1 = new Musica (theme = game.sound("music2.mp3"))
+const music2 = new Musica(theme = game.sound("music1.mp3"))
+const music3 = new Musica(theme = game.sound("music3.mp3"))
+const musicWinning = new Musica(theme = game.sound("winning.mp3"))
+const musicLosing = new Musica(theme = game.sound("gameovermusic.mp3"))
 
 
 object hitSound {

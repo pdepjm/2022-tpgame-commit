@@ -9,7 +9,7 @@ import inventarioPersonaje.*
 object personaje {
 
 	/************    ATRIBUTOS    ***************/
-    var property vida = [new Corazon (image = "corazon0.png"), new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
+    var property vida = 5
 	var property enemigosMatados = 0
 	var property nivelActual = nivel_1
     var property position = game.center()
@@ -20,7 +20,7 @@ object personaje {
 	/************    CONFIG INICIAL    ***************/
     method configurarAcciones() {
 			
-		vida.forEach{corazon => corazon.agregarse()}
+		corazon.agregarse()
 		cargador.agregarProyectiles()
 		game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
@@ -35,20 +35,20 @@ object personaje {
 	
 	method aumentarTodaLaVida() {
 		
-		vida = [new Corazon (image = "corazon0.png"), new Corazon(image = "corazon1.png"), new Corazon(image = "corazon2.png"), new Corazon(image = "corazon3.png"), new Corazon(image = "corazon4.png"), new Corazon(image = "corazon5.png")]
-		vida.forEach{corazon => corazon.agregarse()}	
+		vida = 5
+			
 	}
 	
 	method disminuirVida() {
 
-		if (vida.size() > 0) {
-		 
+		if (vida > 0) {
+		 	
+		 	vida -=1 
 			hitSound.play()
-			game.removeVisual(vida.last())
-			vida.remove(vida.last())
+			
 		}
 		
-		if(vida.size()-1 == 0)
+		if(vida == 0)
 		{
 			self.nivelActual().musica().stop()
 			nivelActual.perder()
@@ -113,10 +113,10 @@ object personaje {
 	
 }
 
-class Corazon {
+object corazon {
     const property position = game.at(0,11)
     
-    var property image
+   method image() = "corazon" + personaje.vida() + ".png"
 	
 	method agregarse(){
 		game.addVisual(self)
