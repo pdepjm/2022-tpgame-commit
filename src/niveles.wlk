@@ -10,7 +10,7 @@ object inicio {
 	var siguienteNivelConfigurado = false
 		
 	method configuracionInicial(){
-		
+		personaje.configuracionInicial()
 		game.addVisual(fondoIntroNivel_0)
 		keyboard.e().onPressDo{self.iniciarJuego()}
 	}
@@ -24,11 +24,9 @@ object inicio {
 	
 	method configurarInicioJuego() {
 		game.removeVisual(fondoIntroNivel_0)
-		//game.addVisual(fondoIntroNivel_1)
-		//music1.play()
 		game.schedule(5100, {juego.configuracionTeclado()})
-		game.schedule(5100, {personaje.configurarAcciones()})
 		game.schedule(5000, {nivel_1.configuracionInicial()})
+		game.schedule(5000, {juego.agregarBordes()})
 
 	}
 }
@@ -39,23 +37,89 @@ class Nivel{
 	var property oleada3
 	var property elementosEspeciales
 	const property musica
+	const siguienteNivel
+	var tiempoOleada1
+	var tiempoOleada2
 	const imagenIntro
 	const fondoNivel
-	const bordes = []
 
 	
 	method puntosAConseguir() = oleada1.size() + oleada2.size() + oleada3.size()
 	
 	method configuracionInicial() {
 		game.addVisual(imagenIntro)
+		musica.play()
 		game.schedule(1000, game.removeVisual(imagenIntro))
-		game.schedule
-		
+		game.schedule(1000, game.addVisual(fondoNivel))
+		game.schedule(1100, personaje.agregarse())
+		self.agregarElementosEspeciales()
+		self.configuracionOleadaEnemigos()
+			
 	}
 
+	method configuracionOleadaEnemigos() {
+
+		oleada1.forEach{unEnemigo => unEnemigo.agregarse()}
+		game.schedule(tiempoOleada2, {oleada2.forEach{unEnemigo=> unEnemigo.agregarse()}})
+		game.schedule(tiempoOleada3, {oleada3.forEach{unEnemigo=> unEnemigo.agregarse()}})
+	}
+
+	method agregarElementosEspeciales() {
+		
+		elementosEspeciales.forEach{unElemento => unElemento.agregarse()}
+	}	
+
+	method eliminarTodo() {
+
+		musica.stop()
+		game.removeVisual(fondoNivel)
+		siguienteNivel.configuracionInicial()
+	}
+
+	method perder(){
+		musica.stop()
+		gameOver.finalizarJuego()
+	}
 
 }
+/******** INSTANCIAS DE NIVELES **********/
+const nivel_1 =
+	new Nivel(
+			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta)],
+ 			oleada2 = [new Enemigo(especie = zombieBeta, position = game.at(14, 2)), new Enemigo(especie= zombieAlfa, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieAlfa), new Enemigo (position = game.at(14, 5), especie = zombieAlfa), new Enemigo(position = game.at(14, 3), especie = zombieBeta)],			
+			oleada3 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 6)), new Enemigo(especie= zombieAlfa, position = game.at(15, 4)), new Enemigo(position = game.at(15, 10), especie = zombieAlfa), new Enemigo (position = game.at(14, 8), especie = zombieAlfa), new Enemigo(position = game.at(14, 5), especie = zombieBeta)],
+			musica = music1,
+			siguienteNivel = nivel_2,
+			tiempoOleada1 = 10000,
+			tiempoOleada2 = 17000,
+			imagenIntro = fondoIntroNivel_1,
+			fondoNivel = fondoNivel_1)
 
+const nivel_2 =
+	new Nivel(
+			oleada1 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 3)), new Enemigo(especie= zombieEsqueletoHalloween, position = game.at(15, 6)), new Enemigo(position = game.at(15, 8), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 9), especie = zombieEsqueleto), new Enemigo(position = game.at(14,2), especie = zombieEsqueletoHalloween)],
+ 			oleada2 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueletoBalde, position = game.at(15, 5)), new Enemigo(position = game.at(15, 7), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 8), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14,9), especie = zombieEsqueletoHalloween)],
+			oleada3 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 3)), new Enemigo(especie= zombieEsqueletoHalloween, position = game.at(15, 6)), new Enemigo(position = game.at(15, 8), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueletoBalde), new Enemigo(position = game.at(14, 9), especie = zombieEsqueletoBalde), new Enemigo(position = game.at(14,5), especie = zombieEsqueletoHalloween)],
+			musica = music2,
+			siguienteNivel = nivel_3,
+			tiempoOleada1 = 15000,
+			tiempoOleada2 = 25000,
+			imagenIntro = fondoIntroNivel_2,
+			fondoNivel = fondoNivel_)
+
+const nivel_3 =
+	new Nivel(
+			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta), new Enemigo(position = game.at(14, 6), especie = zombieAlfa)]
+ 			oleada2 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueleto, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 5), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 3), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14, 2), especie = zombieEsqueletoBalde)]
+			oleada3 = [boss],
+			musica = music3,
+			siguienteNivel = finDelJuego,
+			tiempoOleada1 = 15000,
+			tiempoOleada2 = 20000,
+			imagenIntro = fondoIntroNivel_3,
+			fondoNivel = fondoNivel_3)
+
+/*
 object nivel_1 {
 	
 	const enemigos1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta)]
@@ -78,17 +142,10 @@ object nivel_1 {
 	}
 
 	method configuracionOleadaEnemigos() {
-		enemigos1.forEach{unEnemigo=> unEnemigo.agregarse()}
-		game.schedule(10000, {enemigos2.forEach{unEnemigo=> unEnemigo.agregarse()}})
-		game.schedule(17000, {enemigos3.forEach{unEnemigo=> unEnemigo.agregarse()}})
+		
 	}
 	
-	method agregarElementosEspeciales() {
 		
-		bordes.forEach{unBorde=> unBorde.agregarse()}
-		mina.agregarse()
-		balaChetada.agregarse() 
-	}		
 
 	method configurarSiguienteNivel() {
 		music1.stop()
@@ -203,6 +260,7 @@ object nivel_3 {
 	
 }
 
+*/
 object finDelJuego{
 	
 	method configuracionInicial(){
