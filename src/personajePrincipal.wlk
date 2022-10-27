@@ -15,16 +15,27 @@ object personaje {
     var property position = game.center()
 	const property cargador = municion
 
+
 	method image() = "personaje.png"   
 	
 	/************    CONFIG INICIAL    ***************/
-    method configurarAcciones() {
-			
-		corazon.agregarse()
-		cargador.agregarProyectiles()
+    
+	method configuracionInicial() {
 		game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
 		
 	}
+	
+	method agregarse() {	
+		if (!game.hasVisual(self)) {
+			corazon.agregarse()
+			cargador.agregarProyectiles()
+			game.addVisual(self)
+		}
+		self.aumentarTodaLaVida()
+		self.renovarCargador()
+	}
+
+
 	
 	method moverA(unaDireccion) {
 		
@@ -103,7 +114,7 @@ object personaje {
 		if(enemigosMatados == nivelActual.puntosAConseguir() ){
 			game.say(self,"¡Pasaste de nivel!")
 			
-			nivelActual.configurarSiguienteNivel()
+			nivelActual.eliminarTodo()
 			nivelActual = nivelActual.siguienteNivel()
 			enemigosMatados = 0
 		}
@@ -125,4 +136,5 @@ object corazon {
 	method chocasteConBorde(){
 		
 	}
+
 }

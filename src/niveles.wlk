@@ -24,9 +24,9 @@ object inicio {
 	
 	method configurarInicioJuego() {
 		game.removeVisual(fondoIntroNivel_0)
-		game.schedule(5100, {juego.configuracionTeclado()})
+		game.schedule(5100, {teclado.configurarTeclas()})
 		game.schedule(5000, {nivel_1.configuracionInicial()})
-		game.schedule(5000, {juego.agregarBordes()})
+		game.schedule(5000, {juego.crearBordes()})
 
 	}
 }
@@ -38,8 +38,8 @@ class Nivel{
 	var property elementosEspeciales
 	const property musica
 	const siguienteNivel
-	var tiempoOleada1
 	var tiempoOleada2
+	var tiempoOleada3
 	const imagenIntro
 	const fondoNivel
 
@@ -49,9 +49,9 @@ class Nivel{
 	method configuracionInicial() {
 		game.addVisual(imagenIntro)
 		musica.play()
-		game.schedule(1000, game.removeVisual(imagenIntro))
-		game.schedule(1000, game.addVisual(fondoNivel))
-		game.schedule(1100, personaje.agregarse())
+		game.schedule(1000, {game.removeVisual(imagenIntro)})
+		game.schedule(1000, {game.addVisual(fondoNivel)})
+		game.schedule(1100, {personaje.agregarse()})
 		self.agregarElementosEspeciales()
 		self.configuracionOleadaEnemigos()
 			
@@ -88,10 +88,11 @@ const nivel_1 =
 			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta)],
  			oleada2 = [new Enemigo(especie = zombieBeta, position = game.at(14, 2)), new Enemigo(especie= zombieAlfa, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieAlfa), new Enemigo (position = game.at(14, 5), especie = zombieAlfa), new Enemigo(position = game.at(14, 3), especie = zombieBeta)],			
 			oleada3 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 6)), new Enemigo(especie= zombieAlfa, position = game.at(15, 4)), new Enemigo(position = game.at(15, 10), especie = zombieAlfa), new Enemigo (position = game.at(14, 8), especie = zombieAlfa), new Enemigo(position = game.at(14, 5), especie = zombieBeta)],
+			elementosEspeciales = [mina, balaChetada],
 			musica = music1,
 			siguienteNivel = nivel_2,
-			tiempoOleada1 = 10000,
-			tiempoOleada2 = 17000,
+			tiempoOleada2 = 10000,
+			tiempoOleada3 = 17000,
 			imagenIntro = fondoIntroNivel_1,
 			fondoNivel = fondoNivel_1)
 
@@ -100,24 +101,28 @@ const nivel_2 =
 			oleada1 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 3)), new Enemigo(especie= zombieEsqueletoHalloween, position = game.at(15, 6)), new Enemigo(position = game.at(15, 8), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 9), especie = zombieEsqueleto), new Enemigo(position = game.at(14,2), especie = zombieEsqueletoHalloween)],
  			oleada2 = [new Enemigo(especie = zombieEsqueleto, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueletoBalde, position = game.at(15, 5)), new Enemigo(position = game.at(15, 7), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 8), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14,9), especie = zombieEsqueletoHalloween)],
 			oleada3 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 3)), new Enemigo(especie= zombieEsqueletoHalloween, position = game.at(15, 6)), new Enemigo(position = game.at(15, 8), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 4), especie = zombieEsqueletoBalde), new Enemigo(position = game.at(14, 9), especie = zombieEsqueletoBalde), new Enemigo(position = game.at(14,5), especie = zombieEsqueletoHalloween)],
+			elementosEspeciales = [mina,curita, balaInfinito],
 			musica = music2,
 			siguienteNivel = nivel_3,
-			tiempoOleada1 = 15000,
-			tiempoOleada2 = 25000,
+			tiempoOleada2 = 15000,
+			tiempoOleada3 = 25000,
 			imagenIntro = fondoIntroNivel_2,
-			fondoNivel = fondoNivel_)
+			fondoNivel = fondoNivel_2
+			)
 
 const nivel_3 =
 	new Nivel(
-			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta), new Enemigo(position = game.at(14, 6), especie = zombieAlfa)]
- 			oleada2 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueleto, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 5), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 3), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14, 2), especie = zombieEsqueletoBalde)]
+			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta), new Enemigo(position = game.at(14, 6), especie = zombieAlfa)],
+ 			oleada2 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueleto, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 5), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 3), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14, 2), especie = zombieEsqueletoBalde)],
 			oleada3 = [boss],
+			elementosEspeciales = [mina,curita],
 			musica = music3,
 			siguienteNivel = finDelJuego,
-			tiempoOleada1 = 15000,
-			tiempoOleada2 = 20000,
+			tiempoOleada2 = 15000,
+			tiempoOleada3 = 20000,
 			imagenIntro = fondoIntroNivel_3,
-			fondoNivel = fondoNivel_3)
+			fondoNivel = fondoNivel_3
+			)
 
 /*
 object nivel_1 {

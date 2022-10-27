@@ -7,6 +7,8 @@ import niveles.*
 
 object juego {
 	
+	var bordesDelJuego = []
+	
 	method iniciar() {
 		self.configurarJuego()
 		inicio.configuracionInicial()
@@ -19,6 +21,7 @@ object juego {
 		game.width(12)
 		game.height(12)
 		game.cellSize(100)
+		game.boardGround("grass00.png")
 	}
 
 	method agregarPersonajes() {
@@ -31,7 +34,15 @@ object juego {
 		musicWinning.play()
 		game.addVisual(finDeJuego)
 	}
-
+	
+	method crearBordes() { 
+		(game.height()-1).times({n => self.crearUnBordeEnLista(n-1, bordesDelJuego)})
+		
+	}
+	method crearUnBordeEnLista(posicion,listaBordes) {
+		listaBordes.add(new Borde(position = game.at(0,posicion)))
+		listaBordes.add(new Borde (position=game.at(16,posicion)))
+	}
 }
 
 object teclado {
@@ -54,7 +65,7 @@ object gameOver {
 	method finalizarJuego(){
 		
 		if (!game.hasVisual(self)) {
-
+			boss.dejarDeDisparar()
 			game.schedule(20000, {game.stop()})
 			game.schedule(19999, {game.clear()})
 			game.addVisual(self) 
@@ -144,5 +155,4 @@ object hitSound {
 		game.sound("hit.mp3").play()
 	}
 }
-
 

@@ -41,7 +41,7 @@ class Enemigo {
 	
 	/*** CHOCAR CON  ***/
 	method chocasteConBorde() {
-		personaje.nivelActual().perder() 
+		gameOver.finalizarJuego() 
 	}
 	method chocasteConEnemigo(unEnemigo){}
 	method chocasteConJugador() {}
@@ -69,6 +69,20 @@ object boss inherits Enemigo(position = game.at(11,6), especie = especieBoss ){
 			game.removeTickEvent("BolaBoss")
 		}
 	}
+
+	override method agregarse() {
+		game.addVisual(self)
+		game.onCollideDo(self,{unElemento=>unElemento.chocasteConEnemigo(self)})
+	    game.onTick(velocidad, "Movimiento Enemigo: " + self.toString(), {self.moverse()})
+		game.onTick(1500, "BolaBoss", {self.dispararPersonaje()})
+	}
+
+	method dejarDeDisparar() {
+		if (game.hasVisual(self)) {
+
+			game.removeTickEvent("BolaBoss")
+		}
+	}
 }
 
 /**********   ESPECIES DE ENEMIGOS  *************/
@@ -86,8 +100,7 @@ const zombieEsqueleto = new EspecieEnemigo (vida = 4, image = "zombieEsqueleto.p
 const zombieEsqueletoBalde = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoBalde.png", velocidad = 2500)
 const zombieEsqueletoHalloween = new EspecieEnemigo (vida = 6, image = "zombieEsqueletoHalloween.png", velocidad = 2500)
 
-const especieBoss = new EspecieEnemigo(vida = 20,image = "wollokGigante.png", velocidad = 4000)
-
+const especieBoss = new EspecieEnemigo(vida = 15, image = "wollokGigante.png", velocidad = 4000)
 
 
 
