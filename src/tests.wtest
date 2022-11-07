@@ -58,8 +58,6 @@ describe "Jugador"{
 		
 	}
 
-
-
 }
 
 describe "Enemigo"{

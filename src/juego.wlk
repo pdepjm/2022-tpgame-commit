@@ -21,7 +21,6 @@ object juego {
 		game.width(12)
 		game.height(12)
 		game.cellSize(100)
-		//game.boardGround("grass00.png")
 	}
 
 	method agregarPersonajes() {
