@@ -27,13 +27,15 @@ object personaje {
 	}
 	
 	method agregarse() {	
-		//if (!game.hasVisual(self)) {
-			corazon.agregarse()
-			cargador.agregarProyectiles()
-			game.addVisual(self)
-		//}
+		cargador.agregarProyectiles()
 		self.aumentarTodaLaVida()
+		game.addVisual(self)
 		self.renovarCargador()
+	}
+	
+	method agregarVida(){
+			corazon.agregarse()
+			
 	}
 
 

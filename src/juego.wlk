@@ -21,6 +21,7 @@ object juego {
 		game.width(12)
 		game.height(12)
 		game.cellSize(100)
+		//game.boardGround("grass00.png")
 	}
 
 	method agregarPersonajes() {
@@ -119,7 +120,7 @@ const fondoIntroNivel_0 = new Visual (image = "fondoInicial.png", position = gam
 const fondoIntroNivel_1 = new Visual (image = "LEVEL1.png", position = game.at(0,0))
 const fondoIntroNivel_2 = new Visual (image = "LEVEL2.png", position = game.at(0,0))
 const fondoIntroNivel_3 = new Visual (image = "LEVEL3.png", position = game.at(0,0))
-const fondoNivel_1 = new Visual(image = "grass00.png", position = game.at(1,0))
+const fondoNivel_1 = new Visual(image = "grass00.png", position = game.at(0,0))
 const fondoNivel_2 = new Visual(image = "lava.png", position = game.at(1,0))
 const fondoNivel_3 = new Visual (image = "fondo3.png", position = game.at(1,0))
 const finDeJuego = new Visual (image = "FIN.png", position = game.at(0,0))

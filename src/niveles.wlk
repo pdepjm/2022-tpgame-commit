@@ -24,9 +24,11 @@ object inicio {
 	
 	method configurarInicioJuego() {
 		game.removeVisual(fondoIntroNivel_0)
-		game.schedule(5100, {teclado.configurarTeclas()})
-		game.schedule(5000, {nivel_1.configuracionInicial()})
-		game.schedule(5000, {juego.crearBordes()})
+		game.schedule(1100, {teclado.configurarTeclas()})
+		nivel_1.configuracionInicial()
+		game.schedule(3520, {juego.crearBordes()
+							personaje.agregarVida()
+		})
 
 	}
 }
@@ -49,13 +51,14 @@ class Nivel{
 	method configuracionInicial() {
 		game.addVisual(imagenIntro)
 		musica.play()
-		game.schedule(2500, {game.removeVisual(imagenIntro)})
-		game.schedule(2500, {game.addVisual(fondoNivel)})
-		game.schedule(2600, {personaje.configuracionInicial()})
+		
+		game.schedule(3500, {game.removeVisual(imagenIntro)
+							game.addVisual(fondoNivel)})
+		game.schedule(3600, {personaje.configuracionInicial()})
 
-		self.agregarElementosEspeciales()
-		self.configuracionOleadaEnemigos()
-			
+		game.schedule(3550, {self.agregarElementosEspeciales()})
+		game.schedule(3600, {self.configuracionOleadaEnemigos()})
+		
 	}
 
 	method configuracionOleadaEnemigos() {
@@ -97,7 +100,8 @@ const nivel_1 =
 			tiempoOleada2 = 10000,
 			tiempoOleada3 = 17000,
 			imagenIntro = fondoIntroNivel_1,
-			fondoNivel = fondoNivel_1)
+			fondoNivel = fondoNivel_1
+			)
 
 const nivel_2 =
 	new Nivel(
