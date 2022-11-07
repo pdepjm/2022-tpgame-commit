@@ -35,7 +35,7 @@ describe "Jugador"{
 	test "El jugador recupera la vida que perdió al chocarse con la curita"{
 		game.addVisual(curita)
 		curita.chocasteConJugador()
-		assert.equals((personaje.vida()).size(),6)
+		assert.equals(5, personaje.vida())
 
 	}
 	
