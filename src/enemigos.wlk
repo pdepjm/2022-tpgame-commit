@@ -33,10 +33,10 @@ class Enemigo {
 			vida -= cant
 		
 		if (vida<=0) {
+			personaje.sumarPuntos()
 			if(game.hasVisual(self)){
 			game.removeVisual(self)
 			}
-			personaje.sumarPuntos()
 		}
 			
 	}
@@ -66,8 +66,8 @@ object boss inherits Enemigo(position = game.at(11,6), especie = especieBoss ){
 			vida -= cant
 		
 		if (vida<=0) {
-			game.removeVisual(self)
 			personaje.sumarPuntos()
+			game.removeVisual(self)
 			game.removeTickEvent("BolaBoss")
 		}
 	}

@@ -36,6 +36,7 @@ class Nivel{
 	var property oleada1
 	var property oleada2
 	var property oleada3
+	var property oleadas = oleada1 + oleada2 + oleada3
 	var property elementosEspeciales
 	const property musica
 	const property siguienteNivel
@@ -43,9 +44,9 @@ class Nivel{
 	var tiempoOleada3
 	const imagenIntro
 	const fondoNivel
-
 	
-	method puntosAConseguir() = oleada1.size() + oleada2.size() + oleada3.size()
+	
+	method puntosAConseguir() = oleadas.size()
 	
 	method configuracionInicial(){
 		game.addVisual(imagenIntro)
@@ -135,8 +136,7 @@ const nivel_3 =
 object finDelJuego{
 	
 	method configuracionInicial(){
-		game.say(personaje, "Ganaste!")
-		game.schedule(1500, {=> juego.ganar()})
+		game.schedule(700, {=> juego.ganar()})
 	}
 
 }

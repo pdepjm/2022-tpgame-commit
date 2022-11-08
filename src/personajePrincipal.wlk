@@ -113,7 +113,7 @@ object personaje {
 	
 	method sumarPuntos(){
 		
-		enemigosMatados+=1 
+		enemigosMatados ++ 
 
 		if(enemigosMatados == nivelActual.puntosAConseguir() ){
 			game.say(self,"¡Pasaste de nivel!")

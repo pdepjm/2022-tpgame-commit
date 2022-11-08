@@ -84,7 +84,8 @@ describe "Enemigo"{
 	test "Una mina plantada elimina a enemigos con poca vida" {
 		
 		game.addVisual(mina)
-		mina.plantarse() 
+		mina.position(game.at(0,0))
+		mina.estaPlantada(true)
 		game.addVisual(enemigoMayor)
 		mina.chocasteConEnemigo(enemigoMayor)
 		assert.notThat(game.hasVisual(enemigoMayor))
@@ -93,7 +94,8 @@ describe "Enemigo"{
 	test "Una mina plantada no puede eliminar al Boss" {
 		
 		game.addVisual(mina)
-		mina.plantarse()
+		mina.position(game.at(0,0))
+		mina.estaPlantada(true)
 		game.addVisual(boss)
 		mina.chocasteConEnemigo(boss)
 		assert.that(game.hasVisual(boss))
