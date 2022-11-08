@@ -14,6 +14,7 @@ object personaje {
 	var property nivelActual = nivel_1
     var property position = game.center()
 	const property cargador = municion
+	var property minas = 0
 
 
 	method image() = "personaje.png"   
@@ -23,12 +24,14 @@ object personaje {
 	method configuracionInicial() {
 		self.agregarse()
 		game.onCollideDo(self,{unElemento => unElemento.chocasteConJugador()})
+		minaInventario.agregarse()
 		
 	}
 	
 	method agregarse() {	
 		cargador.agregarProyectiles()
 		self.aumentarTodaLaVida()
+		self.minas(0)
 		game.addVisual(self)
 		self.renovarCargador()
 	}
@@ -37,8 +40,6 @@ object personaje {
 			corazon.agregarse()
 			
 	}
-
-
 	
 	method moverA(unaDireccion) {
 		
@@ -98,7 +99,7 @@ object personaje {
 	
 	method disparar() {
 		
-		if (cargador.tamanio() > 0) {
+		if (cargador.tamanio() > 0 && game.hasVisual(self)) {
 		
 			const otroProyectil = new Proyectil(tipoProyectil = municion.tipoMunicion())
 			game.addVisual(otroProyectil)
@@ -122,7 +123,10 @@ object personaje {
 			enemigosMatados = 0
 		}
 	}
-
+	
+	method aumentarMinas(cantMinas){
+		minas = (minas + cantMinas).max(0)
+	}
 
 	
 }

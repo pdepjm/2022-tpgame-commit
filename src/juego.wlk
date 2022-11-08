@@ -52,7 +52,7 @@ object teclado {
 		keyboard.right().onPressDo({personaje.moverA(derecha)})
 		keyboard.left().onPressDo({personaje.moverA(izquierda)})  
 		keyboard.down().onPressDo({personaje.moverA(abajo)}) 
-		keyboard.space().onPressDo({personaje.disparar()})
+		keyboard.space().onPressDo({if(game.hasVisual(personaje)){personaje.disparar()}})
 		keyboard.r().onPressDo({personaje.recargarBalas()})
 		
 	}

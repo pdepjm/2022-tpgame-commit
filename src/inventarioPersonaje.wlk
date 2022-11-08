@@ -33,3 +33,18 @@ import wollok.game.*
 	method tamanio() = elCargador.size()
 }
 
+object minaInventario{
+	const property position = game.at(1,11)
+	
+	method image() = "mina" + personaje.minas() + ".png"
+	
+	method agregarse(){
+	 game.addVisual(self)
+	}
+}
+
+
+	
+	
+
+

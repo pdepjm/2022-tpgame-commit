@@ -44,17 +44,17 @@ describe "Jugador"{
 		game.addVisual(personaje)
 		game.addVisual(mina)
 		mina.chocasteConJugador() 
-		assert.that(mina.enInventario())
+		assert.equals(1,personaje.minas())
 	}
 
 	test "Cuando el jugador planta una mina, permanece en esa posición y no puede volver a plantarla" {
 		
+		game.addVisual(personaje)
 		game.addVisual(mina)
-		mina.enInventario(true)
 		mina.position(game.at(0,2))
-		mina.plantarseSoloUnaVez()
 		mina.chocasteConJugador() 
-		assert.notThat(mina.enInventario())
+		mina.plantarse()
+		assert.equals(0,personaje.minas())
 		
 	}
 
@@ -103,7 +103,7 @@ describe "Enemigo"{
 describe "Cargador" {
 	
 	test "Cuando el personaje dispara, tiene una bala menos en su inventario" {
-		
+		game.addVisual(personaje)
 		municion.agregarProyectiles()
 		personaje.disparar()
 		assert.equals(municion.elCargador().size(),4)

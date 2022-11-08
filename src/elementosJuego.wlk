@@ -152,37 +152,32 @@ object balaInfinito inherits ElementoEspecial (imagen = "lapiz.png", tiempoHasta
 
 object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion = 4000, tiempoEnPantalla = 39000){
 	
-	var property enInventario = false 
 	var property estaPlantada = false
 	
 	method chocasteConJugador(){ 
 		if(!estaPlantada){
 			keyboard.f().onPressDo({self.plantarseSoloUnaVez()})
 			game.removeVisual(self)
-			self.ponerEnInventario()
+			personaje.aumentarMinas(1)
+			game.say(personaje, "Tenes una mina en el inventario! Plantala con F!")
 		}
 	}
 	
 	method plantarseSoloUnaVez() { 
-		if (!estaPlantada && enInventario) self.plantarse()   
+		if (!estaPlantada ) self.plantarse()   
 	}
 	
 	method plantarse() {
+		if(personaje.minas()>0){
 		self.position(personaje.position())
-		self.estaPlantada(true)
-		self.enInventario(false)
-	}
-
-	method ponerEnInventario(){
-		self.enInventario(true)
-		self.position(game.at(5, 11))
 		game.addVisual(self)
-		game.say(personaje, "Tenes una mina en el inventario! Plantala con F!")
+		self.estaPlantada(true)
+		personaje.aumentarMinas(-1)
+		}
 	}
 	
 	override method chocasteConEnemigo(elEnemigo) {
 		if(estaPlantada) {
-	   		//hitSound.play()
 			elEnemigo.disminuirVida(6)
     		self.estaPlantada(false)
     		game.removeVisual(self)
@@ -190,7 +185,6 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 	
 	override method agregarse() {
-		self.enInventario(false)
 		self.estaPlantada(false)
 		position = aleatorio.dondeAparecer() 
 		game.schedule(tiempoHastaAparicion,{=> self.apareceSiNoPerdio()})
@@ -198,7 +192,7 @@ object mina inherits ElementoEspecial (imagen = "mina.png", tiempoHastaAparicion
 	}
 	
 	method sacalaSiNoEstaEnInventario() {
-		if (enInventario) {}
+		if (personaje.minas()!=0) {}
 		else self.sacaloSiEsta()
 	}
 	
