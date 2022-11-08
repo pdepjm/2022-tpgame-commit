@@ -136,7 +136,7 @@ const nivel_3 =
 object finDelJuego{
 	
 	method configuracionInicial(){
-		game.schedule(700, {=> juego.ganar()})
+		game.schedule(300, {=> juego.ganar()})
 	}
 
 }

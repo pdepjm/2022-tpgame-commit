@@ -116,8 +116,6 @@ object personaje {
 		enemigosMatados ++ 
 
 		if(enemigosMatados == nivelActual.puntosAConseguir() ){
-			game.say(self,"¡Pasaste de nivel!")
-			
 			nivelActual.eliminarTodo()
 			nivelActual = nivelActual.siguienteNivel()
 			enemigosMatados = 0
