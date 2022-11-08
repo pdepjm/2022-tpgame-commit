@@ -61,6 +61,7 @@ class ProyectilEnemigo inherits Proyectil(tipoProyectil = enemigo) {
 	override method chocasteConEnemigo(elEnemigo) { }
 
 	override method chocasteConJugador() {
+		game.removeVisual(self)
 		personaje.disminuirVida()
 	}
 	
