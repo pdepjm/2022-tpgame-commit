@@ -114,13 +114,15 @@ object personaje {
 	method sumarPuntos(){
 		
 		enemigosMatados++ 
-		game.say(self,"cant"+enemigosMatados)
+		game.say(corazon,"cant"+enemigosMatados)
 
 		if(enemigosMatados == nivelActual.puntosAConseguir() ){
 			game.say(self,"¡Pasaste de nivel!")
 			
+			
 			nivelActual.eliminarTodo()
-			nivelActual = nivelActual.siguienteNivel()
+			if(nivelActual!=nivel_3){
+					nivelActual = nivelActual.siguienteNivel()}
 			enemigosMatados = 0
 		}
 	}
@@ -144,5 +146,6 @@ object corazon {
 	method chocasteConBorde(){
 		
 	}
+	
 
 }
