@@ -117,8 +117,6 @@ object personaje {
 		game.say(corazon,"cant"+enemigosMatados)
 
 		if(enemigosMatados == nivelActual.puntosAConseguir() ){
-			game.say(self,"¡Pasaste de nivel!")
-			
 			
 			nivelActual.eliminarTodo()
 			if(nivelActual!=nivel_3){
