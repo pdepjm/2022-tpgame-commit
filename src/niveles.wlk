@@ -36,7 +36,6 @@ class Nivel{
 	var property oleada1
 	var property oleada2
 	var property oleada3
-	var property oleadas = oleada1 + oleada2 + oleada3
 	var property elementosEspeciales
 	const property musica
 	const property siguienteNivel
@@ -46,7 +45,9 @@ class Nivel{
 	const fondoNivel
 	
 	
-	method puntosAConseguir() = oleadas.size()
+	method oleadas() = oleada1 + oleada2 + oleada3
+	
+	method puntosAConseguir() = self.oleadas().size()
 	
 	method configuracionInicial(){
 		game.addVisual(imagenIntro)

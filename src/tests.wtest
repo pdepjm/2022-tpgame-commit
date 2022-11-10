@@ -122,6 +122,7 @@ describe "Cargador" {
 		
 		const proyectilChetado = new Proyectil(tipoProyectil = chetado)
 		
+
 		game.addVisual(proyectilChetado)
 		game.addVisual(enemigoMayor) // enemigo de vida 2
 		proyectilChetado.chocasteConEnemigo(enemigoMayor)

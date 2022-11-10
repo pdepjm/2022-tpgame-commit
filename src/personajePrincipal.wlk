@@ -114,7 +114,6 @@ object personaje {
 	method sumarPuntos(){
 		
 		enemigosMatados++ 
-		game.say(corazon,"cant"+enemigosMatados)
 
 		if(enemigosMatados == nivelActual.puntosAConseguir() ){
 			
