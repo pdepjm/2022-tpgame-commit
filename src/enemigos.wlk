@@ -32,11 +32,11 @@ class Enemigo {
 			
 			vida -= cant
 		
-		if (vida<=0) {
+		if (vida<=0 && game.hasVisual(self)) {
+			
 			personaje.sumarPuntos()
-			if(game.hasVisual(self)){
 			game.removeVisual(self)
-			}
+			
 		}
 			
 	}
