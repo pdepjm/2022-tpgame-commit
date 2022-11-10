@@ -1,6 +1,137 @@
+import direcciones.*
+import elementosJuego.*
+import juego.*
+import niveles.*
+import personajePrincipal.*
+import inventarioPersonaje.*
+import enemigos.*
+import wollok.game.*
 
-test "testX" {
+const unEnemigo = new Enemigo(position = game.at(0,0), especie = zombieBeta)
+	
+const enemigoMayor = new Enemigo(position=game.at(0,0), especie = zombieAlfa)
 
-	assert.that(true)
+const algunProyectil = new Proyectil(tipoProyectil = comun)
+
+
+describe "Jugador"{
+	
+	test "Al moverse hacia arriba, el jugador actualiza su posición" {
+
+		personaje.position(game.at(0,0))
+		personaje.moverA(arriba)
+		assert.equals(personaje.position(),game.at(0,1))
+	}
+	
+	
+	test "Al chocarse con el borde, el personaje se mantiene en la misma posición en la que estaba" {
+		
+		personaje.position(game.at(1,10))
+		personaje.chocasteConBorde()
+		assert.equals(personaje.position(),game.at(1,10))
+		
+	}
+
+	test "El jugador recupera la vida que perdió al chocarse con la curita"{
+		game.addVisual(curita)
+		curita.chocasteConJugador()
+		assert.equals(5, personaje.vida())
+
+	}
+	
+	test "Al levantar una mina el jugador puede luego plantarla" {
+		
+		game.addVisual(personaje)
+		game.addVisual(mina)
+		mina.chocasteConJugador() 
+		assert.equals(1,personaje.minas())
+	}
+
+	test "Cuando el jugador planta una mina, permanece en esa posición y no puede volver a plantarla" {
+		
+		game.addVisual(personaje)
+		game.addVisual(mina)
+		mina.position(game.at(0,2))
+		mina.chocasteConJugador() 
+		mina.plantarse()
+		assert.equals(0,personaje.minas())
+		
+	}
 
 }
+
+describe "Enemigo"{
+
+
+	test "Cuando se le dispara, el enemigo pierde vida " {
+		
+		game.addVisual(enemigoMayor)
+		game.addVisual(algunProyectil)
+		
+		algunProyectil.chocasteConEnemigo(enemigoMayor)
+		assert.equals(enemigoMayor.vida(),1)
+	}
+
+	test "Cuando el enemigo pierde toda su vida, muere" {
+
+		game.addVisual(unEnemigo)
+		game.addVisual(algunProyectil)
+		algunProyectil.chocasteConEnemigo(unEnemigo)
+		assert.notThat(game.hasVisual(unEnemigo))
+		
+	}
+	
+	test "Una mina plantada elimina a enemigos con poca vida" {
+		
+		game.addVisual(mina)
+		mina.position(game.at(0,0))
+		mina.estaPlantada(true)
+		game.addVisual(enemigoMayor)
+		mina.chocasteConEnemigo(enemigoMayor)
+		assert.notThat(game.hasVisual(enemigoMayor))
+	}
+	
+	test "Una mina plantada no puede eliminar al Boss" {
+		
+		game.addVisual(mina)
+		mina.position(game.at(0,0))
+		mina.estaPlantada(true)
+		game.addVisual(boss)
+		mina.chocasteConEnemigo(boss)
+		assert.that(game.hasVisual(boss))
+	}
+}
+
+describe "Cargador" {
+	
+	test "Cuando el personaje dispara, tiene una bala menos en su inventario" {
+		game.addVisual(personaje)
+		municion.agregarProyectiles()
+		personaje.disparar()
+		assert.equals(municion.elCargador().size(),4)
+	}
+	
+	test "Cuando el personaje recarga su municion, vuelve a tener balas en su inventario" {
+		game.addVisual(personaje)
+		personaje.cargador().elCargador([]) // no hay balas en el cargador del personaje
+		municion.recargar()
+		assert.equals(municion.elCargador().size(),5)
+	}
+	 
+	test "Con un cargador con balas chetadas, el jugador puede matar a un enemigo con mayor vida" {
+		
+		const proyectilChetado = new Proyectil(tipoProyectil = chetado)
+		
+
+		game.addVisual(proyectilChetado)
+		game.addVisual(enemigoMayor) // enemigo de vida 2
+		proyectilChetado.chocasteConEnemigo(enemigoMayor)
+		assert.notThat(game.hasVisual(enemigoMayor))
+	}
+}
+ 
+
+
+
+
+ 

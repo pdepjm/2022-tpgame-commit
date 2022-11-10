@@ -1,0 +1,102 @@
+@startuml Diagramas
+
+abstract class ElementoEspecial {
+    position
+    tiempoHastaAparicion
+    tiempoEnPantalla
+
+    chocasteConJugador()
+}
+
+object curita {
+
+    chocasteConJugador()
+}
+
+object mina {
+    chocasteConJugador()
+
+}
+
+
+class Municion {
+    tipoMunicion
+
+}
+
+ElementoEspecial <|-- curita
+ElementoEspecial <|-- mina
+
+Municion <-- personaje
+Proyectil " * "<-- Municion
+Proyectil -l-> TipoProyectil
+
+Enemigo <.. personaje
+Proyectil <--> Enemigo
+Boss -l-|> Enemigo
+Enemigo --> EspecieEnemigo
+ProyectilEnemigo --|> Proyectil
+
+
+object personaje  {
+    vida
+    cargador
+    ----
+    aumentarTodaLaVida()
+    disminuirVida()
+    disparar()
+    recargarBalas()
+    renovarCargador()
+    chocasteConEnemigo(unEnemigo)
+}
+
+ElementoEspecial -l-> personaje
+
+
+class Proyectil {
+
+    tipoProyectil
+
+    chocasteConEnemigo(unEnemigo)
+    mover()
+}
+
+class TipoProyectil{
+    danio
+    velocidad
+    tiempoDeRecarga
+}
+
+ class Enemigo {
+    vida
+    especie
+    velocidad
+
+    disminuirVida(cantidad)
+}
+
+object Boss {
+    
+    disminuirVida(cantidad)
+    dispararPersonaje()
+}
+
+class EspecieEnemigo {
+    vida 
+    velocidad
+}
+
+class ProyectilEnemigo {
+    chocasteConJugador()
+    mover()
+    
+}
+
+
+
+
+
+
+@enduml
+
+
