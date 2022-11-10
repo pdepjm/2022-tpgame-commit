@@ -137,6 +137,7 @@ const nivel_3 =
 object finDelJuego{
 	
 	method configuracionInicial(){
+		municion.remover()
 		juego.ganar()
 	}
 

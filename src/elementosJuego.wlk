@@ -36,6 +36,11 @@ class Proyectil {
     method agregarse(){
 		game.addVisual(self)
 	}
+	
+	method sacaloSiEsta() {
+		if (game.hasVisual(self))game.removeVisual(self)
+		else {}
+	}
 
 
 }

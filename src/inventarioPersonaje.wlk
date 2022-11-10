@@ -31,6 +31,8 @@ import wollok.game.*
 	method tiempoDeRecarga() = tipoMunicion.tiempoDeRecarga()
 
 	method tamanio() = elCargador.size()
+	
+	method remover() = elCargador.forEach{unProy => unProy.sacaloSiEsta()}
 }
 
 object minaInventario{
