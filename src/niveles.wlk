@@ -120,14 +120,14 @@ const nivel_2 =
 
 const nivel_3 =
 	new Nivel(
-			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta), new Enemigo(position = game.at(14, 6), especie = zombieAlfa)],
- 			oleada2 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 2)), new Enemigo(especie= zombieEsqueleto, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 5), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 3), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14, 2), especie = zombieEsqueletoBalde)],
+			oleada1 = [new Enemigo(especie = zombieAlfa, position = game.at(14, 2)), new Enemigo(especie= zombieBeta, position = game.at(15, 5)), new Enemigo(position = game.at(15, 8), especie = zombieBeta), new Enemigo (position = game.at(14, 4), especie = zombieBeta), new Enemigo(position = game.at(14, 9), especie = zombieBeta), new Enemigo(position = game.at(14, 6), especie = zombieAlfa), new Enemigo(especie = zombieAlfa, position = game.at(14, 3))],
+ 			oleada2 = [new Enemigo(especie = zombieEsqueletoBalde, position = game.at(15, 2)), new Enemigo(especie= zombieEsqueleto, position = game.at(15, 9)), new Enemigo(position = game.at(15, 10), especie = zombieEsqueletoHalloween), new Enemigo (position = game.at(14, 5), especie = zombieEsqueleto), new Enemigo(position = game.at(14, 3), especie = zombieEsqueletoHalloween), new Enemigo(position = game.at(14, 2), especie = zombieEsqueletoBalde), new Enemigo(especie = zombieEsqueletoBalde, position = game.at(14, 7))],
 			oleada3 = [boss],
 			elementosEspeciales = [mina,curita],
 			musica = music3,
 			siguienteNivel = finDelJuego,
-			tiempoOleada2 = 15000,
-			tiempoOleada3 = 20000,
+			tiempoOleada2 = 12000,
+			tiempoOleada3 = 18000,
 			imagenIntro = fondoIntroNivel_3,
 			fondoNivel = fondoNivel_3
 			)
@@ -136,7 +136,7 @@ const nivel_3 =
 object finDelJuego{
 	
 	method configuracionInicial(){
-		game.schedule(700, {=> juego.ganar()})
+		juego.ganar()
 	}
 
 }
